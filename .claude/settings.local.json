@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport ast, sys, pathlib\nerrors = []\nfor f in pathlib.Path\\('.'\\).rglob\\('*.py'\\):\n    try:\n        ast.parse\\(f.read_text\\(\\)\\)\n    except SyntaxError as e:\n        errors.append\\(f'{f}: {e}'\\)\nif errors:\n    for e in errors:\n        print\\(e\\)\n    sys.exit\\(1\\)\nelse:\n    print\\('All Python files parse successfully'\\)\n\")"
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport ast, sys, pathlib\nerrors = []\nfor f in pathlib.Path\\('.'\\).rglob\\('*.py'\\):\n    try:\n        ast.parse\\(f.read_text\\(\\)\\)\n    except SyntaxError as e:\n        errors.append\\(f'{f}: {e}'\\)\nif errors:\n    for e in errors:\n        print\\(e\\)\n    sys.exit\\(1\\)\nelse:\n    print\\('All Python files parse successfully'\\)\n\")",
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"from api.app import app; print\\('Import successful:', app.title\\)\")",
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npm run build 2>&1 | tail -5)",
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python run_research.py --help 2>&1)",
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport run_research\nprint\\('CLI module imports OK'\\)\n\" 2>&1)"
     ]
   }
 }

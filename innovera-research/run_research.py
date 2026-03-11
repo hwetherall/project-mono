@@ -62,7 +62,7 @@ def main():
     if args.metadata:
         metadata_path = Path(args.metadata)
         if metadata_path.exists():
-            with open(metadata_path) as f:
+            with open(metadata_path, encoding="utf-8") as f:
                 metadata = yaml.safe_load(f)
         else:
             console.print(f"[yellow]Warning: Metadata file not found: {metadata_path}[/yellow]")
