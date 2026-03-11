@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport ast, sys, pathlib\nerrors = []\nfor f in pathlib.Path\\('.'\\).rglob\\('*.py'\\):\n    try:\n        ast.parse\\(f.read_text\\(\\)\\)\n    except SyntaxError as e:\n        errors.append\\(f'{f}: {e}'\\)\nif errors:\n    for e in errors:\n        print\\(e\\)\n    sys.exit\\(1\\)\nelse:\n    print\\('All Python files parse successfully'\\)\n\")"
+    ]
+  }
+}
