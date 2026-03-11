@@ -5,12 +5,11 @@ Usage:
   python run_research.py --docs ./venture_docs/
   python run_research.py --docs ./venture_docs/ --metadata ./metadata.yaml
   python run_research.py --docs ./venture_docs/ --output ./custom_output/
+  python run_research.py --docs ./venture_docs/ --only EC-04,EC-05,EC-10
 """
 import os
 import sys
 
-# Force UTF-8 for all I/O on Windows to prevent charmap encoding errors
-# from GPT Researcher's emoji-heavy log output
 if sys.platform == "win32":
     os.environ.setdefault("PYTHONUTF8", "1")
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -45,6 +44,11 @@ def main():
         "--output", type=str, default=str(OUTPUT_DIR),
         help="Path to output directory for evidence packages"
     )
+    parser.add_argument(
+        "--only", type=str, default=None,
+        help="Comma-separated category IDs to run (e.g. EC-04,EC-05,EC-10). "
+             "Skips already-succeeded categories for faster re-runs."
+    )
     args = parser.parse_args()
 
     docs_dir = Path(args.docs)
@@ -54,7 +58,6 @@ def main():
         console.print(f"[red]Error: Documents directory not found: {docs_dir}[/red]")
         sys.exit(1)
 
-    # Load metadata if provided
     metadata = None
     if args.metadata:
         metadata_path = Path(args.metadata)
@@ -63,6 +66,11 @@ def main():
                 metadata = yaml.safe_load(f)
         else:
             console.print(f"[yellow]Warning: Metadata file not found: {metadata_path}[/yellow]")
+
+    only_categories = None
+    if args.only:
+        only_categories = [c.strip().upper() for c in args.only.split(",")]
+        console.print(f"\n[bold yellow]Selective run: only {', '.join(only_categories)}[/bold yellow]")
 
     # --- Step 1: Context Extraction ---
     console.print("\n[bold]Step 1: Extracting context from venture documents...[/bold]")
@@ -74,9 +82,10 @@ def main():
     console.print(f"  Named competitors: {', '.join(context.named_competitors) or 'None'}")
 
     # --- Step 2: Research Execution ---
-    console.print("\n[bold]Step 2: Executing research across 13 evidence categories...[/bold]")
+    target_count = len(only_categories) if only_categories else 13
+    console.print(f"\n[bold]Step 2: Executing research across {target_count} evidence categories...[/bold]")
     progress = ProgressTracker()
-    runner = ResearchRunner(context, docs_dir, progress)
+    runner = ResearchRunner(context, docs_dir, progress, only_categories=only_categories)
     results = asyncio.run(runner.run_all())
 
     # --- Step 3: Package Assembly ---
