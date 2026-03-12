@@ -1,12 +1,20 @@
 # Innovera Research — Checkpoint Resume Spec
 
+## Purpose
+
+This brief defines a generic checkpoint-and-resume system for long-running categories. It should support both research modes and enable a truthful `Continue` action after timeouts or interruptions.
+
 ## Overview
 
-This document is a focused implementation brief for adding a generic checkpoint-and-resume system to the Innovera Research pipeline.
+Long-running categories such as `MR-01b` and `MR-06a` can time out after 30 minutes even when expensive research work has already completed and the system is partway through report generation or finalization.
 
-The immediate pain point is that long-running categories such as `MR-01b` and `MR-06a` can time out after 30 minutes, even when expensive research work has already completed and the system is partway through report generation or finalization. The goal is to let the user click a `Continue` button and resume from saved progress instead of rerunning the entire pipeline or silently losing partial work.
+The goal is to let the user click `Continue` and resume from saved progress instead of:
 
-This should be implemented as a generic mechanism for all categories and both research modes, not as a one-off fix for only market research.
+- rerunning the entire pipeline
+- silently losing partial work
+- depending purely on fragile in-memory state
+
+This should be implemented generically for all categories and both research modes, not as a one-off fix for market research.
 
 ## Current Problem
 
@@ -23,26 +31,26 @@ When timeout occurs, the runner creates a brand-new failed `CategoryResult` with
 - a timeout gap message
 - `error="Timeout"`
 
-This means partial state is effectively discarded.
+That means partial state is effectively discarded.
 
 ### Why The Current Retry Is Not Enough
 
-The app already has a category retry endpoint in `innovera-research/api/routes.py`:
+The app already has:
 
 - `POST /api/research/{run_id}/retry/{category_id}`
 
-But this reruns the category from scratch. It does not resume from partial work, and it depends on `active_runs` memory being intact.
+But that reruns the category from scratch. It does not resume from partial work and depends on `active_runs` memory being intact.
 
 ### Why In-Memory-Only Resume Is Not Good Enough
 
-An in-memory-only solution sounds elegant, but it is too fragile:
+An in-memory-only solution is too fragile:
 
 - it breaks on server restart
 - it breaks if `active_runs` is cleared
 - it does not help when the browser reconnects later
 - current orchestration does not preserve a resumable partial category object after timeout
 
-The better solution is a disk-backed checkpoint system that still supports in-memory acceleration when available.
+The recommended solution is a disk-backed checkpoint system that still uses memory as an optimization when available.
 
 ## Product Goal
 
@@ -84,11 +92,11 @@ Store checkpoints under the run output directory:
 
 - `innovera-research/output_packages/<run_id>/checkpoints/<category_id>.json`
 
-This keeps checkpoint state colocated with the run artifacts and makes interrupted-run recovery practical.
+This keeps checkpoint state close to run artifacts and makes interrupted-run recovery practical.
 
 ## Checkpoint Schema
 
-Each checkpoint file should contain enough data to determine whether resume is possible and where to resume from.
+Each checkpoint should contain enough data to determine whether resume is possible and where to resume from.
 
 Suggested fields:
 
@@ -115,10 +123,10 @@ Suggested fields:
 
 Notes:
 
-- `research_context` should store the normalized post-`conduct_research()` context if available.
+- `research_context` should store normalized post-`conduct_research()` context if available.
 - `raw_report` should be stored once `write_report()` completes.
 - `structured_findings` should be stored after parsing completes.
-- `source_urls` should be preserved even if the final report is not yet assembled.
+- `source_urls` should be preserved even if final package assembly has not happened.
 
 ## Required Backend Changes
 
@@ -158,7 +166,7 @@ If timeout or error occurs:
 
 - preserve the last successful checkpoint
 - write an updated error state
-- do not collapse the category into a completely empty synthetic failure if resumable work exists
+- do not collapse the category into a totally empty synthetic failure if resumable work exists
 
 ### 3. Update Timeout Handling
 
@@ -170,7 +178,7 @@ Instead of always replacing the category result with a blank failure:
 - if the category had already completed research or report writing, expose the category as resumable
 - return a failed or interrupted result that includes resumable metadata
 
-This may still be represented as a failed result in the UI, but it must not hide the fact that continuation is possible.
+This can still appear as a failed result in the UI, but it must not hide the fact that continuation is possible.
 
 ### 4. Add Resume Endpoint
 
@@ -183,7 +191,7 @@ Behavior:
 - load run context and checkpoint
 - determine the latest valid stage
 - if stage is `research_completed`, skip new web research and continue with report writing, parsing, and finalization
-- if stage is `report_completed`, skip directly to parsing/finalization
+- if stage is `report_completed`, skip directly to parsing and finalization
 - if stage is `parsed`, skip directly to finalization and package rebuild if possible
 - if no valid checkpoint exists, return a clear error or optionally fall back to retry
 
@@ -192,17 +200,17 @@ After successful resume:
 - update `run["results"][category_id]`
 - rebuild outputs with `PackageAssembler`
 - refresh stored YAML and Markdown file pointers
-- emit progress/activity stream events that explain what was resumed
+- emit progress and Activity Stream events that explain what was resumed
 
 ### 5. Reuse Existing Retry/Reassembly Logic
 
-The current retry path in `innovera-research/api/routes.py` already does useful work:
+The current retry path in `innovera-research/api/routes.py` already:
 
 - executes one category
 - updates `run["results"]`
 - reruns `PackageAssembler(...).assemble()`
 
-Do not duplicate this logic.
+Do not duplicate that logic.
 
 Refactor shared behavior into an internal helper that both endpoints can use:
 
@@ -257,7 +265,7 @@ The Activity Stream should narrate resume behavior clearly. Add messages like:
 - `Skipping web research; continuing report generation`
 - `Rebuilding evidence package after resume`
 
-This is especially important because the user needs confidence that prior work was reused.
+This is important because the user needs confidence that prior work was reused.
 
 ## GPT Researcher Reuse Risk
 
@@ -394,7 +402,7 @@ Implement checkpoint-aware resume in parallel with the existing retry flow.
 
 ### Step 5: Expose Resume Metadata To Frontend
 
-Return checkpoint stage and resumable flags from status/full-run APIs.
+Return checkpoint stage and resumable flags from status and full-run APIs.
 
 ### Step 6: Add Continue Button
 
@@ -412,9 +420,9 @@ Test:
 
 ## Success Criteria
 
-- A timed-out category can advertise resumable progress instead of appearing as a total loss.
-- The UI shows a truthful `Continue` action when checkpoint-backed resume exists.
-- Resuming does not rerun completed categories.
-- Final YAML/Markdown outputs are rebuilt after successful resume.
-- Resume works after server restart when checkpoint files are present.
-- If true continuation is impossible for a given stage, the system degrades cleanly to targeted retry while preserving all other completed work.
+- [ ] A timed-out category can advertise resumable progress instead of appearing as a total loss.
+- [ ] The UI shows a truthful `Continue` action when checkpoint-backed resume exists.
+- [ ] Resuming does not rerun completed categories.
+- [ ] Final YAML and Markdown outputs are rebuilt after successful resume.
+- [ ] Resume works after server restart when checkpoint files are present.
+- [ ] If true continuation is impossible for a given stage, the system degrades cleanly to targeted retry while preserving all other completed work.
