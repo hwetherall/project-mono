@@ -1,27 +1,62 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import VerdictDashboard from './VerdictDashboard';
+import ReportSidebar from './ReportSidebar';
+import ReportSearch from './ReportSearch';
+import SourcePanel, { SourceChips } from './SourcePanel';
 
-export default function OutputViewer({ run, onNewRun }) {
-  const [activeTab, setActiveTab] = useState('markdown');
-  const [markdownContent, setMarkdownContent] = useState('');
+export default function OutputViewer({ run, onNewRun, historicalRunId }) {
+  const [structuredData, setStructuredData] = useState(null);
+  const [historicalData, setHistoricalData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState('section-verdict');
+  const contentRef = useRef(null);
 
+  // Determine run ID — either from active run or historical
+  const runId = historicalRunId || run.runId;
+
+  // Load structured data
   useEffect(() => {
-    if (!run.runId) return;
+    if (!runId) return;
     setLoading(true);
-    fetch(`/api/research/${run.runId}/output/markdown`)
-      .then((res) => {
-        if (!res.ok) throw new Error('Not available');
-        return res.text();
-      })
-      .then(setMarkdownContent)
-      .catch(() => setMarkdownContent('*Report not yet available.*'))
-      .finally(() => setLoading(false));
-  }, [run.runId]);
 
+    const fetches = [
+      fetch(`/api/research/${runId}/output/structured`).then((r) => r.ok ? r.json() : null),
+    ];
+
+    // If historical, also load full run data
+    if (historicalRunId) {
+      fetches.push(
+        fetch(`/api/research/${runId}/full`).then((r) => r.ok ? r.json() : null)
+      );
+    }
+
+    Promise.all(fetches)
+      .then(([structured, historical]) => {
+        setStructuredData(structured);
+        if (historical) setHistoricalData(historical);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [runId, historicalRunId]);
+
+  // Use historical categories if viewing past run
+  const categories = historicalRunId && historicalData
+    ? historicalData.categories
+    : run.categories;
+
+  const result = historicalRunId && historicalData
+    ? { elapsed_seconds: historicalData.duration_seconds || 0, succeeded: historicalData.categories_succeeded, failed: historicalData.categories_failed }
+    : run.result;
+
+  const request = historicalRunId && historicalData
+    ? historicalData.request
+    : null;
+
+  // Handle download
   const handleDownload = async (type) => {
-    const url = `/api/research/${run.runId}/output/${type}`;
+    const url = `/api/research/${runId}/output/${type}`;
     const res = await fetch(url);
     if (!res.ok) return;
     const blob = await res.blob();
@@ -32,197 +67,298 @@ export default function OutputViewer({ run, onNewRun }) {
     URL.revokeObjectURL(a.href);
   };
 
-  // Build summary data
-  const categories = Object.values(run.categories);
-  const succeeded = categories.filter((c) => c.status === 'success').length;
-  const failed = categories.filter((c) => c.status === 'failed').length;
-  const totalSources = categories.reduce((sum, c) => sum + (c.source_count || 0), 0);
-  const totalTime = run.result?.elapsed_seconds
-    ? `${Math.floor(run.result.elapsed_seconds / 60)}m ${Math.floor(run.result.elapsed_seconds % 60)}s`
-    : '-';
-  const gapCategories = categories.filter((c) => (c.gap_count || 0) > 0);
+  // Scroll tracking for sidebar
+  useEffect(() => {
+    const container = contentRef.current;
+    if (!container) return;
 
-  const tabs = [
-    { id: 'markdown', label: 'Markdown Report' },
-    { id: 'summary', label: 'Summary Dashboard' },
-    { id: 'raw', label: 'Raw Reports' },
-  ];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        }
+      },
+      { root: null, rootMargin: '-100px 0px -60% 0px', threshold: 0.1 }
+    );
+
+    const sections = container.querySelectorAll('[id^="section-"]');
+    sections.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [structuredData, loading]);
+
+  const handleJumpTo = useCallback((categoryId) => {
+    const el = document.getElementById(`section-${categoryId}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center py-12 text-slate-400 dark:text-slate-500">Loading report...</div>
+    );
+  }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-slate-900">Research Results</h2>
+    <div className="space-y-4">
+      {/* Header bar */}
+      <div className="flex items-center justify-between no-print">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+          {structuredData?.venture_name || 'Research Results'}
+        </h2>
         <div className="flex gap-2">
           <button
             onClick={() => handleDownload('markdown')}
-            className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+            className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
           >
-            Download Markdown
+            Download MD
           </button>
           <button
             onClick={() => handleDownload('yaml')}
-            className="px-4 py-2 text-sm border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+            className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
           >
             Download YAML
           </button>
           <button
+            onClick={() => window.print()}
+            className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
+          >
+            Export PDF
+          </button>
+          <button
             onClick={onNewRun}
-            className="px-4 py-2 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             New Run
           </button>
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="flex border-b border-slate-200">
-        {tabs.map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
-              activeTab === tab.id
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-slate-500 hover:text-slate-700'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
-
-      {/* Markdown Tab */}
-      {activeTab === 'markdown' && (
-        <div className="bg-white border border-slate-200 rounded-lg p-6 prose prose-slate max-w-none overflow-auto">
-          {loading ? (
-            <p className="text-slate-400">Loading report...</p>
-          ) : (
-            <Markdown remarkPlugins={[remarkGfm]}>{markdownContent}</Markdown>
-          )}
+      {/* Search */}
+      {structuredData?.categories && (
+        <div className="no-print">
+          <ReportSearch
+            categories={structuredData.categories}
+            onJumpTo={handleJumpTo}
+          />
         </div>
       )}
 
-      {/* Summary Tab */}
-      {activeTab === 'summary' && (
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <SummaryCard label="Succeeded" value={succeeded} color="text-green-600" />
-            <SummaryCard label="Failed" value={failed} color="text-red-600" />
-            <SummaryCard label="Total Sources" value={totalSources} color="text-blue-600" />
-            <SummaryCard label="Total Time" value={totalTime} color="text-slate-700" />
+      {/* Main layout: sidebar + content */}
+      <div className="flex gap-6">
+        {/* Sidebar */}
+        {structuredData?.categories && (
+          <div className="hidden xl:block w-56 shrink-0 no-print">
+            <ReportSidebar
+              categories={structuredData.categories}
+              activeSection={activeSection}
+            />
+          </div>
+        )}
+
+        {/* Content */}
+        <div ref={contentRef} className="flex-1 min-w-0 space-y-6 report-scroll">
+          {/* Verdict Dashboard */}
+          <div id="section-verdict">
+            <VerdictDashboard
+              structuredData={structuredData}
+              categories={categories}
+              result={result}
+              request={request}
+            />
           </div>
 
-          {gapCategories.length > 0 && (
-            <div className="bg-white border border-slate-200 rounded-lg p-4">
-              <h3 className="text-sm font-semibold text-slate-700 mb-3">Gap Inventory</h3>
-              <div className="space-y-2">
-                {gapCategories.map((cat) => (
-                  <div key={cat.category_id} className="flex items-center gap-2 text-sm">
-                    <span className="font-mono text-slate-400">{cat.category_id}</span>
-                    <span className="text-slate-700">{cat.category_name}</span>
-                    <span className="text-amber-600 font-medium">{cat.gap_count} gaps</span>
+          {/* Executive Summary */}
+          {structuredData?.context_signals && (
+            <div id="section-summary" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Executive Summary</h2>
+              <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                {structuredData.context_signals.problem_summary && (
+                  <div>
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">Problem:</span>{' '}
+                    {structuredData.context_signals.problem_summary}
                   </div>
-                ))}
+                )}
+                {structuredData.context_signals.solution_summary && (
+                  <div>
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">Solution:</span>{' '}
+                    {structuredData.context_signals.solution_summary}
+                  </div>
+                )}
+                {structuredData.context_signals.target_customer_summary && (
+                  <div>
+                    <span className="font-semibold text-slate-900 dark:text-slate-100">Target Customer:</span>{' '}
+                    {structuredData.context_signals.target_customer_summary}
+                  </div>
+                )}
+                {structuredData.context_signals.problem_keywords?.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-2">
+                    {structuredData.context_signals.problem_keywords.map((kw, i) => (
+                      <span key={i} className="px-2 py-0.5 text-xs rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        {kw}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}
 
-          {/* Category breakdown */}
-          <div className="bg-white border border-slate-200 rounded-lg p-4">
-            <h3 className="text-sm font-semibold text-slate-700 mb-3">Category Breakdown</h3>
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-left text-slate-500 border-b border-slate-100">
-                  <th className="pb-2">Category</th>
-                  <th className="pb-2">Status</th>
-                  <th className="pb-2">Sources</th>
-                  <th className="pb-2">Gaps</th>
-                  <th className="pb-2">Time</th>
-                </tr>
-              </thead>
-              <tbody>
-                {categories.map((cat) => (
-                  <tr key={cat.category_id} className="border-b border-slate-50">
-                    <td className="py-2">
-                      <span className="font-mono text-slate-400 mr-2">{cat.category_id}</span>
-                      {cat.category_name}
-                    </td>
-                    <td className={`py-2 ${cat.status === 'success' ? 'text-green-600' : cat.status === 'failed' ? 'text-red-600' : 'text-slate-400'}`}>
-                      {cat.status}
-                    </td>
-                    <td className="py-2">{cat.source_count || 0}</td>
-                    <td className={`py-2 ${(cat.gap_count || 0) > 0 ? 'text-amber-600' : ''}`}>
-                      {cat.gap_count || 0}
-                    </td>
-                    <td className="py-2">
-                      {cat.elapsed_seconds ? `${Math.floor(cat.elapsed_seconds / 60)}m ${Math.floor(cat.elapsed_seconds % 60)}s` : '-'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Category Sections */}
+          {structuredData?.categories?.map((cat, idx) => (
+            <CategorySection
+              key={cat.category_id}
+              category={cat}
+              runId={runId}
+              prevCat={structuredData.categories[idx - 1]}
+              nextCat={structuredData.categories[idx + 1]}
+              onJumpTo={handleJumpTo}
+            />
+          ))}
+
+          {/* Gap Inventory */}
+          {structuredData?.gap_inventory && (
+            <GapInventory gaps={structuredData.gap_inventory} />
+          )}
+
+          {/* Source Panel */}
+          {structuredData?.categories && (
+            <SourcePanel categories={structuredData.categories} />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CategorySection({ category, runId, prevCat, nextCat, onJumpTo }) {
+  const [expanded, setExpanded] = useState(true);
+  const statusIcon = category.status === 'success' ? '\u2705' : category.status === 'failed' ? '\u274C' : '\u26A0\uFE0F';
+  const borderColor = category.status === 'success'
+    ? 'border-l-green-500'
+    : category.status === 'failed'
+      ? 'border-l-red-500'
+      : 'border-l-amber-500';
+
+  const timeStr = category.execution_time_seconds
+    ? `${category.execution_time_seconds.toFixed(1)}s`
+    : '';
+
+  return (
+    <div
+      id={`section-${category.category_id}`}
+      className={`category-section bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden border-l-4 ${borderColor}`}
+    >
+      {/* Header */}
+      <div className="p-5 pb-3">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-mono text-slate-400 dark:text-slate-500 font-bold">{category.category_id}</span>
+            <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">{category.category_name}</h3>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+            <span>{statusIcon}</span>
+            {timeStr && <span className="font-mono">{timeStr}</span>}
+          </div>
+        </div>
+
+        {/* Key metrics bar */}
+        <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400 font-mono pb-3 border-b border-slate-100 dark:border-slate-800">
+          <span>Sources: <span className="font-bold text-slate-700 dark:text-slate-300">{category.source_count}</span></span>
+          <span>Gaps: <span className={`font-bold ${category.gap_count > 0 ? 'text-amber-600 dark:text-amber-400' : 'text-slate-700 dark:text-slate-300'}`}>{category.gap_count}</span></span>
+        </div>
+      </div>
+
+      {/* Report content */}
+      {category.raw_report_markdown && (
+        <div className="px-5 pb-4">
+          <div className="report-prose prose prose-slate dark:prose-invert max-w-none text-sm">
+            <Markdown remarkPlugins={[remarkGfm]}>{category.raw_report_markdown}</Markdown>
           </div>
         </div>
       )}
 
-      {/* Raw Reports Tab */}
-      {activeTab === 'raw' && (
-        <div className="space-y-2">
-          {categories
-            .filter((c) => c.status === 'success')
-            .map((cat) => (
-              <RawReportAccordion key={cat.category_id} runId={run.runId} category={cat} />
+      {/* Gaps */}
+      {category.gaps?.length > 0 && (
+        <div className="px-5 pb-4">
+          <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">Gaps Identified</h4>
+          <div className="space-y-1.5">
+            {category.gaps.map((gap, i) => (
+              <div key={i} className="px-3 py-2 text-sm bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-amber-800 dark:text-amber-300">
+                {gap}
+              </div>
             ))}
-          {categories.filter((c) => c.status === 'success').length === 0 && (
-            <p className="text-slate-400 text-sm">No successful category reports available.</p>
-          )}
+          </div>
         </div>
       )}
+
+      {/* Sources as chips */}
+      {category.sources?.length > 0 && (
+        <div className="px-5 pb-4">
+          <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Sources</h4>
+          <SourceChips sources={category.sources} />
+        </div>
+      )}
+
+      {/* Navigation */}
+      <div className="flex items-center justify-between px-5 py-3 border-t border-slate-100 dark:border-slate-800 text-sm no-print">
+        {prevCat ? (
+          <button
+            onClick={() => onJumpTo(prevCat.category_id)}
+            className="text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            &larr; {prevCat.category_id}
+          </button>
+        ) : <span />}
+        {nextCat ? (
+          <button
+            onClick={() => onJumpTo(nextCat.category_id)}
+            className="text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            {nextCat.category_id} &rarr;
+          </button>
+        ) : <span />}
+      </div>
     </div>
   );
 }
 
-function SummaryCard({ label, value, color }) {
-  return (
-    <div className="bg-white border border-slate-200 rounded-lg p-4">
-      <p className="text-xs text-slate-400 uppercase">{label}</p>
-      <p className={`text-2xl font-bold ${color}`}>{value}</p>
-    </div>
-  );
-}
+function GapInventory({ gaps }) {
+  const criticalGaps = gaps.critical || [];
+  const moderateGaps = gaps.moderate || [];
 
-function RawReportAccordion({ runId, category }) {
-  const [open, setOpen] = useState(false);
-  const [content, setContent] = useState(null);
-
-  const load = () => {
-    if (content !== null) {
-      setOpen(!open);
-      return;
-    }
-    fetch(`/api/research/${runId}/output/raw/${category.category_id}`)
-      .then((res) => (res.ok ? res.text() : 'Report not available.'))
-      .then((text) => {
-        setContent(text);
-        setOpen(true);
-      });
-  };
+  if (criticalGaps.length === 0 && moderateGaps.length === 0) return null;
 
   return (
-    <div className="bg-white border border-slate-200 rounded-lg">
-      <button
-        onClick={load}
-        className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-slate-700 hover:bg-slate-50"
-      >
-        <span>
-          <span className="font-mono text-slate-400 mr-2">{category.category_id}</span>
-          {category.category_name}
-        </span>
-        <span className="text-slate-400">{open ? '\u25B2' : '\u25BC'}</span>
-      </button>
-      {open && content && (
-        <div className="px-4 pb-4 border-t border-slate-100 prose prose-sm prose-slate max-w-none overflow-auto">
-          <Markdown remarkPlugins={[remarkGfm]}>{content}</Markdown>
+    <div id="section-gaps" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl p-6">
+      <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Gap Inventory</h2>
+
+      {criticalGaps.length > 0 && (
+        <div className="mb-4">
+          <h3 className="text-sm font-semibold text-red-700 dark:text-red-400 mb-2">Critical Gaps</h3>
+          <div className="space-y-1.5">
+            {criticalGaps.map((gap, i) => (
+              <div key={i} className="px-3 py-2 text-sm bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-800 dark:text-red-300">
+                <span className="font-mono text-xs text-red-500 dark:text-red-400 mr-2">{gap.category_id}</span>
+                {gap.gap}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {moderateGaps.length > 0 && (
+        <div>
+          <h3 className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">Moderate Gaps</h3>
+          <div className="space-y-1.5">
+            {moderateGaps.map((gap, i) => (
+              <div key={i} className="px-3 py-2 text-sm bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg text-amber-800 dark:text-amber-300">
+                <span className="font-mono text-xs text-amber-500 dark:text-amber-400 mr-2">{gap.category_id}</span>
+                {gap.gap}
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

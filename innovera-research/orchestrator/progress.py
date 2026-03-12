@@ -24,11 +24,13 @@ class ProgressTracker:
         self.category_statuses[category_id] = "running"
         self.console.print(f"  [yellow]> Starting {category_id}[/yellow]")
 
-    def end_category(self, category_id: str, status: str):
+    def end_category(self, category_id: str, status: str, error: str | None = None,
+                     source_count: int = 0, gap_count: int = 0):
         self.category_statuses[category_id] = status
         icon = "+" if status == "success" else "x" if status == "failed" else "~"
         color = "green" if status == "success" else "red" if status == "failed" else "yellow"
-        self.console.print(f"  [{color}]{icon} {category_id}: {status}[/{color}]")
+        suffix = f" ({error})" if error else ""
+        self.console.print(f"  [{color}]{icon} {category_id}: {status}{suffix}[/{color}]")
 
     def end_phase(self, phase_name: str):
         self.console.print(f"[bold blue]=== Phase {phase_name} complete ===[/bold blue]")

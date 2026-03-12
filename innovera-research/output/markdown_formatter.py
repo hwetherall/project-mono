@@ -4,6 +4,7 @@ Markdown output formatter for the human-readable evidence report.
 from context_extraction.models import ContextSignals
 from evidence_categories.base import CategoryResult
 from evidence_categories.registry import CATEGORY_REGISTRY
+from market_research.registry import MR_CATEGORY_REGISTRY
 
 
 def format_markdown_report(
@@ -15,10 +16,15 @@ def format_markdown_report(
     meta = package["research_package"]["metadata"]
     gap_summary = package["research_package"]["gap_summary"]
 
+    is_market_research = context.research_mode == "market_research"
+
     sections = []
 
     # Header
-    sections.append(f"# Innovera Evidence Package: {context.venture_name}")
+    if is_market_research:
+        sections.append(f"# Innovera Market Research Report: {context.venture_name}")
+    else:
+        sections.append(f"# Innovera Evidence Package: {context.venture_name}")
     sections.append("")
     sections.append(f"**Generated:** {meta['generated_at']}")
     sections.append(f"**Industry:** {context.industry_vertical} / {context.sub_vertical or 'General'}")
@@ -57,15 +63,20 @@ def format_markdown_report(
     sections.append(f"**Named Competitors:** {', '.join(context.named_competitors) if context.named_competitors else 'None identified'}")
     sections.append("")
 
-    # Evidence Categories
+    # Evidence/Research Categories
     sections.append("---")
     sections.append("")
-    sections.append("## Evidence by Category")
+    if is_market_research:
+        sections.append("## Market Research by Category")
+    else:
+        sections.append("## Evidence by Category")
     sections.append("")
+
+    registry = MR_CATEGORY_REGISTRY if is_market_research else CATEGORY_REGISTRY
 
     for cid in sorted(results.keys()):
         result = results[cid]
-        meta_entry = CATEGORY_REGISTRY.get(cid)
+        meta_entry = registry.get(cid)
 
         status_icon = "+" if result.status == "success" else "x" if result.status == "failed" else "~"
         sections.append(f"### {cid}: {result.category_name} [{status_icon}]")
@@ -78,11 +89,8 @@ def format_markdown_report(
             sections.append("")
 
         if result.raw_report:
-            # Include the raw report (truncated if very long)
-            report_text = result.raw_report
-            if len(report_text) > 5000:
-                report_text = report_text[:5000] + "\n\n... [truncated — see raw report file for full text]"
-            sections.append(report_text)
+            # Include the full raw report (no truncation)
+            sections.append(result.raw_report)
             sections.append("")
 
         if result.gaps:

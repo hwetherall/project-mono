@@ -17,6 +17,77 @@ from config.settings import RATE_LIMIT_MAX_RETRIES, RATE_LIMIT_BASE_DELAY
 logger = logging.getLogger(__name__)
 
 
+def _stringify_context_item(item) -> str:
+    """Convert mixed GPT Researcher context objects into stable strings."""
+    if item is None:
+        return ""
+    if isinstance(item, str):
+        return item
+    if isinstance(item, (bytes, bytearray)):
+        return item.decode("utf-8", errors="replace")
+    if isinstance(item, dict):
+        preferred_fields = []
+        for key in ("content", "text", "summary", "snippet", "body", "markdown", "page_content"):
+            value = item.get(key)
+            if isinstance(value, str) and value.strip():
+                preferred_fields.append(value.strip())
+
+        if preferred_fields:
+            meta = []
+            title = item.get("title") or item.get("Title")
+            source = item.get("url") or item.get("source") or item.get("Source")
+            if title:
+                meta.append(f"Title: {title}")
+            if source:
+                meta.append(f"Source: {source}")
+
+            body = preferred_fields[0]
+            return f"{chr(10).join(meta)}{chr(10) if meta else ''}{body}"
+
+        return json.dumps(item, ensure_ascii=False, default=str)
+    if isinstance(item, (list, tuple, set)):
+        normalized = [_stringify_context_item(entry) for entry in item]
+        return "\n".join(part for part in normalized if part)
+    return str(item)
+
+
+def _normalize_context_value(value):
+    """Preserve list context shape, but guarantee string entries."""
+    if isinstance(value, list):
+        normalized = [_stringify_context_item(item) for item in value]
+        return [item for item in normalized if item]
+    if isinstance(value, tuple):
+        normalized = [_stringify_context_item(item) for item in value]
+        return [item for item in normalized if item]
+    if isinstance(value, (dict, set)):
+        return _stringify_context_item(value)
+    return value
+
+
+_ORIGINAL_GPTR_CONDUCT_RESEARCH = GPTResearcher.conduct_research
+_ORIGINAL_GPTR_WRITE_REPORT = GPTResearcher.write_report
+
+
+async def _patched_conduct_research(self, *args, **kwargs):
+    context = await _ORIGINAL_GPTR_CONDUCT_RESEARCH(self, *args, **kwargs)
+    normalized = _normalize_context_value(context)
+    self.context = normalized
+    return normalized
+
+
+async def _patched_write_report(self, *args, **kwargs):
+    if "ext_context" in kwargs and kwargs["ext_context"] is not None:
+        kwargs["ext_context"] = _normalize_context_value(kwargs["ext_context"])
+    self.context = _normalize_context_value(self.context)
+    return await _ORIGINAL_GPTR_WRITE_REPORT(self, *args, **kwargs)
+
+
+if not getattr(GPTResearcher, "_innovera_context_patch_applied", False):
+    GPTResearcher.conduct_research = _patched_conduct_research
+    GPTResearcher.write_report = _patched_write_report
+    GPTResearcher._innovera_context_patch_applied = True
+
+
 @dataclass
 class CategoryResult:
     """Output from a single evidence category execution."""

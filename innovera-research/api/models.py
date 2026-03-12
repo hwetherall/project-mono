@@ -1,6 +1,7 @@
 """
 Pydantic request/response models for the API.
 """
+from typing import Literal
 from pydantic import BaseModel, Field
 
 
@@ -31,12 +32,16 @@ class ResearchRequest(BaseModel):
     )
     categories_to_run: list[str] = Field(
         default_factory=list,
-        description="Subset of category IDs to run. Empty = run all 13."
+        description="Subset of category IDs to run. Empty = run all."
     )
     max_concurrent: int = Field(
         default=2,
         ge=1, le=6,
         description="Max parallel categories per phase."
+    )
+    research_mode: Literal["demand_validation", "market_research"] = Field(
+        default="demand_validation",
+        description="Which research pipeline to run."
     )
 
 

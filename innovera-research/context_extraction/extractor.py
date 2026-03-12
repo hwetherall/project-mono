@@ -5,7 +5,10 @@ Reads venture documents and produces structured research signals.
 import json
 from pathlib import Path
 from openai import OpenAI
-from .prompts import CONTEXT_EXTRACTION_SYSTEM, CONTEXT_EXTRACTION_USER
+from .prompts import (
+    CONTEXT_EXTRACTION_SYSTEM, CONTEXT_EXTRACTION_USER,
+    MARKET_RESEARCH_EXTRACTION_SYSTEM, MARKET_RESEARCH_EXTRACTION_USER,
+)
 from .models import ContextSignals
 from config.settings import (
     OPENROUTER_API_KEY, OPENROUTER_BASE_URL,
@@ -23,7 +26,8 @@ class ContextExtractor:
     def extract(
         self,
         venture_docs_dir: Path,
-        metadata: dict | None = None
+        metadata: dict | None = None,
+        research_mode: str = "demand_validation",
     ) -> ContextSignals:
         """
         Read all documents in venture_docs_dir, call LLM via OpenRouter,
@@ -35,7 +39,14 @@ class ContextExtractor:
 
         schema_json = json.dumps(ContextSignals.model_json_schema(), indent=2)
 
-        user_message = CONTEXT_EXTRACTION_USER.format(
+        if research_mode == "market_research":
+            system_prompt = MARKET_RESEARCH_EXTRACTION_SYSTEM
+            user_template = MARKET_RESEARCH_EXTRACTION_USER
+        else:
+            system_prompt = CONTEXT_EXTRACTION_SYSTEM
+            user_template = CONTEXT_EXTRACTION_USER
+
+        user_message = user_template.format(
             documents_text=documents_text,
             metadata_text=metadata_text,
             schema_json=schema_json
@@ -45,7 +56,7 @@ class ContextExtractor:
             model=CONTEXT_LLM_MODEL,
             max_tokens=CONTEXT_LLM_MAX_TOKENS,
             messages=[
-                {"role": "system", "content": CONTEXT_EXTRACTION_SYSTEM},
+                {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message},
             ],
         )
@@ -57,6 +68,7 @@ class ContextExtractor:
             response_text = response_text.rsplit("```", 1)[0]
 
         signals = ContextSignals.model_validate_json(response_text)
+        signals.research_mode = research_mode
         return signals
 
     def _read_documents(self, docs_dir: Path) -> str:

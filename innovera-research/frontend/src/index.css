@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
   margin: 0;
@@ -6,4 +10,113 @@ body {
   background-color: #f8fafc;
   color: #1e293b;
   font-family: system-ui, -apple-system, sans-serif;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dark body,
+:where(.dark) body {
+  background-color: #020617;
+  color: #e2e8f0;
+}
+
+/* Report typography — serif for document feel */
+.report-prose {
+  font-family: 'Source Serif 4', Georgia, 'Crimson Text', serif;
+  line-height: 1.7;
+}
+
+.report-prose h1,
+.report-prose h2,
+.report-prose h3,
+.report-prose h4 {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+.report-prose h2 {
+  font-size: 1.375rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.report-prose h3 {
+  font-size: 1.125rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.report-prose p {
+  margin-bottom: 0.75rem;
+}
+
+.report-prose table {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+}
+
+.report-prose ul,
+.report-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.report-prose li {
+  margin-bottom: 0.25rem;
+}
+
+/* Monospace for data */
+.font-mono-data {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Activity stream terminal styling */
+.activity-stream {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+/* Search highlight */
+mark.search-highlight {
+  background-color: #fbbf24;
+  color: #1e293b;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.dark mark.search-highlight {
+  background-color: #d97706;
+  color: #f8fafc;
+}
+
+/* Smooth scroll for report navigation */
+.report-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling for activity stream */
+.activity-stream::-webkit-scrollbar {
+  width: 6px;
+}
+
+.activity-stream::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.activity-stream::-webkit-scrollbar-thumb {
+  background-color: #475569;
+  border-radius: 3px;
+}
+
+/* Print styles */
+@media print {
+  header, nav, .no-print, button, .activity-stream { display: none !important; }
+  main { max-width: 100% !important; padding: 0 !important; }
+  .report-prose { font-size: 11pt; line-height: 1.5; }
+  .category-section { page-break-before: always; }
+  .category-section:first-child { page-break-before: avoid; }
+  table { page-break-inside: avoid; }
+  * { background: white !important; color: black !important; border-color: #ccc !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+  .report-sidebar { display: none !important; }
 }

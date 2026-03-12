@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
-const CATEGORY_PHASES = {
+const DEMAND_VALIDATION_PHASES = {
   'Phase 1: Foundation': [
     { id: 'EC-01', name: 'Market Sizing & Growth' },
     { id: 'EC-02', name: 'Competitor Landscape & Positioning' },
@@ -22,18 +22,52 @@ const CATEGORY_PHASES = {
   ],
 };
 
-const ALL_CATEGORY_IDS = Object.values(CATEGORY_PHASES).flat().map((c) => c.id);
+const MARKET_RESEARCH_PHASES = {
+  'Phase 1: Foundation': [
+    { id: 'MR-01a', name: 'Market Definition & Boundaries' },
+    { id: 'MR-01b', name: 'Market Sizing & Methodology' },
+    { id: 'MR-04', name: 'Trends & Growth Quality' },
+    { id: 'MR-06a', name: 'Competitor Identification' },
+    { id: 'MR-06b', name: 'Competitive Intelligence' },
+    { id: 'MR-09', name: 'Regulation & Platform Shifts' },
+  ],
+  'Phase 2: Structural': [
+    { id: 'MR-02', name: 'SAM / SOM / Reachability' },
+    { id: 'MR-03', name: 'Segments & Concentration' },
+    { id: 'MR-05', name: 'Value Chain & Whitespace' },
+  ],
+  'Phase 3: Commercial': [
+    { id: 'MR-07', name: 'Buying Process, Budget & Pricing' },
+    { id: 'MR-08', name: 'Adoption & Expansion Dynamics' },
+    { id: 'MR-10', name: 'Barriers, Saturation & Ecosystem Power' },
+  ],
+};
 
 export default function InputForm({ onSubmit }) {
+  const [researchMode, setResearchMode] = useState('demand_validation');
+  const [savedBriefSource, setSavedBriefSource] = useState('');
   const [documentText, setDocumentText] = useState('');
   const [additionalContext, setAdditionalContext] = useState('');
   const [coreQuestion, setCoreQuestion] = useState('');
   const [successCriteria, setSuccessCriteria] = useState(['', '', '']);
   const [ventureName, setVentureName] = useState('');
   const [maxConcurrent, setMaxConcurrent] = useState(2);
-  const [selectedCategories, setSelectedCategories] = useState(new Set(ALL_CATEGORY_IDS));
   const [configOpen, setConfigOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [loadingSavedBrief, setLoadingSavedBrief] = useState(false);
+  const [savedBriefMessage, setSavedBriefMessage] = useState('');
+  const [savedBriefError, setSavedBriefError] = useState('');
+
+  const categoryPhases = researchMode === 'market_research' ? MARKET_RESEARCH_PHASES : DEMAND_VALIDATION_PHASES;
+  const allCategoryIds = useMemo(
+    () => Object.values(categoryPhases).flat().map((c) => c.id),
+    [categoryPhases]
+  );
+  const [selectedCategories, setSelectedCategories] = useState(new Set(allCategoryIds));
+
+  useEffect(() => {
+    setSelectedCategories(new Set(allCategoryIds));
+  }, [researchMode, allCategoryIds]);
 
   const validCriteria = successCriteria.filter((c) => c.trim());
   const isValid = documentText.trim() && coreQuestion.trim() && validCriteria.length >= 1;
@@ -53,6 +87,30 @@ export default function InputForm({ onSubmit }) {
     });
   };
 
+  const handleLoadSavedBrief = async () => {
+    if (!savedBriefSource.trim() || loadingSavedBrief) return;
+
+    setLoadingSavedBrief(true);
+    setSavedBriefError('');
+    setSavedBriefMessage('');
+
+    try {
+      const res = await fetch(`/api/venture-brief/load?source=${encodeURIComponent(savedBriefSource.trim())}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.detail || 'Failed to load saved brief');
+      }
+
+      setDocumentText(data.content || '');
+      setSavedBriefMessage(`Loaded saved brief from ${data.resolved_path}`);
+    } catch (err) {
+      setSavedBriefError(err.message || 'Failed to load saved brief');
+    } finally {
+      setLoadingSavedBrief(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValid || submitting) return;
@@ -60,11 +118,12 @@ export default function InputForm({ onSubmit }) {
     setSubmitting(true);
     try {
       const categoriesToRun =
-        selectedCategories.size === ALL_CATEGORY_IDS.length
+        selectedCategories.size === allCategoryIds.length
           ? []
           : Array.from(selectedCategories);
 
       await onSubmit({
+        research_mode: researchMode,
         document_text: documentText,
         additional_context: additionalContext,
         core_question: coreQuestion,
@@ -81,65 +140,161 @@ export default function InputForm({ onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-1">New Research Run</h2>
-        <p className="text-slate-500">Provide your venture details to begin the evidence pipeline.</p>
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">New Research Run</h2>
+        <p className="text-slate-500 dark:text-slate-400">
+          {researchMode === 'market_research'
+            ? 'Provide a market or topic briefing to begin market research.'
+            : 'Provide your venture details to begin the evidence pipeline.'}
+        </p>
       </div>
 
-      {/* Section 1: Document Content */}
+      {/* Research Mode Selector */}
+      <section className="space-y-3">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+          Research Mode
+        </label>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <label
+            className={`border rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${
+              researchMode === 'demand_validation'
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
+            }`}
+          >
+            <input
+              type="radio"
+              name="research_mode"
+              checked={researchMode === 'demand_validation'}
+              onChange={() => setResearchMode('demand_validation')}
+              className="mt-1 accent-blue-600"
+            />
+            <div>
+              <div className="font-medium text-slate-900 dark:text-slate-100">Demand Validation</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Test a specific venture or thesis against 13 evidence categories.</div>
+            </div>
+          </label>
+          <label
+            className={`border rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${
+              researchMode === 'market_research'
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
+            }`}
+          >
+            <input
+              type="radio"
+              name="research_mode"
+              checked={researchMode === 'market_research'}
+              onChange={() => setResearchMode('market_research')}
+              className="mt-1 accent-blue-600"
+            />
+            <div>
+              <div className="font-medium text-slate-900 dark:text-slate-100">Market Research</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Map a market's structure, economics, and GTM dynamics across 10 categories.</div>
+            </div>
+          </label>
+        </div>
+      </section>
+
       <section className="space-y-2">
-        <label className="block text-sm font-medium text-slate-700">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+          Load Saved Brief
+        </label>
+        <div className="flex flex-col md:flex-row gap-2">
+          <input
+            type="text"
+            className="flex-1 p-3 border border-slate-300 dark:border-slate-600 rounded-lg text-sm
+                       focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                       bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                       placeholder-slate-400 dark:placeholder-slate-500"
+            placeholder="Run ID or path to venture_brief.md"
+            value={savedBriefSource}
+            onChange={(e) => setSavedBriefSource(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={handleLoadSavedBrief}
+            disabled={!savedBriefSource.trim() || loadingSavedBrief}
+            className="px-4 py-3 rounded-lg text-sm font-medium border border-slate-300 dark:border-slate-600
+                       bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200
+                       hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {loadingSavedBrief ? 'Loading...' : 'Load'}
+          </button>
+        </div>
+        <p className="text-xs text-slate-400 dark:text-slate-500">
+          Use a saved run folder ID like `1b8049da-0a72-457d-a0a8-b831213d07d1` or a full path under `venture_docs`.
+        </p>
+        {savedBriefMessage && (
+          <p className="text-xs text-green-600 dark:text-green-400">{savedBriefMessage}</p>
+        )}
+        {savedBriefError && (
+          <p className="text-xs text-red-600 dark:text-red-400">{savedBriefError}</p>
+        )}
+      </section>
+
+      <section className="space-y-2">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Document Content <span className="text-red-500">*</span>
         </label>
         <textarea
-          className="w-full min-h-[250px] p-4 border border-slate-300 rounded-lg text-sm
-                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y bg-white"
-          placeholder="Paste your venture brief, pitch deck text, or proposal content here as plain text or markdown..."
+          className="w-full min-h-[250px] p-4 border border-slate-300 dark:border-slate-600 rounded-lg text-sm
+                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y
+                     bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                     placeholder-slate-400 dark:placeholder-slate-500"
+          placeholder={researchMode === 'market_research'
+            ? 'Paste your market briefing, industry overview, or research brief here...'
+            : 'Paste your venture brief, pitch deck text, or proposal content here...'}
           value={documentText}
           onChange={(e) => setDocumentText(e.target.value)}
         />
-        <p className="text-xs text-slate-400">
-          Extract the text from your documents and paste it here. Markdown formatting is preserved.
+        <p className="text-xs text-slate-400 dark:text-slate-500">
+          {researchMode === 'market_research'
+            ? 'Describe the market, product category, or industry you want to research. Markdown formatting is preserved.'
+            : 'Extract the text from your documents and paste it here. Markdown formatting is preserved.'}
         </p>
       </section>
 
-      {/* Section 2: Additional Context */}
       <section className="space-y-2">
-        <label className="block text-sm font-medium text-slate-700">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Additional Context
         </label>
         <textarea
-          className="w-full min-h-[120px] p-4 border border-slate-300 rounded-lg text-sm
-                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y bg-white"
+          className="w-full min-h-[120px] p-4 border border-slate-300 dark:border-slate-600 rounded-lg text-sm
+                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y
+                     bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                     placeholder-slate-400 dark:placeholder-slate-500"
           placeholder="Any additional context — team background, prior decisions, internal notes, constraints..."
           value={additionalContext}
           onChange={(e) => setAdditionalContext(e.target.value)}
         />
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           Optional. Anything that would help the analysis but isn't in the document.
         </p>
       </section>
 
-      {/* Section 3: Core Question */}
       <section className="space-y-2">
-        <label className="block text-sm font-medium text-slate-700">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Strategic Question <span className="text-red-500">*</span>
         </label>
         <textarea
-          className="w-full p-4 border border-slate-300 rounded-lg text-sm
-                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none bg-white"
+          className="w-full p-4 border border-slate-300 dark:border-slate-600 rounded-lg text-sm
+                     focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none
+                     bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                     placeholder-slate-400 dark:placeholder-slate-500"
           rows={2}
-          placeholder="e.g., Should we invest $2M in this opportunity?"
+          placeholder={researchMode === 'market_research'
+            ? 'e.g., What does the U.S. remote patient monitoring market look like structurally, commercially, and competitively?'
+            : 'e.g., Should we invest $2M in this opportunity?'}
           value={coreQuestion}
           onChange={(e) => setCoreQuestion(e.target.value)}
         />
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           The single question this research memo is designed to answer.
         </p>
       </section>
 
-      {/* Section 4: Success Criteria */}
       <section className="space-y-2">
-        <label className="block text-sm font-medium text-slate-700">
+        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           How Do You Measure Success? <span className="text-red-500">*</span>
         </label>
         <div className="space-y-2">
@@ -147,8 +302,10 @@ export default function InputForm({ onSubmit }) {
             <div key={index} className="flex gap-2">
               <input
                 type="text"
-                className="flex-1 p-3 border border-slate-300 rounded-lg text-sm
-                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                className="flex-1 p-3 border border-slate-300 dark:border-slate-600 rounded-lg text-sm
+                           focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+                           bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                           placeholder-slate-400 dark:placeholder-slate-500"
                 placeholder={`e.g., TAM exceeds $500M`}
                 value={criterion}
                 onChange={(e) => updateCriterion(index, e.target.value)}
@@ -168,33 +325,32 @@ export default function InputForm({ onSubmit }) {
         <button
           type="button"
           onClick={addCriterion}
-          className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
         >
           + Add criterion
         </button>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-400 dark:text-slate-500">
           Define specific, measurable criteria. At least one required.
         </p>
       </section>
 
-      {/* Configuration Accordion */}
-      <section className="border border-slate-200 rounded-lg bg-white">
+      <section className="border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900">
         <button
           type="button"
           onClick={() => setConfigOpen(!configOpen)}
-          className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-slate-700 hover:bg-slate-50"
+          className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
         >
           <span>Configuration</span>
           <span className="text-slate-400">{configOpen ? '\u25B2' : '\u25BC'}</span>
         </button>
         {configOpen && (
-          <div className="px-4 pb-4 space-y-4 border-t border-slate-100">
-            {/* Venture Name Override */}
+          <div className="px-4 pb-4 space-y-4 border-t border-slate-100 dark:border-slate-700">
             <div className="pt-4 space-y-1">
-              <label className="block text-sm text-slate-600">Venture Name Override</label>
+              <label className="block text-sm text-slate-600 dark:text-slate-400">Venture Name Override</label>
               <input
                 type="text"
-                className="w-full p-2 border border-slate-300 rounded text-sm bg-white
+                className="w-full p-2 border border-slate-300 dark:border-slate-600 rounded text-sm
+                           bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
                            focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Auto-detected from documents if empty"
                 value={ventureName}
@@ -202,9 +358,8 @@ export default function InputForm({ onSubmit }) {
               />
             </div>
 
-            {/* Max Concurrent */}
             <div className="space-y-1">
-              <label className="block text-sm text-slate-600">
+              <label className="block text-sm text-slate-600 dark:text-slate-400">
                 Max Concurrent Categories: <span className="font-medium">{maxConcurrent}</span>
               </label>
               <input
@@ -215,28 +370,27 @@ export default function InputForm({ onSubmit }) {
                 onChange={(e) => setMaxConcurrent(Number(e.target.value))}
                 className="w-full accent-blue-600"
               />
-              <div className="flex justify-between text-xs text-slate-400">
+              <div className="flex justify-between text-xs text-slate-400 dark:text-slate-500">
                 <span>1 (safe)</span>
                 <span>4 (fast)</span>
               </div>
             </div>
 
-            {/* Category Selection */}
             <div className="space-y-3">
-              <label className="block text-sm text-slate-600">Categories to Run</label>
-              {Object.entries(CATEGORY_PHASES).map(([phase, cats]) => (
+              <label className="block text-sm text-slate-600 dark:text-slate-400">Categories to Run</label>
+              {Object.entries(categoryPhases).map(([phase, cats]) => (
                 <div key={phase}>
-                  <p className="text-xs font-semibold text-slate-500 uppercase mb-1">{phase}</p>
+                  <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase mb-1">{phase}</p>
                   <div className="space-y-1">
                     {cats.map((cat) => (
-                      <label key={cat.id} className="flex items-center gap-2 text-sm text-slate-700 cursor-pointer">
+                      <label key={cat.id} className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 cursor-pointer">
                         <input
                           type="checkbox"
                           checked={selectedCategories.has(cat.id)}
                           onChange={() => toggleCategory(cat.id)}
                           className="accent-blue-600"
                         />
-                        <span className="text-slate-400 font-mono text-xs">{cat.id}</span>
+                        <span className="text-slate-400 dark:text-slate-500 font-mono text-xs">{cat.id}</span>
                         {cat.name}
                       </label>
                     ))}
@@ -248,18 +402,17 @@ export default function InputForm({ onSubmit }) {
         )}
       </section>
 
-      {/* Submit */}
       <div className="flex items-center gap-4">
         <button
           type="submit"
           disabled={!isValid || submitting}
           className="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg
-                     hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed
+                     hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed
                      transition-colors text-sm"
         >
           {submitting ? 'Starting...' : 'Start Research'}
         </button>
-        <span className="text-xs text-slate-400">
+        <span className="text-xs text-slate-400 dark:text-slate-500">
           Estimated: 30-90 minutes &middot; $12-22
         </span>
       </div>

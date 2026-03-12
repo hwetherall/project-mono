@@ -46,7 +46,8 @@ class WebSocketProgressBridge:
             "category_name": self._get_category_name(category_id),
         })
 
-    def end_category(self, category_id: str, status: str):
+    def end_category(self, category_id: str, status: str, error: str | None = None,
+                     source_count: int = 0, gap_count: int = 0):
         self.category_statuses[category_id] = status
         start_time = self._category_start_times.get(category_id, time.time())
         elapsed = time.time() - start_time
@@ -55,8 +56,9 @@ class WebSocketProgressBridge:
             "category_id": category_id,
             "status": status,
             "elapsed_seconds": round(elapsed, 1),
-            "source_count": 0,
-            "gap_count": 0,
+            "source_count": source_count,
+            "gap_count": gap_count,
+            "error": error,
         })
 
     def end_phase(self, phase_name: str):
@@ -114,10 +116,23 @@ class WebSocketProgressBridge:
             "wait_seconds": round(wait_seconds, 0),
         })
 
+    def emit_log_detail(self, message: str, level: str = "info"):
+        """Emit a detailed log message for the activity stream."""
+        self._emit_sync({
+            "type": "log_detail",
+            "level": level,
+            "message": message,
+        })
+
     def _get_category_name(self, category_id: str) -> str:
         try:
             from evidence_categories.registry import CATEGORY_REGISTRY
-            meta = CATEGORY_REGISTRY.get(category_id)
-            return meta.category_name if meta else category_id
+            from market_research.registry import MR_CATEGORY_REGISTRY
+
+            if category_id in CATEGORY_REGISTRY:
+                return CATEGORY_REGISTRY[category_id].category_name
+            if category_id in MR_CATEGORY_REGISTRY:
+                return MR_CATEGORY_REGISTRY[category_id].category_name
+            return category_id
         except ImportError:
             return category_id

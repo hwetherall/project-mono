@@ -7,6 +7,7 @@ from pathlib import Path
 from context_extraction.models import ContextSignals
 from evidence_categories.base import CategoryResult
 from evidence_categories.registry import get_consumption_map, CATEGORY_REGISTRY
+from market_research.registry import get_mr_consumption_map, MR_CATEGORY_REGISTRY
 from output.yaml_formatter import format_yaml_package
 from output.markdown_formatter import format_markdown_report
 
@@ -23,7 +24,13 @@ class PackageAssembler:
         self.context = context
         self.results = results
         self.output_dir = output_dir
-        self.consumption_map = get_consumption_map()
+
+        if context.research_mode == "market_research":
+            self.consumption_map = get_mr_consumption_map()
+            self.registry = MR_CATEGORY_REGISTRY
+        else:
+            self.consumption_map = get_consumption_map()
+            self.registry = CATEGORY_REGISTRY
 
     def assemble(self) -> tuple[Path, Path]:
         """Produce both output formats. Returns (yaml_path, markdown_path)."""
@@ -65,7 +72,7 @@ class PackageAssembler:
         critical_gaps = []
         moderate_gaps = []
         for cid, result in self.results.items():
-            meta = CATEGORY_REGISTRY.get(cid)
+            meta = self.registry.get(cid)
             priority = "high" if meta and any(
                 v == "primary" for v in meta.section_consumption.values()
             ) else "moderate"
@@ -85,6 +92,7 @@ class PackageAssembler:
             "research_package": {
                 "metadata": {
                     "venture_name": self.context.venture_name,
+                    "research_mode": self.context.research_mode,
                     "generated_at": timestamp,
                     "categories_executed": len(self.results),
                     "categories_succeeded": successful,

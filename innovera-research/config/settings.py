@@ -24,13 +24,13 @@ CONTEXT_LLM_MODEL = os.getenv("CONTEXT_LLM_MODEL", "anthropic/claude-sonnet-4.6"
 CONTEXT_LLM_MAX_TOKENS = 8192
 
 # --- GPT Researcher LLM Config ---
-GPTR_SMART_LLM = os.getenv("GPTR_SMART_LLM", "openai:o3")
-GPTR_STRATEGIC_LLM = os.getenv("GPTR_STRATEGIC_LLM", "openai:o3")
-GPTR_FAST_LLM = os.getenv("GPTR_FAST_LLM", "openai:gpt-4o-mini")
+GPTR_SMART_LLM = os.getenv("GPTR_SMART_LLM", "openai:gpt-5")
+GPTR_STRATEGIC_LLM = os.getenv("GPTR_STRATEGIC_LLM", "openai:gpt-5.4")
+GPTR_FAST_LLM = os.getenv("GPTR_FAST_LLM", "openai:gpt-5-mini")
 
 # --- Execution Config ---
-MAX_CONCURRENT_CATEGORIES = 2              # Keep low to avoid o3 rate limits (30K TPM)
-CATEGORY_TIMEOUT_SECONDS = 900             # Deep research can take 10-15 min
+MAX_CONCURRENT_CATEGORIES = 3              # Bumped from 2 to 3 after splitting MR-01/MR-06 into smaller tasks
+CATEGORY_TIMEOUT_SECONDS = int(os.getenv("CATEGORY_TIMEOUT_SECONDS") or "1800")  # Deep research often exceeds 15 min
 TOTAL_TIMEOUT_SECONDS = 5400               # 90 min max for entire run
 RATE_LIMIT_MAX_RETRIES = 5                 # Retry attempts on 429 errors
 RATE_LIMIT_BASE_DELAY = 10                 # Base delay in seconds (exponential backoff)

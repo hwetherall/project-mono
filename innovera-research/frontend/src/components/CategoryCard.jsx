@@ -14,14 +14,26 @@ const CATEGORY_NAMES = {
   'EC-11': 'Search & Hiring Trends',
   'EC-12': 'Budget & Procurement Context',
   'EC-13': 'Proxy Market Trajectories',
+  'MR-01a': 'Market Definition & Boundaries',
+  'MR-01b': 'Market Sizing & Methodology',
+  'MR-02': 'SAM / SOM / Reachability',
+  'MR-03': 'Segments & Concentration',
+  'MR-04': 'Trends & Growth Quality',
+  'MR-05': 'Value Chain & Whitespace',
+  'MR-06a': 'Competitor Identification',
+  'MR-06b': 'Competitive Intelligence',
+  'MR-07': 'Buying Process, Budget & Pricing',
+  'MR-08': 'Adoption & Expansion Dynamics',
+  'MR-09': 'Regulation & Platform Shifts',
+  'MR-10': 'Barriers, Saturation & Ecosystem Power',
 };
 
 const STATUS_CONFIG = {
-  pending: { icon: '\u23F3', color: 'text-slate-400', bg: 'bg-slate-50', border: 'border-slate-200' },
-  running: { icon: '', color: 'text-blue-600', bg: 'bg-blue-50', border: 'border-blue-200' },
-  success: { icon: '\u2705', color: 'text-green-600', bg: 'bg-green-50', border: 'border-green-200' },
-  failed: { icon: '\u274C', color: 'text-red-600', bg: 'bg-red-50', border: 'border-red-200' },
-  skipped: { icon: '\u23ED', color: 'text-slate-400', bg: 'bg-slate-50', border: 'border-slate-200' },
+  pending:  { icon: '\u23F3', bg: 'bg-slate-50 dark:bg-slate-800', border: 'border-slate-200 dark:border-slate-700' },
+  running:  { icon: '',       bg: 'bg-blue-50 dark:bg-blue-900/20', border: 'border-blue-200 dark:border-blue-800' },
+  success:  { icon: '\u2705', bg: 'bg-green-50 dark:bg-green-900/20', border: 'border-green-200 dark:border-green-800' },
+  failed:   { icon: '\u274C', bg: 'bg-red-50 dark:bg-red-900/20', border: 'border-red-200 dark:border-red-800' },
+  skipped:  { icon: '\u23ED', bg: 'bg-slate-50 dark:bg-slate-800', border: 'border-slate-200 dark:border-slate-700' },
 };
 
 function formatTime(seconds) {
@@ -39,7 +51,6 @@ export default function CategoryCard({ categoryId, category, onRetry }) {
   const config = STATUS_CONFIG[status] || STATUS_CONFIG.pending;
   const name = category?.category_name || CATEGORY_NAMES[categoryId] || categoryId;
 
-  // Live timer for running categories
   useEffect(() => {
     if (status !== 'running' || !category?.startedAt) {
       if (category?.elapsed_seconds) setElapsed(category.elapsed_seconds);
@@ -60,45 +71,43 @@ export default function CategoryCard({ categoryId, category, onRetry }) {
           ) : (
             <span className="text-sm">{config.icon}</span>
           )}
-          <span className="text-xs font-mono text-slate-400">{categoryId}</span>
-          <span className="text-sm font-medium text-slate-700 truncate">{name}</span>
+          <span className="text-xs font-mono text-slate-400 dark:text-slate-500">{categoryId}</span>
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">{name}</span>
         </div>
-        <div className="flex items-center gap-3 text-xs text-slate-500 shrink-0">
+        <div className="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 shrink-0">
           {elapsed > 0 && <span>{formatTime(elapsed)}</span>}
           {status === 'success' && category?.source_count > 0 && (
             <span>{category.source_count} sources</span>
           )}
           {category?.gap_count > 0 && (
-            <span className="text-amber-600">{category.gap_count} gaps</span>
+            <span className="text-amber-600 dark:text-amber-400">{category.gap_count} gaps</span>
           )}
         </div>
       </div>
 
-      {/* Rate limit indicator */}
       {category?.rateLimitInfo && status === 'running' && (
-        <div className="mt-2 text-xs text-amber-600 bg-amber-50 px-2 py-1 rounded">
+        <div className="mt-2 text-xs text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2 py-1 rounded">
           Waiting {category.rateLimitInfo.wait_seconds}s (attempt {category.rateLimitInfo.attempt}/{category.rateLimitInfo.max_attempts})
         </div>
       )}
 
-      {/* Error display */}
       {status === 'failed' && category?.error && (
         <div className="mt-2">
           <button
             onClick={() => setShowError(!showError)}
-            className="text-xs text-red-600 hover:text-red-700"
+            className="text-xs text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
           >
             {showError ? 'Hide error' : 'Show error'}
           </button>
           {showError && (
-            <pre className="mt-1 text-xs text-red-600 bg-red-50 p-2 rounded overflow-auto max-h-24">
+            <pre className="mt-1 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/30 p-2 rounded overflow-auto max-h-24">
               {category.error}
             </pre>
           )}
           {onRetry && (
             <button
               onClick={() => onRetry(categoryId)}
-              className="mt-1 text-xs px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
+              className="mt-1 text-xs px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/70 transition-colors"
             >
               Retry
             </button>

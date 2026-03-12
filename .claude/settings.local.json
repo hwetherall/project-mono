@@ -5,7 +5,11 @@
       "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"from api.app import app; print\\('Import successful:', app.title\\)\")",
       "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npm run build 2>&1 | tail -5)",
       "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python run_research.py --help 2>&1)",
-      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport run_research\nprint\\('CLI module imports OK'\\)\n\" 2>&1)"
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research\" && python -c \"\nimport run_research\nprint\\('CLI module imports OK'\\)\n\" 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\\\\frontend\" && npm run build 2>&1)",
+      "Bash(cd \"C:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npm run build 2>&1)",
+      "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"from market_research.registry import MR_CATEGORY_REGISTRY; print\\(f'Registry has {len\\(MR_CATEGORY_REGISTRY\\)} categories: {list\\(MR_CATEGORY_REGISTRY.keys\\(\\)\\)}'\\)\")",
+      "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"\nfrom orchestrator.runner import MR_CATEGORY_CLASSES\nfrom orchestrator.phases import get_mr_execution_plan\nplan = get_mr_execution_plan\\(\\)\nfor p in plan:\n    print\\(f\\\\\"Phase {p['phase_name']}: {p['categories']}\\\\\"\\)\nprint\\(f'Total classes: {len\\(MR_CATEGORY_CLASSES\\)}'\\)\n\")"
     ]
   }
 }

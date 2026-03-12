@@ -57,5 +57,15 @@ class ContextSignals(BaseModel):
 
     # --- Dynamic Category Priorities ---
     category_priorities: list[CategoryPriority] = Field(
-        description="Priority assignments for each of the 13 evidence categories based on venture context"
+        description="Priority assignments for each evidence category based on venture context"
     )
+
+    # --- Research Mode ---
+    research_mode: str = Field(default="demand_validation", description="Which pipeline produced these signals")
+
+    # --- Market Research Specific Fields ---
+    market_definition_terms: list[str] = Field(default_factory=list, description="Canonical market labels and search terms")
+    adjacent_market_terms: list[str] = Field(default_factory=list, description="Nearby category labels, alternate names, substitutes")
+    buyer_segments: list[str] = Field(default_factory=list, description="Named customer cohorts, verticals, buyer types")
+    distribution_channels: list[str] = Field(default_factory=list, description="Routes to market: direct, distributor, marketplace, etc.")
+    ecosystem_entities: list[str] = Field(default_factory=list, description="Platforms, standards bodies, regulators, intermediaries")
