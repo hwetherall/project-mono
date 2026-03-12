@@ -124,6 +124,14 @@ class WebSocketProgressBridge:
             "message": message,
         })
 
+    def emit_terminal_line(self, message: str, level: str = "info"):
+        """Emit a mirrored terminal line for the activity stream."""
+        self._emit_sync({
+            "type": "terminal_line",
+            "level": level,
+            "message": message,
+        })
+
     def _get_category_name(self, category_id: str) -> str:
         try:
             from evidence_categories.registry import CATEGORY_REGISTRY

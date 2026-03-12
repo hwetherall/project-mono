@@ -1,6 +1,6 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 
-export default function ReportSearch({ categories = [], onJumpTo }) {
+export default function ReportSearch({ categories = [], onJumpTo, onSearchChange }) {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const debounceRef = useRef(null);
@@ -10,8 +10,11 @@ export default function ReportSearch({ categories = [], onJumpTo }) {
     const val = e.target.value;
     setQuery(val);
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => setDebouncedQuery(val), 300);
-  }, []);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedQuery(val);
+      onSearchChange?.(val);
+    }, 300);
+  }, [onSearchChange]);
 
   const results = useMemo(() => {
     if (!debouncedQuery || debouncedQuery.length < 2) return [];
@@ -63,7 +66,7 @@ export default function ReportSearch({ categories = [], onJumpTo }) {
         />
         {query && (
           <button
-            onClick={() => { setQuery(''); setDebouncedQuery(''); }}
+            onClick={() => { setQuery(''); setDebouncedQuery(''); onSearchChange?.(''); }}
             className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-sm"
           >
             x

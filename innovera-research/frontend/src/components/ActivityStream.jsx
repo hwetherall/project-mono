@@ -9,6 +9,13 @@ const LEVEL_CONFIG = {
   extract: { icon: '\u{1F4CB}', color: 'text-purple-400' },
 };
 
+const TERMINAL_LEVEL_CONFIG = {
+  info:    { icon: '\u2026', color: 'text-slate-400' },
+  warning: { icon: '\u2026', color: 'text-amber-400' },
+  error:   { icon: '\u2026', color: 'text-red-400' },
+  debug:   { icon: '\u2026', color: 'text-slate-500' },
+};
+
 function formatTimestamp(ts) {
   const d = new Date(ts);
   return d.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -45,12 +52,15 @@ export default function ActivityStream({ entries = [] }) {
           <div className="text-slate-600 text-xs py-2">Waiting for events...</div>
         )}
         {displayEntries.map((entry, i) => {
-          const config = LEVEL_CONFIG[entry.level] || LEVEL_CONFIG.info;
+          const isTerminal = entry.source === 'terminal';
+          const config = isTerminal
+            ? (TERMINAL_LEVEL_CONFIG[entry.level] || TERMINAL_LEVEL_CONFIG.info)
+            : (LEVEL_CONFIG[entry.level] || LEVEL_CONFIG.info);
           return (
             <div key={i} className="flex gap-2 py-0.5 leading-relaxed">
               <span className="text-slate-600 shrink-0 text-xs">{formatTimestamp(entry.timestamp)}</span>
               <span className={`shrink-0 ${config.color}`}>{config.icon}</span>
-              <span className="text-slate-300 text-xs">{entry.message}</span>
+              <span className={`text-xs ${isTerminal ? 'text-slate-400 font-mono' : 'text-slate-300'}`}>{entry.message}</span>
             </div>
           );
         })}

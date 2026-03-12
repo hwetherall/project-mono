@@ -13,8 +13,12 @@ from typing import Optional
 from gpt_researcher import GPTResearcher
 from context_extraction.models import ContextSignals, PriorityLevel
 from config.settings import RATE_LIMIT_MAX_RETRIES, RATE_LIMIT_BASE_DELAY
+from integrations.tavily_compat import apply_tavily_patch
 
 logger = logging.getLogger(__name__)
+
+# Apply Tavily compatibility patch early, before any GPTResearcher instance is created.
+apply_tavily_patch()
 
 
 def _stringify_context_item(item) -> str:
@@ -119,9 +123,12 @@ class BaseCategory(ABC):
     - parse_report(): Extracts structured findings from GPT Researcher's raw report
     """
 
-    def __init__(self, context: ContextSignals, venture_docs_dir: Path):
+    def __init__(self, context: ContextSignals, venture_docs_dir: Path,
+                 run_id: Optional[str] = None, research_mode: str = "demand_validation"):
         self.context = context
         self.venture_docs_dir = venture_docs_dir
+        self.run_id = run_id
+        self.research_mode = research_mode
 
     @property
     @abstractmethod
@@ -196,8 +203,25 @@ class BaseCategory(ABC):
             error=str(last_error),
         )
 
+    def _save_checkpoint(self, stage: str, **kwargs):
+        """Save a checkpoint if run_id is available."""
+        if not self.run_id:
+            return
+        try:
+            from orchestrator.checkpoints import save_checkpoint
+            save_checkpoint(
+                run_id=self.run_id,
+                category_id=self.category_id,
+                category_name=self.category_name,
+                research_mode=self.research_mode,
+                stage=stage,
+                **kwargs,
+            )
+        except Exception as exc:
+            logger.debug("Checkpoint save failed for %s: %s", self.category_id, exc)
+
     async def _execute_once(self) -> CategoryResult:
-        """Single attempt to run the GPT Researcher mission."""
+        """Single attempt to run the GPT Researcher mission with stage checkpoints."""
         query = self.build_query()
         report_type = self.get_report_type()
         config_path = str(self.get_config_path())
@@ -213,14 +237,61 @@ class BaseCategory(ABC):
             os.environ["DOC_PATH"] = str(self.venture_docs_dir)
             researcher_kwargs["report_source"] = "hybrid"
 
+        # Stage: research_started
+        self._save_checkpoint("research_started", query=query, config_path=config_path, report_type=report_type)
+
         researcher = GPTResearcher(**researcher_kwargs)
         await researcher.conduct_research()
-        raw_report = await researcher.write_report()
         sources = self._extract_sources(researcher)
+        research_context = list(researcher.context) if isinstance(researcher.context, list) else []
+
+        # Stage: research_completed
+        self._save_checkpoint(
+            "research_completed",
+            query=query, config_path=config_path, report_type=report_type,
+            source_urls=[s for s in (self._extract_source_urls(researcher))],
+            research_context=research_context,
+            researcher_agent=getattr(researcher, "agent", None),
+            researcher_role=getattr(researcher, "role", None),
+        )
+
+        # Stage: report_started
+        self._save_checkpoint(
+            "report_started",
+            query=query, config_path=config_path, report_type=report_type,
+            source_urls=[s for s in (self._extract_source_urls(researcher))],
+            research_context=research_context,
+            researcher_agent=getattr(researcher, "agent", None),
+            researcher_role=getattr(researcher, "role", None),
+        )
+
+        raw_report = await researcher.write_report()
+
+        # Stage: report_completed
+        self._save_checkpoint(
+            "report_completed",
+            query=query, config_path=config_path, report_type=report_type,
+            source_urls=[s for s in (self._extract_source_urls(researcher))],
+            research_context=research_context,
+            researcher_agent=getattr(researcher, "agent", None),
+            researcher_role=getattr(researcher, "role", None),
+            raw_report=raw_report,
+        )
+
         structured = self.parse_report(raw_report)
         gaps = self._identify_gaps(structured)
 
-        return CategoryResult(
+        # Stage: parsed
+        self._save_checkpoint(
+            "parsed",
+            query=query, config_path=config_path, report_type=report_type,
+            source_urls=[s for s in (self._extract_source_urls(researcher))],
+            research_context=research_context,
+            raw_report=raw_report,
+            structured_findings=structured,
+        )
+
+        result = CategoryResult(
             category_id=self.category_id,
             category_name=self.category_name,
             status="success",
@@ -230,6 +301,113 @@ class BaseCategory(ABC):
             gaps=gaps,
             execution_time_seconds=0,  # filled by caller
         )
+
+        # Stage: finalized
+        self._save_checkpoint(
+            "finalized",
+            query=query, config_path=config_path, report_type=report_type,
+            source_urls=[s for s in (self._extract_source_urls(researcher))],
+            raw_report=raw_report,
+            structured_findings=structured,
+        )
+
+        return result
+
+    async def resume_from_checkpoint(self, checkpoint: dict) -> CategoryResult:
+        """Resume category execution from a saved checkpoint."""
+        stage = checkpoint.get("stage", "")
+        query = checkpoint.get("query", self.build_query())
+        config_path = checkpoint.get("config_path", str(self.get_config_path()))
+        report_type = checkpoint.get("report_type", self.get_report_type())
+
+        logger.info("%s: Resuming from stage '%s'", self.category_id, stage)
+
+        if stage == "research_completed":
+            # Skip conduct_research, go straight to report writing
+            research_context = checkpoint.get("research_context", [])
+            source_urls = checkpoint.get("source_urls", [])
+
+            researcher_kwargs = {"query": query, "report_type": report_type, "config_path": config_path}
+            if report_type == "deep" and self._use_hybrid():
+                import os
+                os.environ["DOC_PATH"] = str(self.venture_docs_dir)
+                researcher_kwargs["report_source"] = "hybrid"
+            researcher_kwargs["context"] = research_context
+
+            researcher = GPTResearcher(**researcher_kwargs)
+            researcher.agent = checkpoint.get("researcher_agent") or getattr(researcher, "agent", "")
+            researcher.role = checkpoint.get("researcher_role") or getattr(researcher, "role", "")
+            researcher.visited_urls = set(source_urls)
+
+            self._save_checkpoint("report_started", query=query, config_path=config_path,
+                                  report_type=report_type, research_context=research_context,
+                                  source_urls=source_urls)
+
+            raw_report = await researcher.write_report()
+
+            self._save_checkpoint("report_completed", query=query, config_path=config_path,
+                                  report_type=report_type, research_context=research_context,
+                                  source_urls=source_urls, raw_report=raw_report)
+
+            structured = self.parse_report(raw_report)
+            gaps = self._identify_gaps(structured)
+
+            self._save_checkpoint("parsed", query=query, config_path=config_path,
+                                  report_type=report_type, raw_report=raw_report,
+                                  structured_findings=structured)
+
+            result = CategoryResult(
+                category_id=self.category_id, category_name=self.category_name,
+                status="success", raw_report=raw_report, structured_findings=structured,
+                sources=[{"url": s} for s in source_urls], gaps=gaps,
+                execution_time_seconds=0,
+            )
+            self._save_checkpoint("finalized", query=query, raw_report=raw_report,
+                                  structured_findings=structured, source_urls=source_urls)
+            return result
+
+        elif stage == "report_completed":
+            # Skip research and report writing, go to parsing
+            raw_report = checkpoint.get("raw_report", "")
+            source_urls = checkpoint.get("source_urls", [])
+
+            structured = self.parse_report(raw_report)
+            gaps = self._identify_gaps(structured)
+
+            self._save_checkpoint("parsed", query=query, raw_report=raw_report,
+                                  structured_findings=structured, source_urls=source_urls)
+
+            result = CategoryResult(
+                category_id=self.category_id, category_name=self.category_name,
+                status="success", raw_report=raw_report, structured_findings=structured,
+                sources=[{"url": s} for s in source_urls], gaps=gaps,
+                execution_time_seconds=0,
+            )
+            self._save_checkpoint("finalized", query=query, raw_report=raw_report,
+                                  structured_findings=structured, source_urls=source_urls)
+            return result
+
+        elif stage == "parsed":
+            # Everything is done, just build the result
+            raw_report = checkpoint.get("raw_report", "")
+            structured = checkpoint.get("structured_findings", {})
+            source_urls = checkpoint.get("source_urls", [])
+            gaps = self._identify_gaps(structured)
+
+            result = CategoryResult(
+                category_id=self.category_id, category_name=self.category_name,
+                status="success", raw_report=raw_report, structured_findings=structured,
+                sources=[{"url": s} for s in source_urls], gaps=gaps,
+                execution_time_seconds=0,
+            )
+            self._save_checkpoint("finalized", query=query, raw_report=raw_report,
+                                  structured_findings=structured, source_urls=source_urls)
+            return result
+
+        else:
+            # No usable checkpoint — fall back to full execution
+            logger.info("%s: Checkpoint stage '%s' not resumable, running from scratch", self.category_id, stage)
+            return await self._execute_once()
 
     def _use_hybrid(self) -> bool:
         """Override in subclasses that should use hybrid (web + local docs) mode."""
@@ -241,6 +419,10 @@ class BaseCategory(ABC):
             return list(researcher.get_source_urls()) if hasattr(researcher, 'get_source_urls') else []
         except Exception:
             return []
+
+    def _extract_source_urls(self, researcher: GPTResearcher) -> list[str]:
+        """Extract source URLs for checkpoint storage."""
+        return self._extract_sources(researcher)
 
     def _identify_gaps(self, structured: dict) -> list[str]:
         """Default gap identification."""

@@ -164,6 +164,7 @@ export default function ProgressPanel({ run, onComplete }) {
                       categoryId={cid}
                       category={run.categories[cid]}
                       onRetry={run.retryCategory}
+                      onResume={run.resumeCategory}
                     />
                   ))}
                 </div>

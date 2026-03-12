@@ -1,0 +1,13 @@
+{
+  "name": "innovera-research-mono",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k -n backend,frontend -c blue,green \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd innovera-research && python run_web.py --reload",
+    "dev:frontend": "cd innovera-research/frontend && npm run dev",
+    "build": "cd innovera-research/frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

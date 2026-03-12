@@ -73,6 +73,9 @@ export default function useResearchRun() {
               ...prev[categoryId],
               ...category,
               category_id: category.category_id || categoryId,
+              checkpoint_stage: category.checkpoint_stage || null,
+              can_resume: category.can_resume || false,
+              resume_reason: category.resume_reason || null,
             };
           });
           return next;
@@ -212,6 +215,22 @@ export default function useResearchRun() {
       case 'log':
         addLogEntry('info', data.message);
         break;
+
+      case 'terminal_line':
+        setActivityLog((prev) => {
+          // Dedup: skip if the most recent entry has the same message
+          if (prev.length > 0 && prev[prev.length - 1].message === data.message) {
+            return prev;
+          }
+          const next = [...prev, {
+            timestamp: Date.now(),
+            level: data.level || 'info',
+            message: data.message,
+            source: 'terminal',
+          }];
+          return next.length > 500 ? next.slice(-500) : next;
+        });
+        break;
     }
   }, [addLogEntry]);
 
@@ -306,10 +325,34 @@ export default function useResearchRun() {
         ...prev,
         [categoryId]: { ...prev[categoryId], status: 'running', error: null },
       }));
+      addLogEntry('info', `Retrying ${categoryId} from scratch...`);
     } catch (err) {
       console.error('Retry failed:', err);
+      addLogEntry('error', `Retry failed for ${categoryId}: ${err.message}`);
     }
-  }, [runId]);
+  }, [runId, addLogEntry]);
+
+  const resumeCategory = useCallback(async (categoryId) => {
+    if (!runId) return;
+    try {
+      const res = await fetch(`/api/research/${runId}/resume/${categoryId}`, {
+        method: 'POST',
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Resume failed');
+      }
+      const data = await res.json();
+      setCategories((prev) => ({
+        ...prev,
+        [categoryId]: { ...prev[categoryId], status: 'running', error: null },
+      }));
+      addLogEntry('info', `Resuming ${categoryId} from ${data.from_stage || 'checkpoint'}...`);
+    } catch (err) {
+      console.error('Resume failed:', err);
+      addLogEntry('error', `Resume failed for ${categoryId}: ${err.message}`);
+    }
+  }, [runId, addLogEntry]);
 
   const resetRun = useCallback(() => {
     if (wsRef.current) {
@@ -343,6 +386,7 @@ export default function useResearchRun() {
     startTime: startTimeRef.current,
     startRun,
     retryCategory,
+    resumeCategory,
     resetRun,
   };
 }

@@ -18,6 +18,7 @@ from market_research.registry import (
 from orchestrator.phases import get_execution_plan, get_mr_execution_plan
 from orchestrator.progress import ProgressTracker
 from config.settings import MAX_CONCURRENT_CATEGORIES, CATEGORY_TIMEOUT_SECONDS
+from orchestrator.checkpoints import load_checkpoint, mark_checkpoint_error, is_resumable
 
 # Import all EC category classes
 from evidence_categories.ec01_market_sizing import EC01MarketSizing
@@ -91,6 +92,7 @@ class ResearchRunner:
         progress: Optional[ProgressTracker] = None,
         only_categories: Optional[list[str]] = None,
         research_mode: str = "demand_validation",
+        run_id: Optional[str] = None,
     ):
         self.context = context
         self.venture_docs_dir = venture_docs_dir
@@ -99,6 +101,7 @@ class ResearchRunner:
         self.competitor_list: list[str] = []
         self.only_categories = set(only_categories) if only_categories else None
         self.research_mode = research_mode
+        self.run_id = run_id
 
         # Select the correct category classes and registry based on mode
         if self.research_mode == "market_research":
@@ -169,6 +172,16 @@ class ResearchRunner:
                 else:
                     self.results[cid] = result
 
+            # Phase summary log
+            phase_succeeded = sum(1 for cid in runnable if self.results.get(cid) and self.results[cid].status == "success")
+            phase_failed = len(runnable) - phase_succeeded
+            phase_sources = sum(len(self.results[cid].sources) for cid in runnable if self.results.get(cid))
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"{phase_name}: {phase_succeeded}/{len(runnable)} categories succeeded, {phase_sources} sources collected",
+                    "success" if phase_failed == 0 else "warning",
+                )
+
             # Post-phase extraction hooks
             if self.research_mode == "demand_validation" and phase_info["phase"] == Phase.FOUNDATION:
                 self._extract_competitor_list()
@@ -183,13 +196,15 @@ class ResearchRunner:
         return self.results
 
     async def _run_category(self, category_id: str) -> CategoryResult:
-        """Run a single category with timeout."""
+        """Run a single category with timeout and checkpoint-aware recovery."""
         self.progress.start_category(category_id)
 
         category_class = self._category_classes[category_id]
         category = category_class(
             context=self.context,
             venture_docs_dir=self.venture_docs_dir,
+            run_id=self.run_id,
+            research_mode=self.research_mode,
         )
 
         # Demand validation: inject competitor list for Phase 2 categories
@@ -217,14 +232,32 @@ class ResearchRunner:
         except asyncio.TimeoutError:
             cat_meta = self._category_registry.get(category_id)
             cat_name = cat_meta.category_name if cat_meta else category_id
+
+            # Check if checkpoint has resumable progress
+            checkpoint = load_checkpoint(self.run_id, category_id) if self.run_id else None
+            can_resume = checkpoint and is_resumable(checkpoint)
+
+            if checkpoint and self.run_id:
+                mark_checkpoint_error(self.run_id, category_id, "Timeout", CATEGORY_TIMEOUT_SECONDS)
+
+            # Build a result that reflects checkpoint state
+            raw_report = (checkpoint or {}).get("raw_report", "")
+            source_urls = (checkpoint or {}).get("source_urls", [])
+            structured = (checkpoint or {}).get("structured_findings", {})
+            stage = (checkpoint or {}).get("stage", "")
+
+            timeout_msg = f"Category timed out after {CATEGORY_TIMEOUT_SECONDS}s"
+            if can_resume:
+                timeout_msg += f" — checkpoint saved at {stage}"
+
             result = CategoryResult(
                 category_id=category_id,
                 category_name=cat_name,
                 status="failed",
-                raw_report="",
-                structured_findings={},
-                sources=[],
-                gaps=[f"Category timed out after {CATEGORY_TIMEOUT_SECONDS}s"],
+                raw_report=raw_report,
+                structured_findings=structured,
+                sources=[{"url": s} for s in source_urls],
+                gaps=[timeout_msg],
                 execution_time_seconds=CATEGORY_TIMEOUT_SECONDS,
                 error="Timeout",
             )

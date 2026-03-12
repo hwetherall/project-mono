@@ -11,6 +11,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
   const [historicalData, setHistoricalData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeSection, setActiveSection] = useState('section-verdict');
+  const [searchTerm, setSearchTerm] = useState('');
   const contentRef = useRef(null);
 
   // Determine run ID — either from active run or historical
@@ -141,6 +142,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
           <ReportSearch
             categories={structuredData.categories}
             onJumpTo={handleJumpTo}
+            onSearchChange={setSearchTerm}
           />
         </div>
       )}
@@ -214,6 +216,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
               prevCat={structuredData.categories[idx - 1]}
               nextCat={structuredData.categories[idx + 1]}
               onJumpTo={handleJumpTo}
+              searchTerm={searchTerm}
             />
           ))}
 
@@ -232,7 +235,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
   );
 }
 
-function CategorySection({ category, runId, prevCat, nextCat, onJumpTo }) {
+function CategorySection({ category, runId, prevCat, nextCat, onJumpTo, searchTerm }) {
   const [expanded, setExpanded] = useState(true);
   const statusIcon = category.status === 'success' ? '\u2705' : category.status === 'failed' ? '\u274C' : '\u26A0\uFE0F';
   const borderColor = category.status === 'success'
@@ -274,7 +277,20 @@ function CategorySection({ category, runId, prevCat, nextCat, onJumpTo }) {
       {category.raw_report_markdown && (
         <div className="px-5 pb-4">
           <div className="report-prose prose prose-slate dark:prose-invert max-w-none text-sm">
-            <Markdown remarkPlugins={[remarkGfm]}>{category.raw_report_markdown}</Markdown>
+            <Markdown
+              remarkPlugins={[remarkGfm]}
+              components={searchTerm && searchTerm.length >= 2 ? {
+                text: ({ children }) => {
+                  if (typeof children !== 'string') return children;
+                  const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+                  const parts = children.split(regex);
+                  if (parts.length <= 1) return children;
+                  return parts.map((part, i) =>
+                    regex.test(part) ? <mark key={i} className="search-highlight">{part}</mark> : part
+                  );
+                },
+              } : undefined}
+            >{category.raw_report_markdown}</Markdown>
           </div>
         </div>
       )}

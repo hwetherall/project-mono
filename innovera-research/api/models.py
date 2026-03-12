@@ -59,6 +59,10 @@ class CategoryStatus(BaseModel):
     error: str | None = None
     gap_count: int = 0
     source_count: int = 0
+    checkpoint_stage: str | None = None
+    can_resume: bool = False
+    resume_reason: str | None = None
+    last_persisted_at: str | None = None
 
 
 class RunStatus(BaseModel):

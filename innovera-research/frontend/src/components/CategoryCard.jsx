@@ -43,7 +43,7 @@ function formatTime(seconds) {
   return m > 0 ? `${m}m ${s}s` : `${s}s`;
 }
 
-export default function CategoryCard({ categoryId, category, onRetry }) {
+export default function CategoryCard({ categoryId, category, onRetry, onResume }) {
   const [showError, setShowError] = useState(false);
   const [elapsed, setElapsed] = useState(0);
 
@@ -104,14 +104,29 @@ export default function CategoryCard({ categoryId, category, onRetry }) {
               {category.error}
             </pre>
           )}
-          {onRetry && (
-            <button
-              onClick={() => onRetry(categoryId)}
-              className="mt-1 text-xs px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/70 transition-colors"
-            >
-              Retry
-            </button>
+          {category.can_resume && category.checkpoint_stage && (
+            <div className="mt-1 text-xs text-blue-600 dark:text-blue-400">
+              Progress saved at: {category.checkpoint_stage}
+            </div>
           )}
+          <div className="flex gap-2 mt-1">
+            {category.can_resume && onResume && (
+              <button
+                onClick={() => onResume(categoryId)}
+                className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/70 transition-colors"
+              >
+                Continue
+              </button>
+            )}
+            {onRetry && (
+              <button
+                onClick={() => onRetry(categoryId)}
+                className="text-xs px-2 py-1 bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-900/70 transition-colors"
+              >
+                Retry
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>

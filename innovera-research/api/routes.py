@@ -16,6 +16,7 @@ from fastapi.responses import FileResponse
 from api.models import ResearchRequest, ResearchResponse, RunStatus, CategoryStatus
 from api.progress_bridge import WebSocketProgressBridge
 from config.settings import VENTURE_DOCS_DIR, OUTPUT_DIR, MAX_CONCURRENT_CATEGORIES
+from orchestrator.checkpoints import load_checkpoint, load_all_checkpoints, is_resumable
 
 router = APIRouter(prefix="/api")
 
@@ -171,6 +172,7 @@ async def start_research(request: ResearchRequest):
             from context_extraction.extractor import ContextExtractor
             from orchestrator.runner import ResearchRunner
             from output.package_assembler import PackageAssembler
+            from api.terminal_stream import TerminalTee
 
             # Step 1: Context extraction
             mode_label = "Market Research" if request.research_mode == "market_research" else "Demand Validation"
@@ -208,8 +210,10 @@ async def start_research(request: ResearchRequest):
                     progress=progress,
                     only_categories=only_categories,
                     research_mode=request.research_mode,
+                    run_id=run_id,
                 )
-                results = await runner.run_all()
+                with TerminalTee(progress):
+                    results = await runner.run_all()
             finally:
                 settings.MAX_CONCURRENT_CATEGORIES = original_max
 
@@ -286,6 +290,9 @@ async def get_run_status(run_id: str):
     progress = run["progress"]
     elapsed = (datetime.now(timezone.utc) - run["started_at"]).total_seconds()
 
+    # Load checkpoints for this run
+    checkpoints = load_all_checkpoints(run_id)
+
     # Build category statuses from progress bridge
     categories = {}
     for cid, status in progress.category_statuses.items():
@@ -307,6 +314,13 @@ async def get_run_status(run_id: str):
             gap_count = len(result.gaps)
             error = result.error
 
+        # Enrich with checkpoint data
+        cp = checkpoints.get(cid)
+        checkpoint_stage = cp.get("stage") if cp else None
+        can_resume = is_resumable(cp) if cp else False
+        resume_reason = cp.get("resume_reason") if cp else None
+        last_persisted_at = cp.get("updated_at") if cp else None
+
         categories[cid] = CategoryStatus(
             category_id=cid,
             category_name=cat_name,
@@ -315,6 +329,10 @@ async def get_run_status(run_id: str):
             error=error,
             gap_count=gap_count,
             source_count=source_count,
+            checkpoint_stage=checkpoint_stage,
+            can_resume=can_resume,
+            resume_reason=resume_reason,
+            last_persisted_at=last_persisted_at,
         )
 
     output_files = []
@@ -642,6 +660,86 @@ async def retry_category(run_id: str, category_id: str):
 
     asyncio.create_task(do_retry())
     return {"status": "retrying", "category_id": category_id}
+
+
+async def _reassemble_package(run: dict, run_id: str, context, progress):
+    """Shared helper: re-assemble output package after retry/resume."""
+    if run.get("output_dir"):
+        from output.package_assembler import PackageAssembler
+        assembler = PackageAssembler(context, run["results"], run["output_dir"])
+        yaml_path, md_path = assembler.assemble()
+        run["yaml_path"] = yaml_path
+        run["markdown_path"] = md_path
+        progress.emit_log_detail("Evidence package rebuilt after resume", "info")
+
+
+@router.post("/research/{run_id}/resume/{category_id}")
+async def resume_category(run_id: str, category_id: str):
+    """Resume a category from its last checkpoint instead of rerunning from scratch."""
+    run = active_runs.get(run_id)
+    if not run:
+        raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+    if not run.get("context"):
+        raise HTTPException(status_code=400, detail="Run context not available")
+
+    # Load checkpoint
+    checkpoint = load_checkpoint(run_id, category_id)
+    if not checkpoint or not is_resumable(checkpoint):
+        raise HTTPException(
+            status_code=400,
+            detail=f"No resumable checkpoint for {category_id}. Use retry instead.",
+        )
+
+    from orchestrator.runner import CATEGORY_CLASSES, MR_CATEGORY_CLASSES
+
+    all_classes = {**CATEGORY_CLASSES, **MR_CATEGORY_CLASSES}
+    if category_id not in all_classes:
+        raise HTTPException(status_code=400, detail=f"Unknown category: {category_id}")
+
+    progress = run["progress"]
+    context = run["context"]
+    run_docs_dir = VENTURE_DOCS_DIR / run_id
+    research_mode = run["request"].research_mode if run.get("request") else "demand_validation"
+
+    stage = checkpoint.get("stage", "unknown")
+    progress.emit_log_detail(f"Resuming {category_id} from checkpoint ({stage})", "info")
+    progress.start_category(category_id)
+
+    async def do_resume():
+        try:
+            category_class = all_classes[category_id]
+            category = category_class(
+                context=context,
+                venture_docs_dir=run_docs_dir,
+                run_id=run_id,
+                research_mode=research_mode,
+            )
+            result = await category.resume_from_checkpoint(checkpoint)
+            run["results"][category_id] = result
+            progress.end_category(
+                category_id,
+                result.status,
+                error=result.error,
+                source_count=len(result.sources),
+                gap_count=len(result.gaps),
+            )
+            progress.emit_log_detail(
+                f"{category_id} resumed successfully — skipped stages before {stage}", "success"
+            )
+
+            await _reassemble_package(run, run_id, context, progress)
+
+        except Exception as e:
+            progress.end_category(category_id, "failed", error=str(e))
+            progress.emit_log_detail(f"{category_id} resume failed: {e}", "error")
+
+    asyncio.create_task(do_resume())
+    return {
+        "status": "resuming",
+        "category_id": category_id,
+        "from_stage": stage,
+        "resume_reason": checkpoint.get("resume_reason", ""),
+    }
 
 
 @router.get("/runs")

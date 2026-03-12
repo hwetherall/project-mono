@@ -111,12 +111,21 @@ mark.search-highlight {
 /* Print styles */
 @media print {
   header, nav, .no-print, button, .activity-stream { display: none !important; }
-  main { max-width: 100% !important; padding: 0 !important; }
+  body { background: white !important; color: black !important; font-size: 11pt; }
+  main { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
   .report-prose { font-size: 11pt; line-height: 1.5; }
-  .category-section { page-break-before: always; }
+  .report-prose h2 { font-size: 14pt; margin-top: 1.2rem; }
+  .report-prose h3 { font-size: 12pt; margin-top: 1rem; }
+  .category-section { page-break-before: always; border: 1px solid #ccc !important; padding: 12pt; margin-bottom: 12pt; }
   .category-section:first-child { page-break-before: avoid; }
-  table { page-break-inside: avoid; }
+  #section-verdict, #section-summary { page-break-after: always; }
+  #section-gaps { page-break-before: always; }
+  table { page-break-inside: avoid; font-size: 9pt; }
+  ul, ol { page-break-inside: avoid; }
   * { background: white !important; color: black !important; border-color: #ccc !important; }
-  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666 !important; }
   .report-sidebar { display: none !important; }
+  mark.search-highlight { background: none !important; font-weight: bold; }
+  img { max-width: 100% !important; }
+  @page { margin: 1.5cm 2cm; }
 }
