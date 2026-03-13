@@ -1,0 +1,269 @@
+{
+  "competitors": [
+    {
+      "competitor_id": "ninedot-energy",
+      "name": "NineDot Energy",
+      "tier": 1,
+      "description": "NineDot Energy is a leading distributed BESS developer in New York City, having closed US$431 million in construction financing for a portfolio of 28 community-scale battery energy storage systems totaling 124 MW/494 MWh across NYC. The company has enrolled 300 MW of operating and in-development projects in the Statewide Solar for All program, estimating US$60 million in contributions over a decade, and actively monetizes assets through VDER Value Stack and NYISO DER aggregation pathways. NineDot's scale, financing sophistication\u2014including tax-credit-transfer bridge facilities\u2014and deep regulatory engagement make it the most formidable direct competitor for NEE in the downstate distributed BESS market.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement",
+        "https://www.industrialinfo.com/news/article/new-york-launches-rfp-for-1-gw-of-energy-storage--344514",
+        "https://energychangemakers.com/resource-library/2026-market-surveymicrogrid-and-distributed-energyprojects-grow-in-complexity/"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494483+00:00"
+    },
+    {
+      "competitor_id": "cleancapital",
+      "name": "CleanCapital",
+      "tier": 1,
+      "description": "CleanCapital is an active acquirer and joint venture partner in New York's distributed BESS market, having completed a 2026 JV acquisition of a 7.7 MW/30.8 MWh VDER-participating portfolio in Staten Island. Its role as a capital partner and asset acquirer positions it simultaneously as a potential buyer for NEE's developed projects and as a direct competitor for site control and deal flow in constrained downstate geographies. CleanCapital's demonstrated appetite for VDER-enrolled distributed storage validates acquirer demand in New York City and signals that it will continue competing for similar assets.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement",
+        "https://www.industrialinfo.com/news/article/new-york-launches-rfp-for-1-gw-of-energy-storage--344514",
+        "https://energychangemakers.com/resource-library/2026-market-surveymicrogrid-and-distributed-energyprojects-grow-in-complexity/"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494483+00:00"
+    },
+    {
+      "competitor_id": "osaka-gas-usa",
+      "name": "Osaka Gas USA",
+      "tier": 2,
+      "description": "Osaka Gas USA is identified in the report as a capital provider and aggregation partner operating in New York's distributed energy storage market. While specific project details are limited in the report, Osaka Gas USA is noted alongside CleanCapital and aggregators like CPower and Voltus as a firm NEE could partner with to derisk merchant exposure and accelerate offtake readiness at sale. Its presence as a potential partner also makes it a competitor for investment opportunities and project acquisitions in the distributed BESS space.",
+      "competitor_type": "adjacent",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement",
+        "https://www.industrialinfo.com/news/article/new-york-launches-rfp-for-1-gw-of-energy-storage--344514",
+        "https://energychangemakers.com/resource-library/2026-market-surveymicrogrid-and-distributed-energyprojects-grow-in-complexity/"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494483+00:00"
+    },
+    {
+      "competitor_id": "cpower",
+      "name": "CPower",
+      "tier": 2,
+      "description": "CPower is a demand response and distributed energy aggregator that monetizes flexible capacity\u2014including battery storage\u2014through NYISO-administered energy, capacity, and ancillary service markets. Operating as a substitute revenue pathway provider, CPower competes with direct BESS developers by offering aggregation contracts that can serve as an alternative monetization or exit strategy for distributed storage assets. Its established relationships with NYISO and its customer base in New York make it a significant market participant that NEE must consider both as a potential partner and as a competitive force.",
+      "competitor_type": "substitute",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement",
+        "https://www.industrialinfo.com/news/article/new-york-launches-rfp-for-1-gw-of-energy-storage--344514",
+        "https://energychangemakers.com/resource-library/2026-market-surveymicrogrid-and-distributed-energyprojects-grow-in-complexity/"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494483+00:00"
+    },
+    {
+      "competitor_id": "voltus",
+      "name": "Voltus",
+      "tier": 2,
+      "description": "Voltus is a distributed energy resource aggregator that enables battery storage and other flexible assets to participate in NYISO's DER aggregation model, accessing energy, capacity, and ancillary service revenues. Like CPower, Voltus offers a substitute pathway for BESS monetization and competes with developers for the economic value embedded in distributed storage assets by capturing aggregation margins. The company is explicitly cited in the report as both a potential NEE partner and an aggregator shaping the competitive landscape for distributed BESS revenue in New York.",
+      "competitor_type": "substitute",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement",
+        "https://www.industrialinfo.com/news/article/new-york-launches-rfp-for-1-gw-of-energy-storage--344514",
+        "https://energychangemakers.com/resource-library/2026-market-surveymicrogrid-and-distributed-energyprojects-grow-in-complexity/"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494483+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-power",
+      "name": "Convergent Energy + Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494546+00:00"
+    },
+    {
+      "competitor_id": "key-capture-energy",
+      "name": "Key Capture Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494552+00:00"
+    },
+    {
+      "competitor_id": "orion-renewable-energy-group",
+      "name": "Orion Renewable Energy Group",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494557+00:00"
+    },
+    {
+      "competitor_id": "hecate-energy",
+      "name": "Hecate Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494562+00:00"
+    },
+    {
+      "competitor_id": "eolian-lp",
+      "name": "Eolian LP",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494566+00:00"
+    },
+    {
+      "competitor_id": "greenbacker-renewable-energy",
+      "name": "Greenbacker Renewable Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494571+00:00"
+    },
+    {
+      "competitor_id": "borrego-energy",
+      "name": "Borrego Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494575+00:00"
+    },
+    {
+      "competitor_id": "sunwealth-power",
+      "name": "Sunwealth Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494580+00:00"
+    },
+    {
+      "competitor_id": "d-e-shaw-renewable-investments-desri",
+      "name": "D.E. Shaw Renewable Investments (DESRI)",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494587+00:00"
+    },
+    {
+      "competitor_id": "amp-energy",
+      "name": "Amp Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494591+00:00"
+    },
+    {
+      "competitor_id": "rplus-energies",
+      "name": "rPlus Energies",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494596+00:00"
+    },
+    {
+      "competitor_id": "intersect-power",
+      "name": "Intersect Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.nyserda.ny.gov/All-Programs/Clean-Energy-Siting-Resources/Solar-and-Storage-Inflation-Reduction-Act-Funding",
+        "https://www.nyiso.com/-/energy-storage-news-%7C-eastern-generation-gets-permit-for-135mw-battery-storage-at-new-york-fossil-fuel-plant-site",
+        "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program/Developers-and-Contractors/Utility-Procurement"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T08:16:22.494600+00:00"
+    }
+  ]
+}

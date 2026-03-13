@@ -7,7 +7,7 @@ import ReportSearch from './ReportSearch';
 import SourcePanel, { SourceChips } from './SourcePanel';
 import CompetitiveTable from './CompetitiveTable';
 
-export default function OutputViewer({ run, onNewRun, historicalRunId }) {
+export default function OutputViewer({ run, onNewRun, historicalRunId, chainSteps, chainId }) {
   const [structuredData, setStructuredData] = useState(null);
   const [historicalData, setHistoricalData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -15,20 +15,33 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
   const [searchTerm, setSearchTerm] = useState('');
   const contentRef = useRef(null);
 
-  // Determine run ID — either from active run or historical
-  const runId = historicalRunId || run.runId;
+  // --- Chain tab state ---
+  const isChainView = !!(chainSteps && chainSteps.length > 0);
+  const completedChainSteps = isChainView
+    ? chainSteps.filter((s) => s.status === 'completed' || s.status === 'failed')
+    : [];
+  const [activeChainTab, setActiveChainTab] = useState(0);
+
+  // Determine active sub-run ID for chain view
+  const activeChainStep = isChainView ? chainSteps[activeChainTab] : null;
+  const chainSubRunId = activeChainStep?.run_id;
+
+  // Determine run ID — either chain sub-run, historical, or active run
+  const runId = isChainView ? chainSubRunId : (historicalRunId || run.runId);
 
   // Load structured data
   useEffect(() => {
-    if (!runId) return;
+    if (!runId) {
+      setLoading(false);
+      return;
+    }
     setLoading(true);
 
     const fetches = [
       fetch(`/api/research/${runId}/output/structured`).then((r) => r.ok ? r.json() : null),
     ];
 
-    // If historical, also load full run data
-    if (historicalRunId) {
+    if (historicalRunId && !isChainView) {
       fetches.push(
         fetch(`/api/research/${runId}/full`).then((r) => r.ok ? r.json() : null)
       );
@@ -41,7 +54,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [runId, historicalRunId]);
+  }, [runId, historicalRunId, isChainView]);
 
   // Use historical categories if viewing past run
   const categories = historicalRunId && historicalData
@@ -108,6 +121,11 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
       <div className="flex items-center justify-between no-print">
         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
           {structuredData?.venture_name || 'Research Results'}
+          {isChainView && (
+            <span className="ml-3 text-sm font-normal text-emerald-600 dark:text-emerald-400">
+              Run All Chapters
+            </span>
+          )}
         </h2>
         <div className="flex gap-2">
           {structuredData?.categories?.length > 0 && (
@@ -140,6 +158,42 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
           </button>
         </div>
       </div>
+
+      {/* Chain Tab Bar */}
+      {isChainView && (
+        <div className="flex gap-1 p-1 bg-slate-100 dark:bg-slate-800 rounded-lg no-print">
+          {chainSteps.map((step, i) => {
+            const isActive = i === activeChainTab;
+            const stepStatus = step.status;
+            const statusDot =
+              stepStatus === 'completed' ? 'bg-green-500'
+              : stepStatus === 'failed' ? 'bg-red-500'
+              : stepStatus === 'running' ? 'bg-blue-500 animate-pulse'
+              : 'bg-slate-400';
+
+            return (
+              <button
+                key={step.mode}
+                onClick={() => {
+                  setActiveChainTab(i);
+                  setActiveSection('section-verdict');
+                }}
+                disabled={!step.run_id}
+                className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors
+                  ${isActive
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 shadow-sm'
+                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+                  }
+                  ${!step.run_id ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                `}
+              >
+                <span className={`w-2 h-2 rounded-full ${statusDot}`} />
+                {step.mode_label}
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* Search */}
       {structuredData?.categories && (

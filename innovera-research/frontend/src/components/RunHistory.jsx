@@ -13,8 +13,9 @@ function formatDuration(seconds) {
   return `${m} min`;
 }
 
-export default function RunHistory({ onViewRun, onNewRun }) {
+export default function RunHistory({ onViewRun, onViewChain, onNewRun }) {
   const [runs, setRuns] = useState([]);
+  const [chains, setChains] = useState([]);
   const [loading, setLoading] = useState(true);
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
@@ -22,8 +23,11 @@ export default function RunHistory({ onViewRun, onNewRun }) {
     setLoading(true);
     fetch('/api/runs')
       .then((res) => res.json())
-      .then((data) => setRuns(data.runs || []))
-      .catch(() => setRuns([]))
+      .then((data) => {
+        setRuns(data.runs || []);
+        setChains(data.chains || []);
+      })
+      .catch(() => { setRuns([]); setChains([]); })
       .finally(() => setLoading(false));
   };
 
@@ -65,7 +69,7 @@ export default function RunHistory({ onViewRun, onNewRun }) {
         </button>
       </div>
 
-      {runs.length === 0 ? (
+      {runs.length === 0 && chains.length === 0 ? (
         <div className="text-center py-16">
           <p className="text-slate-400 dark:text-slate-500 mb-4">No research runs yet.</p>
           <button
@@ -77,6 +81,56 @@ export default function RunHistory({ onViewRun, onNewRun }) {
         </div>
       ) : (
         <div className="space-y-3">
+          {/* Chain runs */}
+          {chains.map((chain) => (
+            <div
+              key={chain.chain_id}
+              className="bg-white dark:bg-slate-900 border-2 border-emerald-200 dark:border-emerald-800 rounded-lg p-4 hover:border-emerald-400 dark:hover:border-emerald-600 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-semibold text-slate-900 dark:text-slate-100 truncate">
+                      {chain.venture_name || 'Chain Run'}
+                    </h3>
+                    {statusBadge(chain)}
+                    <span className="px-2 py-0.5 text-xs rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 font-medium">
+                      All Chapters
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-slate-500 dark:text-slate-400">
+                    <span>{formatDate(chain.started_at)}</span>
+                    {chain.total_elapsed_seconds && (
+                      <span>{formatDuration(chain.total_elapsed_seconds)}</span>
+                    )}
+                  </div>
+                  <div className="flex gap-2 mt-2">
+                    {(chain.steps || []).map((step) => (
+                      <span key={step.mode} className={`px-2 py-0.5 text-xs rounded-full font-medium ${
+                        step.status === 'completed'
+                          ? 'bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300'
+                          : step.status === 'failed'
+                            ? 'bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300'
+                            : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                      }`}>
+                        {step.mode_label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => onViewChain && onViewChain(chain.chain_id, chain.steps)}
+                    className="px-4 py-1.5 text-sm bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+                  >
+                    View All
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          {/* Individual runs */}
           {runs.map((run) => (
             <div
               key={run.run_id}

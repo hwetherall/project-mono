@@ -1,0 +1,2640 @@
+{
+  "table_id": "00c250e4-824b-42b3-bcaa-03bf67be8c79",
+  "venture_name": "New Energy Equity (NEE) – NY Energy Storage Market Entry",
+  "industry": "Energy / Clean Energy",
+  "geography": "New York State, USA",
+  "generated_at": "2026-03-13T07:50:29.286055+00:00",
+  "attributes": [
+    {
+      "attribute_id": "name",
+      "name": "Company Name",
+      "description": "Legal or operating name of the competitor developer or IPP active in NY distributed storage.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "description",
+      "name": "Company Description",
+      "description": "Brief summary of the company's primary business model and role in the NY storage market.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "year_founded",
+      "name": "Year Founded",
+      "description": "Year the organization was established.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "hq_location",
+      "name": "HQ Location",
+      "description": "Headquarters city and state.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "employee_count",
+      "name": "Employee Count",
+      "description": "Approximate total headcount as a proxy for organizational scale.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_estimate",
+      "name": "Revenue Estimate (USD)",
+      "description": "Estimated annual revenue or AUM under development, indicating financial scale.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "funding_raised",
+      "name": "Funding Raised / Capital Access",
+      "description": "Total equity/debt capital raised or access to project finance, indicating development capacity.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "business_model",
+      "name": "Business Model",
+      "description": "Primary model: develop-and-sell, IPP (own-and-operate), EPC, or hybrid.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_market_presence",
+      "name": "NY Market Presence",
+      "description": "Depth of existing footprint in New York State: active pipeline, operating assets, or none.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_storage_mw_pipeline",
+      "name": "NY Storage Pipeline (MW)",
+      "description": "Estimated MW of distributed BESS projects in development or operating in New York State.",
+      "group": "market_position",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "project_scale_focus",
+      "name": "Typical Project Scale",
+      "description": "Preferred project size range (e.g., sub-5 MW distributed, 5–20 MW mid-scale, utility-scale 20+ MW).",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "asset_type_focus",
+      "name": "Asset Type Focus",
+      "description": "Primary asset types: standalone BESS, solar+storage hybrid, solar-only, or multi-technology.",
+      "group": "market_position",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "target_buyer_customer",
+      "name": "Target Buyer / Offtake Partner",
+      "description": "Primary transaction counterparty: IPPs, utilities, C&I customers, municipalities, or community solar subscribers.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_incentive_utilization",
+      "name": "NY Incentive Program Utilization",
+      "description": "Which NY-specific programs the developer actively accesses: NYSERDA BFCP, Con Edison BQDM, NY-Sun, VDER, etc.",
+      "group": "policy_and_incentives",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "itc_transferability_strategy",
+      "name": "Federal ITC / Tax Credit Strategy",
+      "description": "Approach to monetizing federal ITC/IRA adders: direct pay, tax equity partnership, transferability sale, or pass-through to buyer.",
+      "group": "policy_and_incentives",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "capacity_market_participation",
+      "name": "NYISO Capacity Market Participation",
+      "description": "Whether the developer structures projects to qualify for and bid into NYISO ICAP markets (NYC, LONGIL, Rest of State).",
+      "group": "policy_and_incentives",
+      "data_type": "boolean",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ancillary_services_strategy",
+      "name": "Ancillary Services Strategy",
+      "description": "Participation in NYISO ancillary markets: Regulation (Reg-A/D), Voltage Support, or Spinning Reserves.",
+      "group": "policy_and_incentives",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_stack",
+      "name": "Revenue Stacking Approach",
+      "description": "Combination of revenue streams targeted: capacity, ancillary, energy arbitrage, VDER/CDG, incentive grants.",
+      "group": "policy_and_incentives",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "interconnection_track_record",
+      "name": "Interconnection Track Record (NY)",
+      "description": "Demonstrated ability to navigate NYISO/ConEd/NYSEG interconnection queues for distributed storage; rated by speed and success rate.",
+      "group": "technical_and_development",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "bess_technology_partners",
+      "name": "BESS Technology / OEM Partners",
+      "description": "Primary battery OEM and integrator relationships (e.g., Tesla Megapack, Fluence, BYD, Powin, CATL).",
+      "group": "technical_and_development",
+      "data_type": "list",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "site_control_strategy",
+      "name": "Site Control & Land Strategy",
+      "description": "Approach to securing site control in NY: lease, option, brownfield reuse, municipal partnership, rooftop, or carport.",
+      "group": "technical_and_development",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "project_development_cycle",
+      "name": "Development Cycle Speed",
+      "description": "Estimated months from site identification to NTP for a typical NY distributed storage project.",
+      "group": "technical_and_development",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "permitting_capability",
+      "name": "NY Permitting & Regulatory Capability",
+      "description": "In-house vs. outsourced capability to manage NY Article 10/SEQRA/local permitting for storage projects.",
+      "group": "technical_and_development",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "return_threshold_irr",
+      "name": "Target Project IRR / Return Threshold",
+      "description": "Publicly indicated or estimated levered IRR target for development-stage or operational storage projects.",
+      "group": "financial_and_commercial",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "merchant_risk_tolerance",
+      "name": "Merchant Revenue Risk Tolerance",
+      "description": "Degree to which the developer's pro forma relies on uncontracted merchant revenues (energy arbitrage) vs. contracted/incentive streams.",
+      "group": "financial_and_commercial",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ipp_buyer_relationships",
+      "name": "IPP Buyer Relationships",
+      "description": "Depth and breadth of established relationships with IPP acquirers active in NY storage M&A (e.g., National Grid Renewables, AES, Enel, LS Power).",
+      "group": "financial_and_commercial",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "project_finance_access",
+      "name": "Project Finance / Construction Debt Access",
+      "description": "Ability to secure construction financing and tax equity for NY storage projects independently.",
+      "group": "financial_and_commercial",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "replicability_scalability",
+      "name": "Pipeline Replicability / Scalability",
+      "description": "Degree to which the developer has systematized site identification and development processes for multi-site NY rollout.",
+      "group": "strategic_positioning",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "competitive_moat",
+      "name": "Competitive Moat",
+      "description": "Primary source of durable advantage: policy relationships, site pipeline, technology partnerships, capital access, or brand.",
+      "group": "strategic_positioning",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ny_policy_engagement",
+      "name": "NY Policy & Regulatory Engagement",
+      "description": "Active participation in NYSERDA, PSC, or NYISO proceedings; membership in NY-Chap or ACORE NY; lobbying/advocacy presence.",
+      "group": "strategic_positioning",
+      "data_type": "boolean",
+      "priority": "optional"
+    }
+  ],
+  "competitors": [
+    {
+      "competitor_id": "ninedot-energy",
+      "name": "NineDot Energy",
+      "tier": 1,
+      "description": "NineDot Energy develops and operates distributed, front-of-meter battery storage projects in New York City and across Con Edison territory, often at the 5 MW scale using standardized platforms such as Tesla Megapack; it focuses on siting-constrained urban parcels, VDER-aligned strategies for paired systems, and leverages New York-specific incentives and market participation.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "NineDot Energy, LLC",
+          "confidence": "high",
+          "source_url": "https://www.ninedotenergy.com/",
+          "notes": "Legal operating name as stated in the report."
+        },
+        "description": {
+          "value": "Developer, owner, and operator (IPP) of distribution-connected, community-scale battery energy storage systems in NYC and downstate New York, focused on small-footprint urban sites that provide grid services and resilience; first NYC BESS operational in 2022 and portfolio targeted to scale via multi-site rollout.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Directly quoted from the report's structured attribute list."
+        },
+        "year_founded": {
+          "value": 2015.0,
+          "confidence": "medium",
+          "source_url": "https://www.crunchbase.com/organization/ninedot-energy",
+          "notes": "Sourced from Crunchbase company profile as cited in the report."
+        },
+        "hq_location": {
+          "value": "New York, New York",
+          "confidence": "high",
+          "source_url": "https://www.ninedotenergy.com/",
+          "notes": "Stated explicitly in the report."
+        },
+        "employee_count": {
+          "value": "51–200",
+          "confidence": "low",
+          "source_url": "https://www.linkedin.com/company/ninedot-energy/",
+          "notes": "LinkedIn range estimate; exact headcount not publicly disclosed. Numeric lower bound ≥51 per report."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Not publicly disclosed; company is privately held. Financial scale indirectly indicated by Carlyle equity commitment only."
+        },
+        "funding_raised": {
+          "value": "$100 million strategic equity investment from The Carlyle Group",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Project-level incentives also available via NYSERDA retail energy storage program in Con Edison territory (now fully allocated). Only the $100M Carlyle figure is explicitly stated."
+        },
+        "business_model": {
+          "value": "IPP (own-and-operate) with in-house development; standardized distributed BESS deployments; selective co-location with small PV canopy or bidirectional EV charger demonstrations when beneficial.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Explicitly described as IPP own-and-operate model in the report."
+        },
+        "ny_market_presence": {
+          "value": "Established presence; first operational distributed BESS in NYC commissioned in 2022 (Bronx), with a multi-site pipeline in Con Edison territory and a published target of ~400 MW by 2026.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Active operating assets confirmed; pipeline size is a stated target, not a disclosed tally."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": "~400 MW (stated buildout target by 2026; not a disclosed pipeline tally)",
+          "confidence": "medium",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "This is a public development target, not a verified pipeline enumeration. Actual pipeline MW not publicly disclosed."
+        },
+        "project_scale_focus": {
+          "value": "Community/distribution-scale, typically 3–5 MW per site (e.g., first Bronx site: 3.08 MW/12.32 MWh), optimized for urban parcels and interconnection constraints.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Sub-5 MW distributed scale confirmed by operational example."
+        },
+        "asset_type_focus": {
+          "value": "Standalone BESS (primary); Solar + storage (select sites with small PV canopy); V2G/EV-bidirectional pilot integration (demonstration use case).",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Solar and EV/V2G elements are secondary/demonstration; standalone BESS is the primary focus."
+        },
+        "target_buyer_customer": {
+          "value": "Wholesale market and utility program participation (NYISO capacity/ancillary eligibility where feasible; Con Edison programs as applicable); site hosts typically serve as lessors rather than energy offtakers.",
+          "confidence": "medium",
+          "source_url": "https://www.nyiso.com/energy-storage-resources",
+          "notes": "No long-term offtake contracts with specific buyers publicly disclosed. Revenue model relies on wholesale markets and utility programs."
+        },
+        "ny_incentive_utilization": {
+          "value": "NYSERDA Battery Energy Storage (Retail) incentive in Con Edison territory (program blocks now closed; historically supported distribution-level BESS economics).",
+          "confidence": "high",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "NYSERDA retail storage program is now fully subscribed/closed to new blocks as noted in the report. No other specific NY incentive programs explicitly confirmed for NineDot."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "Not publicly disclosed by NineDot. Report notes standalone storage is eligible for the 30% ITC under IRA with potential adders, and that developers commonly use transferability or tax equity, but NineDot's specific approach is not confirmed."
+        },
+        "capacity_market_participation": {
+          "value": "Not publicly disclosed at the project level; assets are technically suitable for RA/capacity participation subject to interconnection and NYISO qualification pathways.",
+          "confidence": "low",
+          "source_url": "https://www.nyiso.com/energy-storage-resources",
+          "notes": "No confirmed NYISO ICAP bids or market participation documented publicly for NineDot projects."
+        },
+        "ancillary_services_strategy": {
+          "value": "Not publicly itemized by NineDot; distributed BESS projects of this type are generally configured to provide fast-response services such as frequency regulation, contingent on market access and aggregator/optimizer arrangements.",
+          "confidence": "low",
+          "source_url": "https://www.nyiso.com/energy-storage-resources",
+          "notes": "No specific ancillary service strategy publicly confirmed by NineDot; assessment is based on general industry context."
+        },
+        "revenue_stack": {
+          "value": "State/utility incentives (NYSERDA retail storage incentive when available); Capacity revenues (NYISO ICAP/RA eligibility where permitted); Ancillary services (regulation, contingency, as feasible); Energy arbitrage time-shifting (wholesale LMPs or local value); Potential utility programs (as available in Con Edison territory).",
+          "confidence": "medium",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "Revenue stack is inferred from program participation and market design context; NineDot has not publicly detailed its exact revenue stack per project."
+        },
+        "interconnection_track_record": {
+          "value": "Strong. Commissioned first-of-its-kind community-scale BESS in NYC in 2022 (Bronx), indicating successful navigation of Con Edison distribution interconnection and NYC safety/permitting protocols amid evolving rules; ongoing programmatic site development plan in Con Edison territory.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Rated 'Strong' in the report based on demonstrated operational commissioning, though portfolio-wide interconnection success rate not publicly disclosed."
+        },
+        "bess_technology_partners": {
+          "value": "Tesla Megapack (primary OEM/integrated utility-scale battery system); associated market optimization typically via OEM/partner software in the ecosystem.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Tesla Megapack explicitly confirmed as primary technology partner. No other OEM partnerships mentioned."
+        },
+        "site_control_strategy": {
+          "value": "Long-term leases/options on small urban parcels (e.g., parking lots, brownfields, light industrial parcels) suitable for containerized BESS; emphasis on community-scale siting within constrained NYC real estate context.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Specific parcel types noted; lease/option structures inferred from IPP ownership model and urban siting context."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://rules.cityofnewyork.us/rule/stationary-storage-battery-systems/",
+          "notes": "Not publicly disclosed by NineDot. Report notes NYC cycle times are extended by interconnection studies, FDNY safety approvals, and local permitting, often beyond typical suburban timelines, but no specific month range is given."
+        },
+        "permitting_capability": {
+          "value": "In-house development capability with demonstrated success under NYC's lithium-ion stationary storage code and FDNY approval processes; uses external EPC/safety consultants as needed.",
+          "confidence": "high",
+          "source_url": "https://rules.cityofnewyork.us/rule/stationary-storage-battery-systems/",
+          "notes": "Demonstrated by successful commissioning of Bronx site. Hybrid in-house/outsourced model confirmed."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed by NineDot."
+        },
+        "merchant_risk_tolerance": {
+          "value": "Moderate. Revenue model stacks state incentives with merchant capacity/ancillary and arbitrage; lack of long-term offtake contracts implies exposure to market volatility balanced by programmatic incentives when available.",
+          "confidence": "medium",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "Rated 'Moderate' in the report. No long-term contracted offtake confirmed, meaning some merchant exposure exists."
+        },
+        "ipp_buyer_relationships": {
+          "value": "Limited/Not applicable. NineDot positions as an owner-operator (IPP) with strategic equity from Carlyle; public disclosures do not emphasize sell-downs to third-party IPPs in New York.",
+          "confidence": "medium",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "IPP buyer relationships not a focus given own-and-operate model. No third-party sell-down activity documented."
+        },
+        "project_finance_access": {
+          "value": "Moderate–High. Backed by a $100 million Carlyle equity commitment.",
+          "confidence": "medium",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Report text for this attribute was truncated at attribute 27. Rating of Moderate–High and Carlyle backing are confirmed; additional detail on construction debt or tax equity arrangements was not captured in the provided text."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly addressed in the report as a standalone attribute. The 400 MW target and multi-site rollout imply systematized development, but no specific detail on replicability processes is given."
+        },
+        "competitive_moat": {
+          "value": "Specialized siting on constrained urban parcels; accumulated experience with New York permitting and interconnection challenges; access to scale equity capital from Carlyle; technology partnerships with Tesla Megapack platform.",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220816005094/en/NineDot-Energy-Secures-100-Million-in-Funding-from-Carlyle-and-Launches-First-Battery-Storage-Site-in-NYC",
+          "notes": "Four distinct moat sources explicitly identified in the executive summary of the report."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly described in the report. NineDot's participation in NYSERDA programs is noted, but specific PSC/NYISO proceedings participation, NY-Chap membership, or lobbying/advocacy presence is not confirmed."
+        }
+      },
+      "sources": [],
+      "confidence": 0.83,
+      "last_researched": "2026-03-13T06:48:06.408790+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-power",
+      "name": "Convergent Energy + Power",
+      "tier": 1,
+      "description": "Convergent Energy + Power routinely builds, owns, and optimizes distributed and C&I storage projects and could outcompete NEE on interconnection execution and performance analytics, with demonstrated capability in revenue stacking across NYISO capacity and ancillary services markets.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "Convergent Energy + Power",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Operating name; often stylized as Convergent Energy + Power or 'Convergent'."
+        },
+        "description": {
+          "value": "Convergent Energy + Power is a North American energy storage developer, owner, and operator that finances, builds, and manages battery energy storage systems for utilities and large energy users; in New York, the company has delivered distribution-level storage projects under utility non-wires alternatives (NWA) constructs, evidencing a presence in the distributed BESS segment.",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Drawn directly from company About page description in the report."
+        },
+        "year_founded": {
+          "value": 2011.0,
+          "confidence": "high",
+          "source_url": "https://www.crunchbase.com/organization/convergent-energy-power",
+          "notes": "Reported in company profiles and venture databases including Crunchbase."
+        },
+        "hq_location": {
+          "value": "New York, New York, United States",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "HQ is New York, NY with additional presence in Toronto, Ontario, Canada."
+        },
+        "employee_count": {
+          "value": "51–200 (approximate range)",
+          "confidence": "low",
+          "source_url": "https://www.linkedin.com/company/convergent-energy-power/",
+          "notes": "Not publicly disclosed precisely; LinkedIn company page indicates roughly 51–200 employees."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Not publicly disclosed. Convergent is privately held and does not publish revenue figures."
+        },
+        "funding_raised": {
+          "value": "Acquired by Energy Capital Partners (ECP); ECP manages multi-billion-dollar funds, implying substantial capital access for project development and ownership.",
+          "confidence": "medium",
+          "source_url": "https://www.ecpgp.com",
+          "notes": "Exact funding amount not disclosed; ECP acquisition is publicly announced. Multi-billion AUM is attributed to ECP as sponsor, not a specific figure for Convergent."
+        },
+        "business_model": {
+          "value": "Hybrid IPP/owner-operator with development and financing capabilities; develops, finances, and operates energy storage systems for utilities and large users.",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Consistent with both own-and-operate IPP and developer-led delivery models (e.g., NWA deployments, C&I BESS)."
+        },
+        "ny_market_presence": {
+          "value": "Active and demonstrated presence with operating distribution-level battery projects in New York through utility NWA programs (e.g., Orange & Rockland Utilities' Pomona-area projects).",
+          "confidence": "high",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Documented in sector trade media; O&R NWA projects are the primary publicly known NY footprint."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": "~10 MW operating (two 5 MW systems totaling 10 MW/40 MWh under Orange & Rockland NWA program); additional NY pipeline not publicly disclosed.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Based on trade media reporting for O&R NWA deployments. Beyond these cases, no additional NY pipeline is publicly documented."
+        },
+        "project_scale_focus": {
+          "value": "Mid-scale distributed (5–20 MW) at the distribution level for NWA use-cases; behind-the-meter C&I systems often sub-5 to 10 MW.",
+          "confidence": "medium",
+          "source_url": "https://www.convergentep.com",
+          "notes": "O&R projects and North American portfolio examples illustrate focus on distribution-interfaced BESS in the mid-scale range."
+        },
+        "asset_type_focus": {
+          "value": "Standalone BESS and solar-plus-storage hybrid; New York examples in public domain are standalone BESS for utility NWA.",
+          "confidence": "medium",
+          "source_url": "https://www.convergentep.com",
+          "notes": "North American portfolio includes both configurations; NY-specific public cases are standalone BESS only."
+        },
+        "target_buyer_customer": {
+          "value": "Utilities (for NWA/utility-contracted distribution assets) and large commercial and industrial (C&I) customers (for demand management/peak-shaving and resiliency).",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Directly stated in report from company Solutions page."
+        },
+        "ny_incentive_utilization": {
+          "value": "Orange & Rockland Utilities Non-Wires Alternatives (NWA) program (documented); no public evidence of NYSERDA Bulk/Retail Bridge Incentive awards for the referenced O&R projects.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Only O&R NWA program participation is publicly documented. NYSERDA Bridge Incentive usage not confirmed."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Not publicly disclosed. No specific post-IRA ITC monetization strategy found in accessible company materials."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Not publicly disclosed. O&R NWA projects structured primarily for utility distribution deferral; no public confirmation of NYISO ICAP market bidding for these assets."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Not publicly disclosed for New York. No specific documentation confirms NYISO ancillary services (e.g., Regulation, Reserves) participation for the O&R assets."
+        },
+        "revenue_stack": {
+          "value": "For O&R NWA case, primary revenue is utility-contracted availability/performance for non-wires deferral; no public description of energy arbitrage, merchant stacking, or VDER/CDG for these NY assets.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Based on publicly documented O&R NWA projects only. Broader revenue stacking approach for NY not publicly disclosed."
+        },
+        "interconnection_track_record": {
+          "value": "Good — demonstrated ability to achieve distribution-level interconnection and commissioning in O&R territory (10 MW class systems); limited public data beyond these cases.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Rating based on successfully delivered O&R projects. Broader NYISO/utility queue performance data not publicly available."
+        },
+        "bess_technology_partners": {
+          "value": "Convergent has publicly worked with leading lithium-ion system suppliers/integrators including Tesla in North American projects; specific OEM details for O&R New York deployments not publicly specified.",
+          "confidence": "low",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Tesla mentioned for North American projects broadly; NY-specific OEM configuration not confirmed in accessible documents."
+        },
+        "site_control_strategy": {
+          "value": "For New York NWA, sited on or adjacent to utility distribution infrastructure (e.g., proximate to substations/feeder constraints) under utility program arrangements; strategies include utility site partnerships/leases and brownfield/industrial parcels.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Inferred from the nature of NWA projects; specific contractual site control terms not publicly disclosed."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Not publicly disclosed for New York. No Convergent-specific development cycle time published for NY projects in sources reviewed."
+        },
+        "permitting_capability": {
+          "value": "Demonstrated capability to permit and commission distribution-level BESS in New York under utility NWA frameworks; in-house vs. outsourced status not publicly specified for NY projects.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Capability inferred from successful O&R NWA project delivery; organizational structure for permitting not disclosed."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Not publicly disclosed. Convergent does not publish return targets in accessible materials."
+        },
+        "merchant_risk_tolerance": {
+          "value": "Low-to-moderate in New York based on public cases — O&R NWA projects are utility-contracted assets emphasizing contracted availability rather than merchant revenues.",
+          "confidence": "medium",
+          "source_url": "https://www.energy-storage.news",
+          "notes": "Assessment based on publicly documented NY projects only; broader portfolio may include more merchant exposure not visible in public disclosures."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed in the report. No specific information on IPP buyer or M&A relationships in NY storage market was found in the sourced materials."
+        },
+        "project_finance_access": {
+          "value": "Strong — backed by Energy Capital Partners (ECP), a private equity sponsor with multi-billion-dollar funds under management, supporting project development, financing, and ownership strategies.",
+          "confidence": "high",
+          "source_url": "https://www.ecpgp.com",
+          "notes": "ECP acquisition and sponsor profile publicly announced. Specific project finance facility details (e.g., construction debt terms) not individually disclosed."
+        },
+        "replicability_scalability": {
+          "value": "North American multi-market operating history suggests systematized development processes; however, publicly documented NY pipeline beyond O&R NWA projects is modest, limiting assessment of NY-specific rollout scalability.",
+          "confidence": "low",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Report notes that relative to NY-specialist peers, Convergent's publicly documented distributed NY pipeline is limited. Broader scalability inferred from ECP backing and multi-market presence."
+        },
+        "competitive_moat": {
+          "value": "Utility relationships for NWA contracts and distribution-level siting; capital backing and balance sheet support via Energy Capital Partners (ECP); multi-market operating history in North America.",
+          "confidence": "high",
+          "source_url": "https://www.convergentep.com",
+          "notes": "Explicitly identified in the report's executive summary as primary moat elements."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed in the report. No specific information on Convergent's participation in NYSERDA, PSC, or NYISO proceedings, or NY-Chap/ACORE NY membership, was found in sourced materials."
+        }
+      },
+      "sources": [],
+      "confidence": 0.76,
+      "last_researched": "2026-03-13T06:50:46.811467+00:00"
+    },
+    {
+      "competitor_id": "new-leaf-energy",
+      "name": "New Leaf Energy",
+      "tier": 1,
+      "description": "New Leaf Energy has direct overlap with NEE's 5 MW distributed scope and develop-to-sell potential in New York, making it one of the most strategically relevant competitors in the distributed BESS segment with demonstrated New York market presence.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "New Leaf Energy",
+          "confidence": "high",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Legal operating name confirmed via company website and Crunchbase."
+        },
+        "description": {
+          "value": "New Leaf Energy (NLE) is a U.S.-based renewable energy project development company focused on distributed solar and energy storage. Formed in 2022 following Energy Capital Partners' acquisition of Borrego's development business, NLE operates a develop-and-sell model, developing projects and monetizing them via asset sales to IPPs and long-term owners. It is not an IPP and does not hold assets on balance sheet.",
+          "confidence": "high",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Directly sourced from company website and corroborated by Crunchbase profile."
+        },
+        "year_founded": {
+          "value": 2022.0,
+          "confidence": "high",
+          "source_url": "https://www.crunchbase.com/organization/new-leaf-energy-llc",
+          "notes": "Formed in 2022 when Energy Capital Partners acquired Borrego's development business and rebranded it as New Leaf Energy."
+        },
+        "hq_location": {
+          "value": "Lowell, Massachusetts",
+          "confidence": "high",
+          "source_url": "https://www.newleafenergy.com/contact/",
+          "notes": "Confirmed via company contact page."
+        },
+        "employee_count": {
+          "value": "Several hundred (approximate, per public professional directories)",
+          "confidence": "low",
+          "source_url": "https://www.crunchbase.com/organization/new-leaf-energy-llc",
+          "notes": "Approximate figure based on LinkedIn directory signals; no official headcount published. Report states 'several hundred employees per public professional directories'."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "As a private company, NLE does not publicly release revenue figures. The report explicitly states no revenue data is available."
+        },
+        "funding_raised": {
+          "value": "Backed by Energy Capital Partners (ECP); specific capital amount not publicly disclosed.",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "ECP sponsorship is confirmed, but specific equity/debt capital raised figures are not disclosed in the report or on public sources."
+        },
+        "business_model": {
+          "value": "Develop-and-sell",
+          "confidence": "high",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report explicitly states NLE is a development-only entity that develops and sells projects to long-term owners/IPPs; not an IPP itself."
+        },
+        "ny_market_presence": {
+          "value": "Emergent / limited publicly visible footprint; no named NY distributed BESS projects disclosed as of knowledge cutoff (October 2024).",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report states no explicit, named New York distributed storage projects with MW are prominently disclosed on first-party channels. Presence is described as 'emergent'."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report explicitly states no clear, publicized New York distributed storage MW pipeline number, operating portfolio, or named projects attributable to NLE could be located. Not publicly available."
+        },
+        "project_scale_focus": {
+          "value": "Sub-5 MW distributed (≤5 MWac sites under NY SIR, based on core DG solar competency and likely co-located PV+BESS focus)",
+          "confidence": "low",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "Inferred from NLE's core DG solar competency and NY SIR/NYSERDA Retail BESS program thresholds; no explicit project scale range publicly confirmed by NLE for NY storage."
+        },
+        "asset_type_focus": {
+          "value": "Distributed solar and energy storage, including co-located solar+storage (PV+BESS); likely co-located configurations as primary NY focus.",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report identifies NLE's core competency as DG solar with co-located storage; standalone BESS is noted as less likely given NLE's background."
+        },
+        "target_buyer_customer": {
+          "value": "IPPs and long-term asset owners",
+          "confidence": "high",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report explicitly states NLE monetizes projects via asset sales to IPPs and long-term owners."
+        },
+        "ny_incentive_utilization": {
+          "value": "Likely NYSERDA Battery Energy Storage Program (Retail ≤5 MW track), NY-Sun, and VDER value stack for co-located solar+storage; however, specific NY program enrollments are not publicly disclosed or validated.",
+          "confidence": "low",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage",
+          "notes": "Report indicates NLE has not publicly detailed NY-specific BESS program enrollments. Incentive utilization is inferred from NLE's likely strategic focus, not confirmed."
+        },
+        "itc_transferability_strategy": {
+          "value": "Tax credit monetization at or after NTP via the buyer's capital stack (develop-and-sell model); specific approach (transferability, tax equity partnership, direct pay) not publicly disclosed.",
+          "confidence": "low",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report states NLE's develop-and-sell model 'typically relies on construction lenders and tax credit monetization at or after NTP via the buyer's capital stack.' Specific ITC strategy not named."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report explicitly states NLE has not publicly detailed NY capacity market strategies in a way that can be validated. Not publicly available."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No publicly available information on NLE's ancillary services strategy for NY storage projects. Report does not identify any confirmed participation."
+        },
+        "revenue_stack": {
+          "value": "Likely: NYSERDA BESS incentives, NY-Sun solar incentives, VDER value stack compensation (LBMP energy, ICAP capacity, E-values, LSRV, DRV) for co-located solar+storage; specific confirmed revenue stack not publicly disclosed.",
+          "confidence": "low",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Value-of-Distributed-Energy-Resources",
+          "notes": "Revenue stack is inferred from NY policy context and NLE's likely strategic orientation; not confirmed by NLE publicly."
+        },
+        "interconnection_track_record": {
+          "value": "Strong general track record in Northeast interconnection (including Massachusetts SMART with storage adders and similar complex DG interconnection regimes); specific NY distributed storage interconnection track record not publicly documented.",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report notes NLE has 'deep familiarity with Northeast interconnection, siting, and incentive regimes' from Borrego legacy. NY-specific storage interconnection record not verifiable from public sources."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report states NLE is 'technology-agnostic' and sources equipment according to project needs, but no specific BESS OEM or integrator partnerships are named in public sources."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No specific NY site control strategy publicly disclosed by NLE. Report notes likely preference for upstate and suburban siting given permitting risk in NYC, but no formal site control approach is documented."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No publicly available data on NLE's development cycle speed for NY distributed storage projects."
+        },
+        "permitting_capability": {
+          "value": "Strong in-house permitting and regulatory capability inferred from Borrego/NLE legacy development platform; NY-specific BESS permitting capability not separately documented.",
+          "confidence": "low",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report references NLE's 'robust development process maturity from a legacy Borrego platform' including permitting. Specific NY BESS permitting capability not confirmed."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No publicly disclosed target IRR for NLE's NY or general storage development projects."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No publicly available information on NLE's merchant risk tolerance or pro forma assumptions for NY storage."
+        },
+        "ipp_buyer_relationships": {
+          "value": "Established relationships with IPPs and long-term asset owners (implied by develop-and-sell model and ECP institutional backing); specific named NY storage M&A buyers not publicly disclosed.",
+          "confidence": "low",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report notes ECP sponsorship implies 'buyer networks that could be extended to NY BESS asset sales' but no specific IPP buyer relationships for NY are named."
+        },
+        "project_finance_access": {
+          "value": "Strong institutional capital access via Energy Capital Partners (ECP) sponsorship; construction lending and tax credit monetization accessed through buyer's capital stack in develop-and-sell model.",
+          "confidence": "medium",
+          "source_url": "https://www.crunchbase.com/organization/new-leaf-energy-llc",
+          "notes": "ECP backing confirmed. Report notes NLE relies on buyer's capital stack for tax credit monetization rather than independent project finance on NLE's balance sheet."
+        },
+        "replicability_scalability": {
+          "value": "High general scalability indicated by Borrego legacy development systems, ECP backing, and multi-state pipeline capacity; NY-specific BESS scalability not separately documented.",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Report references 'robust development process maturity from a legacy Borrego platform' as a key strength enabling multi-site pipeline replication, but NY distributed BESS-specific scalability is not confirmed."
+        },
+        "competitive_moat": {
+          "value": "Development process maturity (Borrego legacy), institutional capital access (ECP sponsorship), Northeast interconnection and permitting expertise, and established buyer/IPP relationships.",
+          "confidence": "medium",
+          "source_url": "https://www.newleafenergy.com/about/",
+          "notes": "Sourced from report's characterization of NLE's 'salient competitive strengths.' Technology partnerships and NY-specific policy relationships not separately confirmed as moat components."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No publicly available information on NLE's participation in NYSERDA, PSC, or NYISO proceedings, or membership in NY-Chap/ACORE NY. Report does not document any such engagement."
+        }
+      },
+      "sources": [],
+      "confidence": 0.69,
+      "last_researched": "2026-03-13T06:47:00.944234+00:00"
+    },
+    {
+      "competitor_id": "nexamp",
+      "name": "Nexamp",
+      "tier": 1,
+      "description": "Nexamp leverages solar+storage synergies and community solar expertise to monetize the VDER Value Stack and reduce merchant exposure, competing directly with NEE in the distributed solar+storage and community solar segment across New York State.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "Nexamp, Inc.",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Legal operating name as stated in the report."
+        },
+        "description": {
+          "value": "Nexamp is an integrated clean energy company that develops, builds, owns, and operates distributed solar projects—particularly community solar—and offers subscription-based access to clean energy; it promotes energy storage integration across its portfolio, though New York-specific distributed BESS disclosures remain limited publicly.",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Directly quoted from the report's structured attribute summary."
+        },
+        "year_founded": {
+          "value": 2007.0,
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Explicitly stated in the report."
+        },
+        "hq_location": {
+          "value": "Boston, Massachusetts",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Explicitly stated in the report."
+        },
+        "employee_count": {
+          "value": "Approximately 500–1,000 employees",
+          "confidence": "medium",
+          "source_url": "https://www.linkedin.com/company/nexamp/",
+          "notes": "Based on LinkedIn-reported company size band; not an exact figure."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Not publicly disclosed as of March 2026; Nexamp does not publish audited revenue figures."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "low",
+          "source_url": "https://www.nexamp.com/news/",
+          "notes": "Specific aggregate equity/debt amounts are not comprehensively disclosed; report notes the company has historically announced large tax equity and debt financings but no definitive total is publicly enumerated."
+        },
+        "business_model": {
+          "value": "IPP (own-and-operate) with in-house development and subscription management",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Core model is ownership of community solar assets with direct subscriber management; may opportunistically monetize assets."
+        },
+        "ny_market_presence": {
+          "value": "Active in New York with a broad CDG solar footprint; publicly detailed, quantified distributed BESS footprint in New York has not been disclosed as of March 2026.",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/news/",
+          "notes": "Report confirms active NY solar presence but notes absence of public BESS-specific disclosures."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nexamp.com/news/",
+          "notes": "Not publicly disclosed; no authoritative public listing from Nexamp or state program databases quantifies Nexamp's NY distributed BESS capacity as of March 2026."
+        },
+        "project_scale_focus": {
+          "value": "Sub-5 MWac distributed scale (aligned to the 5 MWac CDG cap for NY solar projects); BESS sizing for NY co-located sites is not publicly disclosed.",
+          "confidence": "high",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Project-Developers/Community-Solar",
+          "notes": "NY solar projects generally align to the 5 MWac CDG cap; storage scale not confirmed."
+        },
+        "asset_type_focus": {
+          "value": "Multi-technology within distributed renewables—primary focus on community solar (solar-only and solar+storage); standalone storage not broadly detailed publicly.",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Storage is an additional capability promoted by the company but not the primary focus."
+        },
+        "target_buyer_customer": {
+          "value": "Community solar subscribers (residential and small C&I/municipal); for storage, revenue realized via market/tariff mechanisms rather than a single buyer; specific NY storage counterparties not publicly identified.",
+          "confidence": "high",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Based on the community solar IPP model described in the report."
+        },
+        "ny_incentive_utilization": {
+          "value": "Actively utilizes NY-Sun (CDG) and the VDER Value Stack for NY solar projects; no public project-specific disclosures confirm participation in Con Edison BQDM or storage-specific incentive awards under the Energy Storage Roadmap 2.0.",
+          "confidence": "medium",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Resources/Value-of-Distributed-Energy-Resources",
+          "notes": "Solar incentive participation is confirmed; storage-specific incentive participation is unconfirmed publicly."
+        },
+        "itc_transferability_strategy": {
+          "value": "Regular use of federal tax incentives and tax equity financing partnerships; no publicly disclosed NY-specific approach distinguishing transferability vs. traditional tax equity post-IRA.",
+          "confidence": "low",
+          "source_url": "https://www.nexamp.com/news/",
+          "notes": "General corporate communications indicate ongoing use of tax equity; no NY-specific breakdown available."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nyiso.com/installed-capacity-market",
+          "notes": "Not confirmed for Nexamp's NY distributed storage as of March 2026; no public documentation identifies Nexamp-sited NY assets clearing NYISO ICAP markets."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nyiso.com/ancillary-services",
+          "notes": "Not publicly detailed for New York; no evidence found of Nexamp describing NYISO ancillary bidding for NY-sited assets."
+        },
+        "revenue_stack": {
+          "value": "For NY solar: VDER/CDG (subscriber revenue + value stack). For storage: general strategy of combining energy arbitrage and incentives where available; no NY-specific public articulation of Nexamp's storage revenue stack has been published.",
+          "confidence": "medium",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Resources/Value-of-Distributed-Energy-Resources",
+          "notes": "Solar revenue stack is well-documented; storage-specific NY revenue stack is inferred from general company strategy, not confirmed."
+        },
+        "interconnection_track_record": {
+          "value": "Demonstrably active and experienced in New York CDG solar interconnections; distributed BESS interconnection track record in NY is not publicly quantified.",
+          "confidence": "medium",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Project-Developers/Community-Solar",
+          "notes": "Report rates this as 'Not Rated' for BESS-only due to insufficient public data; solar interconnection track record is strong."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed for New York projects; Nexamp does not list NY-specific battery OEMs/integrators on its website per the report."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly described in the report for NY storage projects; no specific site control strategy information was provided."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed or discussed in the report for NY distributed storage projects."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly addressed in the report for NY storage permitting (Article 10/SEQRA/local)."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly disclosed in the report."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly quantified in the report; general strategy suggests preference for contracted/incentive streams (VDER/CDG) over merchant exposure, but no specific tolerance level is stated."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not discussed in the report; Nexamp's core model is own-and-operate IPP, so M&A buyer relationships are not a primary focus per available disclosures."
+        },
+        "project_finance_access": {
+          "value": "Robust access to project finance indicated by historical announcements of large tax equity and debt financings to scale national community solar portfolio; specific NY storage project finance arrangements not publicly itemized.",
+          "confidence": "medium",
+          "source_url": "https://www.nexamp.com/news/",
+          "notes": "Report describes robust capital access generally but does not confirm NY-storage-specific financing arrangements."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly discussed in the report for NY distributed storage; the company has a systematized community solar development model nationally, but NY BESS-specific scalability is not documented publicly."
+        },
+        "competitive_moat": {
+          "value": "National leadership in community solar with established NY CDG footprint, capital access (tax equity and project finance relationships), and subscription management platform; storage-specific moat in NY is not clearly established relative to storage-first incumbents.",
+          "confidence": "medium",
+          "source_url": "https://www.nexamp.com/about/",
+          "notes": "Inferred from the report's overall characterization of Nexamp as a community solar IPP with latent storage potential; storage moat explicitly noted as weaker than storage-first competitors in NY."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not explicitly addressed in the report; no mention of Nexamp's participation in NYSERDA, PSC, or NYISO proceedings, or membership in NY-Chap or ACORE NY."
+        }
+      },
+      "sources": [],
+      "confidence": 0.55,
+      "last_researched": "2026-03-13T06:57:16.470460+00:00"
+    },
+    {
+      "competitor_id": "agilitas-energy",
+      "name": "Agilitas Energy",
+      "tier": 1,
+      "description": "Agilitas Energy leverages solar+storage synergies and community solar expertise to monetize the Value Stack and reduce merchant exposure, positioning itself as a direct competitor to NEE in New York's distributed energy storage and solar+storage market.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "Agilitas Energy",
+          "confidence": "high",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Variously styled 'Agilitas Energy, Inc.' or 'Agilitas Energy LLC' in business directories; brands as 'Agilitas Energy'."
+        },
+        "description": {
+          "value": "Massachusetts-based independent power producer (IPP) and developer focused on distributed solar PV, solar-plus-storage, and standalone BESS across the Northeastern United States. Operates as an owner-operator stacking multiple wholesale and retail revenue streams at the distribution level.",
+          "confidence": "high",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Based on company website and press releases as described in the report."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "low",
+          "source_url": "https://www.crunchbase.com/organization/agilitas-energy",
+          "notes": "Report states 'mid-2010s' based on public directories but does not cite a specific founding year. No exact year explicitly stated."
+        },
+        "hq_location": {
+          "value": "Wakefield, Massachusetts",
+          "confidence": "high",
+          "source_url": "https://agilitasenergy.com/contact/",
+          "notes": "Published contact address on the company's official Contact page indicates Boston-area HQ."
+        },
+        "employee_count": {
+          "value": "51–200",
+          "confidence": "medium",
+          "source_url": "https://www.linkedin.com/company/agilitas-energy/",
+          "notes": "LinkedIn profile indicates a company-size band of 51–200 employees; this is a range, not a precise figure."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No revenue estimate or AUM under development figure is explicitly stated in the report."
+        },
+        "funding_raised": {
+          "value": "$350 million equity commitment from CarVal Investors (announced July 2022)",
+          "confidence": "high",
+          "source_url": "https://www.businesswire.com/news/home/20220726005356/en/Agilitas-Energy-Secures-350-Million-Equity-Funding-from-CarVal-Investors",
+          "notes": "Equity commitment for scaling development, construction, and operations of solar and storage assets across the Northeast. Project-level debt/construction finance terms are not publicly disclosed."
+        },
+        "business_model": {
+          "value": "Hybrid developer/IPP (develop-and-own/operate)",
+          "confidence": "high",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Company emphasizes ownership and long-term operation (IPP model) with development capabilities. Report characterizes it as a 'hybrid developer/IPP'."
+        },
+        "ny_market_presence": {
+          "value": "Active but limited public disclosures; multi-state posture includes New York as an active market with fewer NY-specific project announcements than peers",
+          "confidence": "medium",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Report notes New York is indicated as an active market per company materials, but fewer NY-specific announcements exist compared to competitors like NineDot, Convergent, and Key Capture Energy."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No New York–specific MW pipeline data is publicly disclosed. Report explicitly states the absence of verifiable NY project-level disclosures."
+        },
+        "project_scale_focus": {
+          "value": "1–20 MW distributed (distribution-connected projects)",
+          "confidence": "medium",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Report states '1–20 MW band' consistent with portfolio language and siting patterns; sub-20 MW distribution-level focus."
+        },
+        "asset_type_focus": {
+          "value": "Solar-plus-storage hybrid and standalone BESS; also distributed solar PV",
+          "confidence": "high",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Company focuses on distributed solar PV, solar-plus-storage, and standalone BESS per its public materials."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report does not explicitly identify primary transaction counterparties or offtake partners. As an IPP/owner-operator, the company retains assets rather than selling to buyers, but specific customers are not named."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nyserda.ny.gov/All-Programs/Energy-Storage-Program",
+          "notes": "Report states no dedicated NYSERDA documentation publicly enumerates Agilitas as a named award recipient as of the review date. Absence of named listings does not confirm non-participation (projects may be listed under SPVs)."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report mentions IRA standalone storage ITC eligibility (2023) and that the company likely has capacity to pursue tax credit transactions, but no specific ITC monetization strategy (direct pay, tax equity, transferability) is publicly disclosed."
+        },
+        "capacity_market_participation": {
+          "value": "Yes — storage assets structured to qualify for NYISO ICAP capacity and ancillary services markets",
+          "confidence": "medium",
+          "source_url": "https://www.nyiso.com/markets",
+          "notes": "Report states Agilitas explicitly targets ISO markets (ISO-NE and NYISO) for capacity and ancillary revenues. NYISO ICAP zones mentioned include NYC-J, Long Island-K, and Rest of State."
+        },
+        "ancillary_services_strategy": {
+          "value": "Participates in NYISO ancillary markets including frequency regulation, reserve products (Regulation Service, 10-Minute Spin, 10-Minute Non-Spin)",
+          "confidence": "medium",
+          "source_url": "https://www.nyiso.com/markets",
+          "notes": "Report states these are 'typically factored into dispatch optimization for IPPs like Agilitas'; described as industry norm rather than confirmed project-specific disclosure."
+        },
+        "revenue_stack": {
+          "value": "Capacity (NYISO ICAP), ancillary services (regulation, spin, non-spin), energy arbitrage (DA/RT), NYSERDA grants/incentives, VDER/CDG for solar portion of hybrids",
+          "confidence": "medium",
+          "source_url": "https://www.nyiso.com/markets",
+          "notes": "Report describes this as the intended revenue stacking strategy consistent with the company's ISO-market optimization model and distributed hybrid focus."
+        },
+        "interconnection_track_record": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://www.nyiso.com/markets",
+          "notes": "NY distribution-level interconnection positions are not publicly verifiable via NYISO queue (which covers >20 MW bulk projects). Utility distribution queues lack transparency. No specific NY interconnection track record data is available."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Report explicitly states no named OEM partners are disclosed in public materials. Company likely maintains a multi-vendor posture. No specific OEM relationships are asserted."
+        },
+        "site_control_strategy": {
+          "value": "Brownfields, industrial parcels, and grid nodes; distribution-level siting with limited land and interconnection headroom",
+          "confidence": "low",
+          "source_url": "https://agilitasenergy.com/",
+          "notes": "Report mentions 'brownfields, industrial parcels, and grid nodes' as siting patterns consistent with portfolio language. Not explicitly confirmed as formal strategy; inferred from portfolio descriptions."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No development cycle timeline (months from site ID to NTP) is disclosed in the report."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report mentions FDNY and SEQRA permitting requirements but does not specify whether Agilitas handles permitting in-house or via outsourced partners. No project-specific FDNY permitting disclosures exist for Agilitas assets in NYC."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No target IRR or return threshold is publicly disclosed in the report."
+        },
+        "merchant_risk_tolerance": {
+          "value": "Moderate-to-high merchant tolerance; revenue model includes energy arbitrage (DA/RT) and ISO market-based capacity and ancillary services alongside contracted/incentive streams",
+          "confidence": "low",
+          "source_url": "https://www.nyiso.com/markets",
+          "notes": "Inferred from the company's IPP/owner-operator model and ISO market participation strategy. No explicit merchant risk tolerance percentage or pro forma detail is disclosed."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "As an IPP/owner-operator, Agilitas retains assets rather than selling to IPP buyers. No M&A buyer relationships are referenced in the report."
+        },
+        "project_finance_access": {
+          "value": "Strong equity access via $350M CarVal Investors commitment; project-level construction debt and term financing likely available but terms not publicly disclosed",
+          "confidence": "medium",
+          "source_url": "https://www.businesswire.com/news/home/20220726005356/en/Agilitas-Energy-Secures-350-Million-Equity-Funding-from-CarVal-Investors",
+          "notes": "Report states CarVal equity commitment supports construction-cycle throughput and portfolio contracting. Specific NY debt facilities or tax credit transactions are not enumerated publicly."
+        },
+        "replicability_scalability": {
+          "value": "High in principle — programmatic capital from CarVal enables multi-site, replicable distributed strategy; systematized development processes inferred from portfolio scale and multi-state ambitions",
+          "confidence": "low",
+          "source_url": "https://www.businesswire.com/news/home/20220726005356/en/Agilitas-Energy-Secures-350-Million-Equity-Funding-from-CarVal-Investors",
+          "notes": "Scalability is inferred from capital structure and multi-state posture; no explicit description of systematized NY site identification processes is provided in public materials."
+        },
+        "competitive_moat": {
+          "value": "Capital access (CarVal $350M equity commitment) and owner-operator ISO market optimization capability",
+          "confidence": "medium",
+          "source_url": "https://www.businesswire.com/news/home/20220726005356/en/Agilitas-Energy-Secures-350-Million-Equity-Funding-from-CarVal-Investors",
+          "notes": "Report identifies financing capacity and revenue stacking/ISO optimization as central competitive pillars. Policy relationships, technology partnerships, and site pipeline are not specifically called out as primary moats."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report does not mention any specific participation in NYSERDA, PSC, or NYISO proceedings, or membership in NY-Chap or ACORE NY by Agilitas Energy."
+        }
+      },
+      "sources": [
+        "https://agilitasenergy.com/agilitas-energy-raises-350-million-to-build-national-renewable-energy-storage-platform",
+        "https://in.linkedin.com/in/rohit-balakrishnan-3ab5b414",
+        "https://in.linkedin.com/in/harsh-jhaveri-74b967129",
+        "https://agilitasenergy.com/feed",
+        "https://in.linkedin.com/in/meet-joshi-ca",
+        "https://in.linkedin.com/in/vikastyagi14",
+        "https://agilitasenergy.com/agilitas-energy-buoys-national-expansion-efforts-with-strategic-financing-from-1st-source-bank-2/",
+        "https://in.linkedin.com/in/janmejai-bagrodia-0299468",
+        "https://agilitasenergy.com/agilitas-energy-completes-first-hybrid-pv-and-energy-storage-project-in-auburn-ma",
+        "https://agilitasenergy.com/agilitas-energy-continues-renewables-expansion-with-solar-project-acquisition-in-rhode-island",
+        "https://www.linkedin.com/in/vinay-gupta-470278",
+        "https://agilitasenergy.com/author/agilitasenergy",
+        "https://www.linkedin.com/in/asmitjain",
+        "https://agilitasenergy.com/agilitas-energy-raises-350-million-to-build-national-renewable-energy-storage-platform-2/",
+        "https://agilitasenergy.com/agilitas-energy-closes-100-million-to-accelerate-growth-of-its-national-renewables-energy-storage-platform-2/"
+      ],
+      "confidence": 0.59,
+      "last_researched": "2026-03-13T07:00:53.444356+00:00"
+    },
+    {
+      "competitor_id": "amp-energy",
+      "name": "Amp Energy",
+      "tier": 2,
+      "description": "Amp Energy is a relevant competitor in the distributed BESS and renewable energy space in New York, with experience in developing and transacting storage assets and participating in state incentive programs and wholesale markets.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:11:38.212689+00:00"
+    },
+    {
+      "competitor_id": "key-capture-energy",
+      "name": "Key Capture Energy",
+      "tier": 2,
+      "description": "Key Capture Energy is a larger platform that primarily targets bulk storage systems but may occasionally compete at the distribution threshold; it is more likely to serve as a potential offtaker for NEE's development packages than a frequent head-to-head competitor in the 5 MW distributed segment.",
+      "competitor_type": "incumbent",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:11:38.212689+00:00"
+    },
+    {
+      "competitor_id": "microgrid-networks",
+      "name": "Microgrid Networks",
+      "tier": 2,
+      "description": "Microgrid Networks operates in the distributed energy and microgrid space in New York, competing with NEE for sites, interconnection capacity, and incentive program access in the distributed BESS market.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:11:38.212689+00:00"
+    },
+    {
+      "competitor_id": "summit-ridge-energy",
+      "name": "Summit Ridge Energy",
+      "tier": 2,
+      "description": "Summit Ridge Energy brings community solar and distributed storage expertise to the New York market, competing with NEE in the develop-and-sell segment by leveraging solar+storage combinations and VDER Value Stack monetization strategies.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:11:38.212689+00:00"
+    },
+    {
+      "competitor_id": "dsd-renewables",
+      "name": "DSD Renewables",
+      "tier": 2,
+      "description": "DSD Renewables is active in the distributed solar and storage development space in New York, competing with NEE for development opportunities, interconnection slots, and incentive program access in the sub-5 MW segment.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:22:14.901804+00:00"
+    },
+    {
+      "competitor_id": "orion-renewable-energy-group",
+      "name": "Orion Renewable Energy Group",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:22:14.901804+00:00"
+    },
+    {
+      "competitor_id": "broad-reach-power",
+      "name": "Broad Reach Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:22:14.901804+00:00"
+    },
+    {
+      "competitor_id": "hecate-energy",
+      "name": "Hecate Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:22:14.901804+00:00"
+    },
+    {
+      "competitor_id": "ameresco",
+      "name": "Ameresco",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:34:31.684261+00:00"
+    },
+    {
+      "competitor_id": "depcom-power",
+      "name": "DEPCOM Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:34:31.684261+00:00"
+    },
+    {
+      "competitor_id": "sunpeak-energy",
+      "name": "SunPeak Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:34:31.684261+00:00"
+    },
+    {
+      "competitor_id": "greenbacker-renewable-energy",
+      "name": "Greenbacker Renewable Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:34:31.684261+00:00"
+    },
+    {
+      "competitor_id": "lightpath-energy",
+      "name": "Lightpath Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {
+        "name": {
+          "value": "Lightpath Energy",
+          "confidence": "high",
+          "source_url": null,
+          "notes": "Name provided as the competitor under assessment. No confirmed aliases identified in NY official repositories."
+        },
+        "description": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for New York. No verified status as a developer or IPP active in NY distributed storage. No projects or filings identified in NYSERDA, NYISO queue, PSC Case 18-E-0130, or utility queues."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No authoritative filings or corporate registry references surfaced via NY energy-market sources."
+        },
+        "hq_location": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No authoritative identification in New York energy-market sources."
+        },
+        "employee_count": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. Absence from official project/program records implies either stealth or small/early-stage posture in NY."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No public filings or market transactions in NY to infer revenue scale."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No indications of project finance closings, tax equity, or construction debt tied to NY projects."
+        },
+        "business_model": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Indeterminate for NY. Plausible archetypes noted in report include develop-and-sell, IPP own-and-operate, or EPC-lite, but no evidence to assign a definitive model for NY as of the report date."
+        },
+        "ny_market_presence": {
+          "value": "None verified",
+          "confidence": "high",
+          "source_url": null,
+          "notes": "No active pipeline or operating assets evidenced in authoritative NY sources including NYSERDA, NYISO, NYSDPS, and Con Edison as of March 2026."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": 0.0,
+          "confidence": "high",
+          "source_url": null,
+          "notes": "0 MW verified in public sources as of March 2026. If Lightpath Energy is developing in stealth, those projects are not in the public interconnection or incentive pipeline."
+        },
+        "project_scale_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for NY. Inferences cannot be drawn absent pipeline or interconnection data."
+        },
+        "asset_type_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for NY. No verified bias toward standalone BESS or solar+storage hybrids."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for NY. No transacting counterparties identified in NY storage M&A or offtake announcements."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "high",
+          "source_url": null,
+          "notes": "None confirmed. No evidence of participation in NYSERDA Energy Storage incentives, NY-Sun (for hybrids), or Con Edison BQDM/NWS solicitations."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. Report notes industry norms include ITC for standalone storage and transferability of credits, but no Lightpath-specific disclosures exist."
+        },
+        "capacity_market_participation": {
+          "value": false,
+          "confidence": "high",
+          "source_url": null,
+          "notes": "No verified NY projects. Absent projects structured for ICAP qualification or bidding in NYISO capacity markets."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not applicable / not publicly available. No NYISO registration evidence for regulation or reserve markets."
+        },
+        "revenue_stack": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for NY. No Lightpath-specific evidence. Report notes typical distributed stacks include capacity (ICAP), regulation, arbitrage (DAM/RTM), VDER/Value Stack, and incentives."
+        },
+        "interconnection_track_record": {
+          "value": "Low/No evidence",
+          "confidence": "high",
+          "source_url": null,
+          "notes": "No entries found in NYISO interconnection queue or Con Edison DER interconnection queue as of March 2026."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No Lightpath-specific partnerships are verifiable. Report notes common industry partners include Tesla, Fluence, Powin, BYD, CATL-based integrators."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available for NY. No Lightpath-specific data identified."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No Lightpath-specific precedents. Report notes typical NY distributed BESS timelines range from 12–30 months depending on interconnection studies, FDNY permitting, equipment procurement, and local approvals."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No Lightpath-exhibited capability found in records. Report notes NYC requires FDNY engagement and UL 9540A-driven safety case documentation; upstate jurisdictions have SEQRA/local permits."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No Lightpath disclosures. Report notes market norms for distributed BESS at NTP can imply mid-teens unlevered developer returns; levered IPP returns often high single digits to low teens."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Unknown/No evidence. No Lightpath evidence. Report notes industry caution in NY favors contracted or incentive-tethered stacks; pure arbitrage strategies are often riskier given basis and volatility."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Report appears to have been cut off before completing this attribute. No Lightpath-specific buyer relationship data identified in available text."
+        },
+        "project_finance_access": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No indications of construction financing or tax equity access tied to NY projects identified in report."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No pipeline or systematic development processes identified for NY or elsewhere."
+        },
+        "competitive_moat": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "Not publicly available. No verifiable source of durable competitive advantage identified in NY market sources."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "high",
+          "source_url": null,
+          "notes": "No evidence of active participation in NYSERDA, PSC, or NYISO proceedings. No appearance in PSC Case 18-E-0130 filings or other NY policy forums as of March 2026."
+        }
+      },
+      "sources": [
+        "https://www.gurufocus.com/news/2554576/lightpath-technologies-to-launch-new-optical-gas-imaging-camera-for-oil-gas-applications-at-ch4-connections-conference?mobile=true",
+        "https://pitchbook.com/profiles/company/135756-46",
+        "https://pitchbook.com/profiles/advisor/11712-79",
+        "https://www.linkedin.com/company/lattice-materials-llc",
+        "https://www.sec.gov/Archives/edgar/data/889971/000138713116007115/lpth-s1_092716.htm",
+        "https://pitchbook.com/profiles/company/416542-78",
+        "https://ng.linkedin.com/company/leedarson",
+        "https://pitchbook.com/profiles/company/41313-34",
+        "https://www.linkedin.com/company/lightpath",
+        "https://pitchbook.com/profiles/company/10825-57",
+        "https://www.sec.gov/Archives/edgar/data/889971/000165495425011130/lpth_10k.htm",
+        "https://pitchbook.com/profiles/company/54346-15",
+        "https://www.linkedin.com/company/big-bang-broadband-llc?trk=similar-pages",
+        "https://stocklight.com/stocks/us/nasdaq-lpth/lightpath-technologies/annual-reports/nasdaq-lpth-2002-10K-02756543.pdf",
+        "https://www.linkedin.com/company/vivacityinfrastructuregroup",
+        "https://www.linkedin.com/company/cablevision-lightpath-ny-inc",
+        "https://pitchbook.com/profiles/advisor/10606-60",
+        "https://ca.linkedin.com/company/cynxmedia",
+        "https://www.linkedin.com/company/lightpathengineering",
+        "https://pitchbook.com/profiles/company/521482-78",
+        "https://www.linkedin.com/pulse/vc-deals-volume-remains-strong-another-grubhub-ma-john-gannon-vcbce",
+        "https://pitchbook.com/profiles/company/464282-11",
+        "https://www.sec.gov/Archives/edgar/data/889971/000138713114004086/lpth-def14a_121914.htm",
+        "https://www.marketbeat.com/stocks/NASDAQ/LPTH/",
+        "https://www.linkedin.com/directory/posts/l-14",
+        "https://pitchbook.com/profiles/company/12676-96",
+        "https://www.linkedin.com/company/light-source-communications",
+        "https://www.sec.gov/Archives/edgar/data/1398805/000168316819000735/envision_10k-123118.htm",
+        "https://www.linkedin.com/directory/posts/l-5",
+        "https://au.linkedin.com/company/algenie-australia",
+        "https://www.linkedin.com/company/lightpath-technologies",
+        "https://www.crunchbase.com/hub/florida-manufacturing-companies",
+        "https://www.thecompanycheck.com/company/b/lightpath-ventures/0cef0bdf8ac143b49"
+      ],
+      "confidence": 0.17,
+      "last_researched": "2026-03-13T07:44:09.198807+00:00"
+    },
+    {
+      "competitor_id": "enel-north-america-enel-x",
+      "name": "Enel North America (Enel X)",
+      "tier": 3,
+      "description": "Enel North America operates as a large aggregator with deep demand response and DER portfolios that can substitute for stand-alone front-of-meter storage in capacity and ancillary services markets, potentially siphoning NYISO capacity and ancillary services revenues that NEE's distributed BESS projects would otherwise capture.",
+      "competitor_type": "substitute",
+      "attributes": {
+        "name": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report; report contains no research content."
+        },
+        "description": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "hq_location": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "employee_count": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "business_model": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_market_presence": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_scale_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "asset_type_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_stack": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "interconnection_track_record": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_finance_access": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "competitive_moat": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        }
+      },
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:49:46.757914+00:00"
+    },
+    {
+      "competitor_id": "cpower-energy-management",
+      "name": "CPower Energy Management",
+      "tier": 3,
+      "description": "CPower Energy Management is a demand response and DER aggregator that presents a substitute competitive threat by siphoning capacity and ancillary services revenues through aggregated behind-the-meter DER portfolios, competing indirectly with NEE's front-of-meter storage assets in NYISO markets under FERC Order 2222.",
+      "competitor_type": "substitute",
+      "attributes": {
+        "name": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report; report contains no research content."
+        },
+        "description": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "hq_location": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "employee_count": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "business_model": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_market_presence": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_scale_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "asset_type_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_stack": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "interconnection_track_record": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_finance_access": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "competitive_moat": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        }
+      },
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:49:46.757914+00:00"
+    },
+    {
+      "competitor_id": "endurant-energy",
+      "name": "Endurant Energy",
+      "tier": 3,
+      "description": "Endurant Energy operates in the adjacent distributed energy and storage space in New York, with relevance to NEE's market through potential competition for sites, incentives, and interconnection capacity in the distributed BESS segment.",
+      "competitor_type": "adjacent",
+      "attributes": {
+        "name": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report; report contains no research content."
+        },
+        "description": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "hq_location": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "employee_count": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "business_model": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_market_presence": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_scale_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "asset_type_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_stack": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "interconnection_track_record": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_finance_access": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "competitive_moat": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        }
+      },
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:49:46.757914+00:00"
+    },
+    {
+      "competitor_id": "aes-clean-energy",
+      "name": "AES Clean Energy",
+      "tier": 3,
+      "description": "AES Clean Energy is a large incumbent platform that primarily targets larger bulk storage systems and can compress margins via scale, but is more likely to serve as a potential offtaker for NEE's development packages than a frequent direct competitor in the 5 MW distributed segment.",
+      "competitor_type": "incumbent",
+      "attributes": {
+        "name": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report; report contains no research content."
+        },
+        "description": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "year_founded": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "hq_location": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "employee_count": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_estimate": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "funding_raised": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "business_model": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_market_presence": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_storage_mw_pipeline": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_scale_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "asset_type_focus": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "target_buyer_customer": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_incentive_utilization": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "itc_transferability_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "capacity_market_participation": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ancillary_services_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "revenue_stack": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "interconnection_track_record": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "bess_technology_partners": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "site_control_strategy": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_development_cycle": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "permitting_capability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "return_threshold_irr": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "merchant_risk_tolerance": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ipp_buyer_relationships": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "project_finance_access": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "replicability_scalability": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "competitive_moat": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        },
+        "ny_policy_engagement": {
+          "value": null,
+          "confidence": "unknown",
+          "source_url": null,
+          "notes": "No data extractable from report."
+        }
+      },
+      "sources": [],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T07:49:46.757914+00:00"
+    }
+  ],
+  "venture_entry": {
+    "competitor_id": "new-energy-equity-nee-ny-energy-storage-market-entry",
+    "name": "New Energy Equity (NEE) – NY Energy Storage Market Entry",
+    "tier": 1,
+    "description": "NEE proposes to develop distributed-scale battery energy storage projects (standalone and solar+storage hybrids, approximately 5 MW class) in New York State under a develop-and-sell model, transacting completed projects to IPPs rather than retaining long-term asset ownership. The value proposition relies on stacking NY-specific incentives (state programs and federal ITC), capacity market revenues, ancillary services, and energy arbitrage to produce risk-adjusted returns meeting Board thresholds. The initiative is contingent on external validation of financial assumptions, policy durability, and replicability across multiple NY sites.",
+    "competitor_type": "venture",
+    "attributes": {
+      "name": {
+        "value": "New Energy Equity (NEE)",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "Explicitly named throughout the brief as the venture under evaluation."
+      },
+      "description": {
+        "value": "Solar developer seeking to expand into distributed battery energy storage (BESS) in New York State through a develop-and-sell model, partnering with IPPs rather than retaining long-term asset ownership.",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "Clearly described in the Context Block and Constraints sections of the brief."
+      },
+      "year_founded": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief."
+      },
+      "hq_location": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. Only the target market geography (New York State) is specified."
+      },
+      "employee_count": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. Organizational readiness is discussed qualitatively but no headcount is provided."
+      },
+      "revenue_estimate": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. No revenue figures or AUM under development are disclosed."
+      },
+      "funding_raised": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. No capital raise or project finance capacity figures are provided."
+      },
+      "business_model": {
+        "value": "Develop-and-sell / IPP Partnership",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "Explicitly stated in Constraints: 'NEE will develop projects for sale or partnership with IPPs and will not retain long-term asset ownership.'"
+      },
+      "ny_market_presence": {
+        "value": "Pre-entry / Evaluating",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "The entire brief frames this as a market entry decision. NEE has existing distributed solar activity in NY but has not yet entered the storage market. The decision is a Go/No-Go for storage entry."
+      },
+      "ny_storage_mw_pipeline": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "No specific MW pipeline figures are mentioned. NEE is in pre-entry evaluation stage with no confirmed storage pipeline disclosed."
+      },
+      "project_scale_focus": {
+        "value": "~5 MW class distributed / non-utility-scale",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Referenced in Assumption 9: 'At least one distributed-scale configuration (standalone or hybrid, ~5 MW class or optimized equivalent).' Subject to clarification per Section 0 of the brief."
+      },
+      "asset_type_focus": {
+        "value": "Standalone BESS and Solar + Storage hybrid",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "Explicitly stated in the Context Block: 'distributed solar + battery storage and standalone battery systems.' Key Question 5 also asks which configuration produces superior risk-adjusted economics."
+      },
+      "target_buyer_customer": {
+        "value": "IPPs (Independent Power Producers)",
+        "confidence": "high",
+        "source_url": null,
+        "notes": "Explicitly stated in Constraints and Assumption 6: NEE develops projects for sale or partnership with IPPs. Key Question 4 also validates IPP buyer demand as a blocking question."
+      },
+      "ny_incentive_utilization": {
+        "value": "NY state incentive programs (referenced but not fully specified); NYSERDA programs implied",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Assumption 4 references 'Federal ITC and relevant NY incentive programs' and 'NY incentive structures' are noted as reasons for NY focus. Specific programs (BFCP, BQDM, NY-Sun, VDER) are not individually named in the brief."
+      },
+      "itc_transferability_strategy": {
+        "value": "Federal ITC monetization via develop-and-sell model; specific mechanism (transferability, tax equity, direct pay) not confirmed",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Assumption 4 states ITC must be 'legally and structurally accessible to NEE's develop-and-sell project model.' The exact ITC monetization mechanism is pending client confirmation per Section 0."
+      },
+      "capacity_market_participation": {
+        "value": "NYISO participation referenced as part of market framework",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "The brief references 'Active market participation frameworks under NYISO' as a reason for NY focus. Specific ICAP bidding strategy is not detailed but implied as part of the revenue stack."
+      },
+      "ancillary_services_strategy": {
+        "value": null,
+        "confidence": "low",
+        "source_url": null,
+        "notes": "Not explicitly detailed in the brief. Ancillary services may be implied within 'market-based dispatch revenues' (Assumption 2) but no specific NYISO ancillary market strategy is described."
+      },
+      "revenue_stack": {
+        "value": "NY state policy-driven incentives + Federal ITC + NYISO capacity market revenues + market-based dispatch revenues (energy arbitrage implied)",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Assumption 2 references 'policy-driven incentives plus market-based dispatch revenues.' Key Question 6 explicitly asks about the proportion of policy-driven vs. merchant-exposed revenue. Specific revenue line items are not fully enumerated."
+      },
+      "interconnection_track_record": {
+        "value": "Existing distributed solar interconnection experience in NY; storage-specific interconnection track record not established",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Brief notes 'Established distributed solar activity' and 'Defined interconnection pathways' as NY strengths. Assumption 8 treats interconnection feasibility as a hypothesis to validate, implying no proven storage interconnection track record yet."
+      },
+      "bess_technology_partners": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. Technology Stack section lists BESS and EMS generically but no OEM or integrator partnerships are identified."
+      },
+      "site_control_strategy": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. Site control approach is not described."
+      },
+      "project_development_cycle": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. Key Question 3 references 'acceptable execution timelines' but no specific cycle duration is provided."
+      },
+      "permitting_capability": {
+        "value": "Limited in-house capability; external analytical support being procured",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Organizational Readiness section notes limited internal storage modeling confidence and need for external rigor. Assumption 10 flags organizational capability as a dependency. Specific permitting capability (in-house vs. outsourced) is not detailed."
+      },
+      "return_threshold_irr": {
+        "value": "Board-defined return thresholds (specific IRR not disclosed)",
+        "confidence": "low",
+        "source_url": null,
+        "notes": "Multiple references to 'Board-defined return thresholds' and 'Board-defined financial thresholds' throughout the brief, but the actual IRR target is not stated. This is treated as a confidential internal benchmark."
+      },
+      "merchant_risk_tolerance": {
+        "value": "Pending client confirmation; merchant exposure must not exceed client-confirmed risk tolerance",
+        "confidence": "low",
+        "source_url": null,
+        "notes": "Assumption 3 explicitly flags this as 'Pending client confirmation — see Section 0, Item A3.' The brief does not state a specific merchant tolerance level."
+      },
+      "ipp_buyer_relationships": {
+        "value": "Assumed sufficient per Assumption 6; no specific IPP relationships named",
+        "confidence": "low",
+        "source_url": null,
+        "notes": "Assumption 6 states 'sufficient market demand from IPPs' is required and treated as a hypothesis. No named IPP relationships are disclosed in the brief. Key Question 4 flags this as a blocking question requiring validation."
+      },
+      "project_finance_access": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. No information on construction financing capability, lender relationships, or tax equity access is provided."
+      },
+      "replicability_scalability": {
+        "value": "Replicability is a required condition but not yet demonstrated; systematic site identification process not established",
+        "confidence": "medium",
+        "source_url": null,
+        "notes": "Assumption 7 identifies replicability as an inferred requirement: 'The economically viable project configuration...can be deployed across multiple NY sites.' Key Question 8 asks about realistic replicability. Pre-entry stage implies no proven multi-site system yet."
+      },
+      "competitive_moat": {
+        "value": "Existing NY solar development relationships and established distributed solar activity; storage-specific moat not yet developed",
+        "confidence": "low",
+        "source_url": null,
+        "notes": "Brief references established NY distributed solar presence as a foundation. No storage-specific competitive moat is articulated. Building internal competence in storage is listed as a strategic outcome, implying it does not yet exist."
+      },
+      "ny_policy_engagement": {
+        "value": null,
+        "confidence": "unknown",
+        "source_url": null,
+        "notes": "Not mentioned in the brief. No reference to NYSERDA proceedings participation, PSC engagement, NYISO stakeholder involvement, or industry association membership is made."
+      }
+    },
+    "sources": [],
+    "confidence": 0.62,
+    "last_researched": "2026-03-13T07:50:29.286008+00:00"
+  },
+  "attribute_groups": [
+    {
+      "group_id": "profile",
+      "name": "Company Profile",
+      "attribute_ids": [
+        "name",
+        "description",
+        "year_founded",
+        "hq_location",
+        "employee_count",
+        "revenue_estimate",
+        "funding_raised"
+      ]
+    },
+    {
+      "group_id": "market_position",
+      "name": "NY Market Position & Business Model",
+      "attribute_ids": [
+        "business_model",
+        "ny_market_presence",
+        "ny_storage_mw_pipeline",
+        "project_scale_focus",
+        "asset_type_focus",
+        "target_buyer_customer"
+      ]
+    },
+    {
+      "group_id": "policy_and_incentives",
+      "name": "Policy, Incentives & Revenue Strategy",
+      "attribute_ids": [
+        "ny_incentive_utilization",
+        "itc_transferability_strategy",
+        "capacity_market_participation",
+        "ancillary_services_strategy",
+        "revenue_stack"
+      ]
+    },
+    {
+      "group_id": "technical_and_development",
+      "name": "Technical & Development Capability",
+      "attribute_ids": [
+        "interconnection_track_record",
+        "bess_technology_partners",
+        "site_control_strategy",
+        "project_development_cycle",
+        "permitting_capability"
+      ]
+    },
+    {
+      "group_id": "financial_and_commercial",
+      "name": "Financial & Commercial Terms",
+      "attribute_ids": [
+        "return_threshold_irr",
+        "merchant_risk_tolerance",
+        "ipp_buyer_relationships",
+        "project_finance_access"
+      ]
+    },
+    {
+      "group_id": "strategic_positioning",
+      "name": "Strategic Positioning & Moat",
+      "attribute_ids": [
+        "replicability_scalability",
+        "competitive_moat",
+        "ny_policy_engagement"
+      ]
+    }
+  ],
+  "metadata": {
+    "competitor_count": 22,
+    "attribute_count": 30,
+    "tier1_count": 5,
+    "tier2_count": 13,
+    "tier3_count": 4,
+    "coverage_percent": 15.8,
+    "total_sources": 48,
+    "research_time_seconds": 4943.854785919189,
+    "rationale": "The New York distributed BESS development market (sub-20 MW projects) is moderately concentrated with a defined set of active participants — primarily specialized storage developers, solar-plus-storage developers with NY presence, and IPPs with in-house development arms. The market is not fragmented like consumer markets, nor is it a duopoly. An 8–15 competitor range is appropriate because: (1) the segment is bounded by NY-specific regulatory and interconnection requirements that filter out non-specialized entrants; (2) there are roughly 10–20 identifiable developers with active NY distributed storage pipelines at any given time; (3) NEE's develop-and-sell model means competitors include both direct developers (who may also sell to IPPs) and developer subsidiaries of IPPs (who develop internally). Fewer than 8 would under-represent the actual competitive landscape; more than 15 would introduce noise from utility-scale or out-of-state players who are not direct substitutes. The attribute set prioritizes NY-specific policy/incentive utilization, NYISO market participation, interconnection track record, and IPP buyer relationships — the dimensions that most directly determine competitive position in this geography and business model — over generic SaaS or consumer attributes.",
+    "table_summary": "The New York energy storage market is a highly competitive and rapidly maturing segment, attracting a diverse mix of pure-play developers, utility-backed IPPs, and well-capitalized private equity-sponsored platforms. With 22 identified competitors and only 15.8% data coverage across 30 attributes, the competitive intelligence picture is materially incomplete, meaning strategic conclusions must be treated as directional rather than definitive. That said, the two profiled Tier 1 direct competitors — NineDot Energy and Convergent Energy + Power — reveal a market where incumbency, demonstrated interconnection experience, and access to institutional capital are critical differentiators that are difficult to replicate quickly.\n\nNineDot Energy represents the clearest analog and most direct competitive threat to New Energy Equity in the NY distributed BESS segment. It has already commissioned the first community-scale BESS in NYC, secured $100 million in Carlyle equity, established a Tesla Megapack OEM relationship, and built operational familiarity with Con Edison interconnection and NYC FDNY permitting — all durable first-mover advantages. Its stated ~400 MW buildout target by 2026 signals aggressive market share capture. Convergent, backed by Energy Capital Partners with multi-billion-dollar fund capacity, operates a differentiated NWA-focused model serving utilities directly, which insulates it somewhat from merchant price risk and positions it well with regulated utility counterparties like Orange & Rockland and likely Con Edison.\n\nA notable structural dynamic in this market is the bifurcation between utility-contracted NWA/distribution-deferral models (lower risk, contracted revenue) and merchant/stacked-revenue models combining NYISO capacity, ancillary services, arbitrage, and state incentives (higher return potential but more volatile). NEE's positioning within this spectrum is unclear from available data, which is itself a strategic risk. The NY incentive environment — including NYSERDA programs, NYISO ICAP eligibility, and federal ITC transferability under the Inflation Reduction Act — creates significant value uplift but also administrative complexity that favors experienced players.\n\nThe most significant data gap is that 84.2% of the competitive matrix remains unfilled, covering critical attributes like target IRR thresholds, merchant risk tolerance, NYISO participation strategies, and pipeline replicability across most of the 22 competitors. This limits any assessment of where NEE can credibly carve out defensible whitespace. The market appears to have clear leaders in the distributed urban BESS segment (NineDot) and the utility NWA segment (Convergent), leaving NEE needing to articulate a differentiated entry vector — whether through project scale, geography within NY, technology partnering, or a unique financial structure such as ITC transferability monetization — to avoid competing head-to-head against entrenched incumbents with superior operational track records.",
+    "venture_strengths": [
+      "Tax equity and ITC structuring expertise: As a finance-forward developer, NEE may be positioned to leverage ITC transferability under the Inflation Reduction Act more aggressively than operationally-focused competitors, potentially enhancing project-level returns and attracting capital partners who lack in-house tax credit monetization capability.",
+      "Flexibility in project structure and business model: Unlike NineDot (pure IPP/own-and-operate) or Convergent (utility NWA focus), NEE may have the flexibility to pursue develop-and-sell, co-development, or hybrid ownership structures, allowing it to move faster through the capital cycle and reduce balance sheet risk while still capturing development margin.",
+      "Potential focus on underserved geographies or segments within NY: The data suggests dominant players are concentrated in Con Edison/NYC territory and O&R NWA programs; NEE may have opportunity to target PSEG Long Island, National Grid Upstate, or utility edge cases where incumbent relationships are thinner and first-mover advantages are still available."
+    ],
+    "venture_weaknesses": [
+      "Absence of a demonstrated NY interconnection and permitting track record: Both NineDot and Convergent have commissioned operating projects in New York, establishing credibility with Con Edison, O&R, NYISO, and local permitting authorities; NEE entering without an operational NY project faces a significant trust and relationship deficit that will slow pipeline conversion and complicate utility and offtake negotiations.",
+      "Limited visibility into competitive differentiation: With 84.2% of competitive attributes unfilled and NEE's own positioning not explicitly defined in the matrix, it is unclear what unique value proposition NEE brings relative to 22 existing competitors — many of whom likely have more MW in development, deeper OEM relationships, and more established NYISO market access strategies.",
+      "Capital scale disadvantage relative to PE-backed incumbents: NineDot has $100M in Carlyle equity; Convergent is backed by Energy Capital Partners managing multi-billion-dollar funds; NEE's funding raised and project finance access are not detailed, creating a potential competitive disadvantage in winning site control, financing interconnection deposits, and sustaining a multi-year development cycle in a capital-intensive market."
+    ],
+    "dangerous_competitors": [
+      "NineDot Energy — The most directly dangerous competitor: it has a first-mover operational footprint in NYC distributed BESS, a $100M Carlyle equity backstop, a Tesla Megapack OEM relationship, and a stated 400 MW buildout target by 2026 that will systematically lock up the best urban sites and saturate Con Edison interconnection queues before NEE can establish a foothold.",
+      "Convergent Energy + Power — Dangerous due to its utility-direct NWA contracting model backed by Energy Capital Partners' multi-billion-dollar capital base, which enables it to win long-term contracted revenue streams that are insulated from merchant risk — a model that is highly attractive to infrastructure investors and difficult for smaller developers to replicate without similar balance sheet depth.",
+      "Unnamed Tier 1/2 competitors in the 84.2% data gap — The most strategically concerning unknown: with 20 additional competitors uncharacterized across 30 attributes, there is a material risk that one or more well-capitalized national developers (e.g., Orsted, Enel Green Power, AES, or a utility-affiliated entity) already has a substantial NY storage pipeline that simply has not surfaced in the current data, representing a blind spot that could materially undermine NEE's market entry assumptions."
+    ]
+  }
+}

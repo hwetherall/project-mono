@@ -15,6 +15,7 @@ class WebSocketProgressBridge:
         self.current_phase: str = ""
         self.category_statuses: dict[str, str] = {}
         self._category_start_times: dict[str, float] = {}
+        self.suppress_run_complete: bool = False
 
     async def _emit(self, event: dict):
         await self.queue.put(json.dumps(event))
@@ -74,6 +75,8 @@ class WebSocketProgressBridge:
         })
 
     def complete(self, total_seconds: float):
+        if self.suppress_run_complete:
+            return
         succeeded = sum(1 for s in self.category_statuses.values() if s == "success")
         failed = sum(1 for s in self.category_statuses.values() if s == "failed")
         self._emit_sync({

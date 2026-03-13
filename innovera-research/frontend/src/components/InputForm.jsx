@@ -57,6 +57,8 @@ export default function InputForm({ onSubmit }) {
   const [loadingSavedBrief, setLoadingSavedBrief] = useState(false);
   const [savedBriefMessage, setSavedBriefMessage] = useState('');
   const [savedBriefError, setSavedBriefError] = useState('');
+  const [prebuiltTable, setPrebuiltTable] = useState(null);
+  const [prebuiltTableError, setPrebuiltTableError] = useState('');
 
   const categoryPhases = researchMode === 'market_research' ? MARKET_RESEARCH_PHASES : DEMAND_VALIDATION_PHASES;
   const allCategoryIds = useMemo(
@@ -111,6 +113,29 @@ export default function InputForm({ onSubmit }) {
     }
   };
 
+  const handleTableUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setPrebuiltTableError('');
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const parsed = JSON.parse(ev.target.result);
+        if (!parsed.competitors || !Array.isArray(parsed.competitors)) {
+          throw new Error('Missing "competitors" array');
+        }
+        if (!parsed.attributes || !Array.isArray(parsed.attributes)) {
+          throw new Error('Missing "attributes" array');
+        }
+        setPrebuiltTable(parsed);
+      } catch (err) {
+        setPrebuiltTableError(`Invalid competitive table JSON: ${err.message}`);
+        setPrebuiltTable(null);
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValid || submitting) return;
@@ -131,6 +156,7 @@ export default function InputForm({ onSubmit }) {
         venture_name: ventureName,
         max_concurrent: maxConcurrent,
         categories_to_run: categoriesToRun,
+        ...(prebuiltTable ? { prebuilt_competitive_table: prebuiltTable } : {}),
       });
     } catch {
       setSubmitting(false);
@@ -142,11 +168,13 @@ export default function InputForm({ onSubmit }) {
       <div>
         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">New Research Run</h2>
         <p className="text-slate-500 dark:text-slate-400">
-          {researchMode === 'competitive_table'
-            ? 'Provide your venture details to build a dynamic competitor matrix.'
-            : researchMode === 'market_research'
-              ? 'Provide a market or topic briefing to begin market research.'
-              : 'Provide your venture details to begin the evidence pipeline.'}
+          {researchMode === 'run_all'
+            ? 'Provide your venture details once. All three chapters will run sequentially overnight.'
+            : researchMode === 'competitive_table'
+              ? 'Provide your venture details to build a dynamic competitor matrix.'
+              : researchMode === 'market_research'
+                ? 'Provide a market or topic briefing to begin market research.'
+                : 'Provide your venture details to begin the evidence pipeline.'}
         </p>
       </div>
 
@@ -214,6 +242,84 @@ export default function InputForm({ onSubmit }) {
             </div>
           </label>
         </div>
+
+        <label
+          className={`border-2 rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${
+            researchMode === 'run_all'
+              ? 'border-emerald-500 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20'
+              : 'border-dashed border-slate-300 dark:border-slate-600 hover:border-emerald-400 dark:hover:border-emerald-600'
+          }`}
+        >
+          <input
+            type="radio"
+            name="research_mode"
+            checked={researchMode === 'run_all'}
+            onChange={() => setResearchMode('run_all')}
+            className="mt-1 accent-emerald-600"
+          />
+          <div className="flex-1">
+            <div className="font-medium text-slate-900 dark:text-slate-100">Run All Chapters</div>
+            <div className="text-sm text-slate-500 dark:text-slate-400">
+              Chain all three chapters sequentially: Competitive Table → Market Research → Demand Validation.
+              Runs overnight on the server — you can close your browser.
+            </div>
+            <div className="mt-2 flex gap-2 text-xs">
+              <span className="px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300">CT</span>
+              <span className="text-slate-400 dark:text-slate-500">→</span>
+              <span className="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">MR</span>
+              <span className="text-slate-400 dark:text-slate-500">→</span>
+              <span className="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300">DV</span>
+            </div>
+          </div>
+        </label>
+
+        {researchMode !== 'competitive_table' && (
+          <div className="border border-slate-200 dark:border-slate-700 rounded-lg p-4 bg-white dark:bg-slate-900 space-y-3">
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
+              Pre-built Competitive Table <span className="text-slate-400 dark:text-slate-500 font-normal">(optional)</span>
+            </label>
+            <p className="text-xs text-slate-400 dark:text-slate-500">
+              Upload a competitive_table.json from a previous run to skip building it from scratch.
+            </p>
+            {!prebuiltTable ? (
+              <div>
+                <input
+                  type="file"
+                  accept=".json"
+                  onChange={handleTableUpload}
+                  className="block w-full text-sm text-slate-500 dark:text-slate-400
+                             file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                             file:text-sm file:font-medium
+                             file:bg-purple-50 dark:file:bg-purple-900/30
+                             file:text-purple-700 dark:file:text-purple-300
+                             hover:file:bg-purple-100 dark:hover:file:bg-purple-900/50
+                             file:cursor-pointer"
+                />
+                {prebuiltTableError && (
+                  <p className="mt-2 text-xs text-red-600 dark:text-red-400">{prebuiltTableError}</p>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center justify-between p-3 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg">
+                <div className="text-sm">
+                  <span className="font-medium text-purple-700 dark:text-purple-300">
+                    {prebuiltTable.venture_name || 'Competitive Table'}
+                  </span>
+                  <span className="text-purple-500 dark:text-purple-400 ml-2">
+                    {prebuiltTable.competitors?.length || 0} competitors, {prebuiltTable.attributes?.length || 0} attributes
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setPrebuiltTable(null); setPrebuiltTableError(''); }}
+                  className="text-sm text-purple-600 dark:text-purple-400 hover:text-red-600 dark:hover:text-red-400 font-medium"
+                >
+                  Remove
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
       <section className="space-y-2">
@@ -397,7 +503,7 @@ export default function InputForm({ onSubmit }) {
               </div>
             </div>
 
-            {researchMode !== 'competitive_table' && <div className="space-y-3">
+            {researchMode !== 'competitive_table' && researchMode !== 'run_all' && <div className="space-y-3">
               <label className="block text-sm text-slate-600 dark:text-slate-400">Categories to Run</label>
               {Object.entries(categoryPhases).map(([phase, cats]) => (
                 <div key={phase}>
@@ -433,14 +539,22 @@ export default function InputForm({ onSubmit }) {
         >
           {submitting
             ? 'Starting...'
-            : researchMode === 'competitive_table'
-              ? 'Build Competitive Table'
-              : 'Start Research'}
+            : researchMode === 'run_all'
+              ? 'Run All Chapters'
+              : researchMode === 'competitive_table'
+                ? 'Build Competitive Table'
+                : 'Start Research'}
         </button>
         <span className="text-xs text-slate-400 dark:text-slate-500">
-          {researchMode === 'competitive_table'
-            ? 'Estimated: 15-45 minutes'
-            : 'Estimated: 30-90 minutes \u00B7 $12-22'}
+          {researchMode === 'run_all'
+            ? (prebuiltTable
+                ? 'Estimated: 1-2.5 hours \u00B7 $20-40 \u00B7 CT step skipped'
+                : 'Estimated: 2-4 hours \u00B7 $30-55 \u00B7 Runs on server overnight')
+            : researchMode === 'competitive_table'
+              ? 'Estimated: 15-45 minutes'
+              : prebuiltTable
+                ? 'Estimated: 30-90 minutes \u00B7 $12-22 \u00B7 CT table pre-loaded'
+                : 'Estimated: 30-90 minutes \u00B7 $12-22'}
         </span>
       </div>
     </form>

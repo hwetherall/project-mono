@@ -13,7 +13,8 @@
       "Bash(python -c \"import gpt_researcher; import os; print\\(os.path.dirname\\(gpt_researcher.__file__\\)\\)\")",
       "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"import gpt_researcher.retrievers.tavily; print\\(gpt_researcher.retrievers.tavily.__file__\\)\" 2>&1; python -c \"from gpt_researcher.retrievers.tavily import tavily_search; print\\(dir\\(tavily_search\\)\\)\" 2>&1)",
       "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"\nfrom gpt_researcher.retrievers.tavily.tavily_search import TavilySearch\nimport inspect\nprint\\(inspect.getsource\\(TavilySearch\\)\\)\n\" 2>&1)",
-      "Bash(cd \"/c/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npx vite build 2>&1)"
+      "Bash(cd \"/c/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npx vite build 2>&1)",
+      "Bash(python -c \"import json; f=open\\(r'c:/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/output_packages/f9e6acee-c51f-468b-92cb-8274afb4533f/competitive_table.json','r'\\); data=json.load\\(f\\); f.close\\(\\); print\\(f'Attributes defined: {len\\(data[\\\\\"attributes\\\\\"]\\)}'\\); print\\(f'Competitors: {len\\(data[\\\\\"competitors\\\\\"]\\)}'\\); empties = [c['name'] for c in data['competitors'] if not c.get\\('attributes'\\)]; print\\(f'Empty attribute competitors: {empties if empties else \\\\\"None\\\\\"}'\\); print\\('JSON is valid!'\\)\")"
     ]
   }
 }

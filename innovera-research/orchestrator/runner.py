@@ -93,6 +93,7 @@ class ResearchRunner:
         only_categories: Optional[list[str]] = None,
         research_mode: str = "demand_validation",
         run_id: Optional[str] = None,
+        competitive_table=None,
     ):
         self.context = context
         self.venture_docs_dir = venture_docs_dir
@@ -102,8 +103,8 @@ class ResearchRunner:
         self.only_categories = set(only_categories) if only_categories else None
         self.research_mode = research_mode
         self.run_id = run_id
-        self.competitive_table = None
-        self.competitive_table_status = None  # pending | building | complete | failed
+        self.competitive_table = competitive_table
+        self.competitive_table_status = "complete" if competitive_table else None
 
         # Select the correct category classes and registry based on mode
         if self.research_mode == "market_research":
@@ -334,6 +335,20 @@ class ResearchRunner:
         from config.settings import OUTPUT_DIR, GPTR_CONFIG_DIR, CATEGORY_TIMEOUT_SECONDS
 
         logger = logging.getLogger(__name__)
+
+        if self.competitive_table is not None:
+            self.competitive_table_status = "complete"
+            self._enrich_context_from_table()
+            self.progress.log("Competitive table pre-loaded (skipping rebuild)")
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                ct = self.competitive_table
+                self.progress.emit_competitive_table_status(
+                    "complete", "done",
+                    competitors=len(ct.competitors),
+                    attributes=len(ct.attributes),
+                    coverage=ct.metadata.coverage_percent if ct.metadata else None,
+                )
+            return
 
         self.competitive_table_status = "pending"
 

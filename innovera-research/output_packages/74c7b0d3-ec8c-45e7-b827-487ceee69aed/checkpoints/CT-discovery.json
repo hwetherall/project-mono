@@ -1,0 +1,337 @@
+{
+  "competitors": [
+    {
+      "competitor_id": "ninedot-energy",
+      "name": "NineDot Energy",
+      "tier": 1,
+      "description": "NineDot Energy is a leading distributed battery storage developer in New York City, having secured a $431 million Natixis-led construction-to-term financing package for 28 NYC BESS projects totaling 124 MW/494 MWh enrolled in New York's Statewide Solar for All (S-SFA) program. The company demonstrates deep NYC-specific execution capability, with projects projected to deliver over $60 million in low-income bill credits over ten years and CODs extending through 2027. NineDot represents the benchmark for community-scale BESS development in New York and signals strong lender and IPP appetite for distributed storage portfolios.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "cleancapital",
+      "name": "CleanCapital",
+      "tier": 1,
+      "description": "CleanCapital is an institutional buyer and JV-backed developer that acquired majority interests in two 2023-operational standalone BESS on Staten Island (Arlington and Littlefield) under the VDER framework, with NYU Langone as the sole net-crediting offtaker, executed via a joint venture with Osaka Gas USA. The transaction validates distributed BESS saleability to institutional buyers in New York City and highlights the growing importance of reputable O&M and safety vendors such as ESRG for permitting and operations in dense urban environments. CleanCapital's model of acquiring construction-ready, compliance-proven distributed assets makes it both a competitive buyer and a benchmark for project exit standards.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "osaka-gas-usa",
+      "name": "Osaka Gas USA",
+      "tier": 1,
+      "description": "Osaka Gas USA is the Japanese energy conglomerate's US subsidiary and a JV partner with CleanCapital in the acquisition of the Staten Island standalone BESS portfolio. Its participation signals growing interest from international strategic investors in New York's distributed storage market and demonstrates the appeal of bankable VDER-backed assets to corporate offtakers and institutional capital. As a well-capitalized strategic partner, Osaka Gas USA adds competitive pressure by enabling faster and larger transactions than purely domestic developers can execute alone.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "catalyze",
+      "name": "Catalyze",
+      "tier": 2,
+      "description": "Catalyze is a community-scale storage sponsor active in the New York distributed energy market, identified as a continuing transactor in the DG M&A space through 2025 despite community solar headwinds. The company participates in the broader ecosystem of developers targeting NYSERDA-eligible and VDER-stacked distributed storage projects. While less detail is provided on its specific financing or project pipeline relative to NineDot or CleanCapital, its continued market activity positions it as a notable mid-tier competitor for NEE in the 5 MW-class distributed storage segment.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "aspen-power",
+      "name": "Aspen Power",
+      "tier": 2,
+      "description": "Aspen Power is a distributed generation and storage sponsor that remained active in New York's DG M&A market through 2025, continuing to transact on community-scale storage assets despite a challenging environment for early-stage development valuations. The company competes in the same 5 MW-class distributed BESS segment as NEE and benefits from the broader NYSERDA incentive framework and VDER revenue stacks. Its activity in the current buyer's market for construction-ready DG storage portfolios represents a direct competitive consideration for NEE's develop-and-sell strategy.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "powerbank",
+      "name": "PowerBank",
+      "tier": 2,
+      "description": "PowerBank is a community-scale storage sponsor identified as an active participant in New York's distributed battery energy storage market through 2025. Like other mid-tier developers, PowerBank targets NYSERDA-eligible projects and VDER-stacked revenue structures within the 5 MW-class segment. While specific financing or portfolio details are not provided in the report, its continued transactional activity in a competitive and consolidating DG M&A environment marks it as a relevant competitor to NEE in the New York distributed storage space.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-and-power",
+      "name": "Convergent Energy and Power",
+      "tier": 2,
+      "description": "Convergent Energy and Power is an institutional buyer and JV-backed developer equipped to close quickly on proven distributed and grid-scale storage assets in New York. The report identifies Convergent alongside CleanCapital and Osaka Gas as part of the institutional buyer cohort that is actively acquiring construction-ready distributed BESS portfolios meeting current diligence standards. Its financial backing and deal execution capabilities make it a formidable competitor in the M&A market for distributed storage assets that NEE may seek to develop and sell.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "voltus",
+      "name": "Voltus",
+      "tier": 2,
+      "description": "Voltus is a DER aggregator and demand response platform that was among the first to register resources under the NYISO DER Aggregation Participation Model, enabling behind-the-meter and small front-of-the-meter assets to access wholesale energy, ancillary services, and capacity revenues. The company markets value uplifts of up to $586k/MW-year for batteries under the NYISO DER model, representing a 35%\u201350% earnings improvement versus legacy programs. As a non-capex substitute revenue pathway for flexible load and customer-sited batteries, Voltus competes with distributed BESS developers like NEE by offering an alternative value capture mechanism that reduces the relative attractiveness of standalone FTM storage projects.",
+      "competitor_type": "substitute",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "cpower",
+      "name": "CPower",
+      "tier": 2,
+      "description": "CPower is a DER aggregator and demand response provider active in New York's NYISO DER Aggregation Participation Model, reporting approximately 35% revenue uplift for customers compared to legacy programs. By aggregating behind-the-meter and small front-of-the-meter resources into virtual power plants that can participate in wholesale energy, reserves, and capacity markets, CPower provides a non-capex substitute for the value that standalone distributed BESS projects would otherwise deliver. Its growing footprint in New York positions it as a competitive force that could reduce demand for independently developed 5 MW-class storage assets.",
+      "competitor_type": "substitute",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf",
+        "https://www.nyserda.ny.gov/All-Programs/NY-Sun/Contractors/Value-of-Distributed-Energy-Resources",
+        "https://www.nyiso.com/documents/20142/43322405/NYISO-2023-Annual-Report-on-Demand-Response-Programs.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107880+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-power",
+      "name": "Convergent Energy + Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107980+00:00"
+    },
+    {
+      "competitor_id": "eolian-lp",
+      "name": "Eolian LP",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107989+00:00"
+    },
+    {
+      "competitor_id": "amp-energy",
+      "name": "Amp Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.107994+00:00"
+    },
+    {
+      "competitor_id": "key-capture-energy",
+      "name": "Key Capture Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108000+00:00"
+    },
+    {
+      "competitor_id": "sunwealth-power",
+      "name": "Sunwealth Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108005+00:00"
+    },
+    {
+      "competitor_id": "greenbacker-renewable-energy",
+      "name": "Greenbacker Renewable Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108012+00:00"
+    },
+    {
+      "competitor_id": "borrego-energy",
+      "name": "Borrego Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108017+00:00"
+    },
+    {
+      "competitor_id": "orion-renewable-energy-group",
+      "name": "Orion Renewable Energy Group",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108023+00:00"
+    },
+    {
+      "competitor_id": "intersect-power",
+      "name": "Intersect Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108028+00:00"
+    },
+    {
+      "competitor_id": "hecate-energy",
+      "name": "Hecate Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108034+00:00"
+    },
+    {
+      "competitor_id": "d-e-shaw-renewable-investments-desri",
+      "name": "D.E. Shaw Renewable Investments (DESRI)",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108041+00:00"
+    },
+    {
+      "competitor_id": "rplus-energies",
+      "name": "rPlus Energies",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.icf.com/insights/energy/new-york-energy-storage-goals-incentives-developers",
+        "https://www.voltus.co/press/voltus-registers-first-resource-nyiso-der-participation-model",
+        "https://ny-best.org/resource/resmgr/policy_files/policy_2025/7.21.25_GOTF_Study_and_Plan_.pdf"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T12:14:17.108045+00:00"
+    }
+  ]
+}

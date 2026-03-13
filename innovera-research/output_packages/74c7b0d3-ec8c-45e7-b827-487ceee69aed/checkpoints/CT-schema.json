@@ -1,0 +1,319 @@
+{
+  "attributes": [
+    {
+      "attribute_id": "name",
+      "name": "Company Name",
+      "description": "Legal or trade name of the competitor organization.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "description",
+      "name": "Company Description",
+      "description": "Brief summary of the company's core business, focus, and positioning in the energy storage market.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "year_founded",
+      "name": "Year Founded",
+      "description": "Year the company was established.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "hq_location",
+      "name": "HQ Location",
+      "description": "City and state of primary headquarters.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "employee_count",
+      "name": "Employee Count",
+      "description": "Approximate number of full-time employees.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_estimate",
+      "name": "Revenue Estimate",
+      "description": "Estimated annual revenue or AUM/AUA for fund-backed entities (USD).",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "funding_raised",
+      "name": "Funding / Capital Backing",
+      "description": "Total equity raised, sponsor backing, or balance sheet capacity. Indicates ability to compete on pipeline volume and hold assets.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ownership_structure",
+      "name": "Ownership / Sponsor Type",
+      "description": "Indicates whether the firm is independent, PE-backed, utility-affiliated, infrastructure fund, or publicly traded \u2014 affecting risk appetite and capital access.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "primary_business_model",
+      "name": "Primary Business Model",
+      "description": "Core operating model: Develop-and-Sell, IPP/Own-and-Operate, Asset Management, Aggregation/VPP, or hybrid.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_market_presence",
+      "name": "NY Market Presence",
+      "description": "Depth of existing footprint in New York State: active projects, pipeline volume (MW), or operational assets.",
+      "group": "market_position",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "storage_project_types",
+      "name": "Storage Project Types",
+      "description": "Types of storage projects pursued: standalone BESS, solar+storage hybrid, wind+storage, or grid-scale only.",
+      "group": "market_position",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "project_scale_mw",
+      "name": "Typical Project Scale (MW)",
+      "description": "Characteristic project size range in MW. Distinguishes distributed-scale (<20 MW) from utility-scale (>50 MW) competitors.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "target_geographies",
+      "name": "Target Geographies",
+      "description": "States or ISO regions where the company actively develops or operates storage projects.",
+      "group": "market_position",
+      "data_type": "list",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ipp_buyer_relationships",
+      "name": "IPP / Buyer Relationships",
+      "description": "Known relationships or transaction history with IPPs and institutional buyers who acquire completed projects. Directly competes with NEE's sell-side transaction strategy.",
+      "group": "market_position",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_incentive_program_access",
+      "name": "NY Incentive Program Access",
+      "description": "Demonstrated ability to access NY-specific incentive programs (NYSERDA RETAIL, Con Edison BQDM, NY-SUN, etc.) \u2014 a key economic driver for distributed storage.",
+      "group": "policy_and_incentives",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "itc_tax_equity_capability",
+      "name": "ITC / Tax Equity Capability",
+      "description": "Ability to structure and monetize federal Investment Tax Credit (ITC) through tax equity partnerships \u2014 critical for project-level economics.",
+      "group": "policy_and_incentives",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "capacity_market_participation",
+      "name": "NYISO Capacity Market Participation",
+      "description": "Track record of qualifying storage assets for NYISO UCAP/ICAP revenues, a primary contracted revenue stream in NY.",
+      "group": "policy_and_incentives",
+      "data_type": "boolean",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ancillary_services_capability",
+      "name": "Ancillary Services / VPP Capability",
+      "description": "Ability to dispatch storage assets into NYISO ancillary services markets (regulation, spinning reserve) or operate virtual power plant aggregations to stack revenues.",
+      "group": "policy_and_incentives",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_stacking_sophistication",
+      "name": "Revenue Stacking Sophistication",
+      "description": "Demonstrated ability to simultaneously capture multiple revenue streams (capacity + incentives + ancillary + arbitrage) to optimize project IRR \u2014 core to NY distributed storage economics.",
+      "group": "policy_and_incentives",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "interconnection_experience",
+      "name": "NY Interconnection Experience",
+      "description": "Experience navigating NYISO and Con Edison / PSEG LI / National Grid interconnection queues for distributed storage. Includes knowledge of CARIS studies and mitigation strategies.",
+      "group": "development_capabilities",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "site_origination_capability",
+      "name": "Site Origination Capability",
+      "description": "Ability to identify, control, and progress distributed-scale storage sites in NY \u2014 including landowner/host relationships, lease execution, and site control strategy.",
+      "group": "development_capabilities",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "permitting_and_entitlement",
+      "name": "Permitting & Entitlement Track Record",
+      "description": "Demonstrated speed and success rate in obtaining local zoning, Article 10 / Article 94-c, and environmental permits for storage projects in NY.",
+      "group": "development_capabilities",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ny_pipeline_size_mw",
+      "name": "NY Development Pipeline (MW)",
+      "description": "Estimated size of the company's active development pipeline in New York State in megawatts \u2014 proxy for competitive intensity and market claim.",
+      "group": "development_capabilities",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "bess_technology_agnosticism",
+      "name": "BESS Technology / OEM Flexibility",
+      "description": "Whether the developer is technology-agnostic or tied to specific battery OEMs (e.g., Tesla Megapack, Fluence, LG). Agnosticism supports competitive procurement and cost optimization.",
+      "group": "development_capabilities",
+      "data_type": "text",
+      "priority": "optional"
+    },
+    {
+      "attribute_id": "transaction_history_ny",
+      "name": "NY Project Transaction History",
+      "description": "Evidence of completed develop-and-sell or develop-and-finance transactions for storage projects in New York, including known counterparties.",
+      "group": "strategic_positioning",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "solar_storage_integration",
+      "name": "Solar + Storage Integration Experience",
+      "description": "Track record developing co-located solar+storage hybrid projects, including shared interconnection and ITC optimization \u2014 directly relevant to NEE's hybrid project thesis.",
+      "group": "strategic_positioning",
+      "data_type": "boolean",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "merchant_risk_tolerance",
+      "name": "Merchant / Uncontracted Revenue Tolerance",
+      "description": "Willingness and financial capacity to absorb merchant price exposure in energy arbitrage \u2014 distinguishes well-capitalized IPPs/funds from pure developers who need contracted revenue.",
+      "group": "strategic_positioning",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "competitive_moat",
+      "name": "Primary Competitive Moat",
+      "description": "Key defensible advantage: proprietary site control, policy relationships, tax equity access, technology platform, OEM pricing, or balance sheet.",
+      "group": "strategic_positioning",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "replicability_threat",
+      "name": "Replicability / Scale Threat to NEE",
+      "description": "Assessment of how directly and scalably this competitor threatens NEE's ability to originate and transact distributed storage projects in NY.",
+      "group": "strategic_positioning",
+      "data_type": "rating",
+      "priority": "required"
+    }
+  ],
+  "attribute_groups": [
+    {
+      "group_id": "profile",
+      "name": "Company Profile",
+      "attribute_ids": [
+        "name",
+        "description",
+        "year_founded",
+        "hq_location",
+        "employee_count",
+        "revenue_estimate",
+        "funding_raised",
+        "ownership_structure"
+      ]
+    },
+    {
+      "group_id": "market_position",
+      "name": "Market Position & Business Model",
+      "attribute_ids": [
+        "primary_business_model",
+        "ny_market_presence",
+        "storage_project_types",
+        "project_scale_mw",
+        "target_geographies",
+        "ipp_buyer_relationships"
+      ]
+    },
+    {
+      "group_id": "policy_and_incentives",
+      "name": "Policy, Incentives & Revenue Stacking",
+      "attribute_ids": [
+        "ny_incentive_program_access",
+        "itc_tax_equity_capability",
+        "capacity_market_participation",
+        "ancillary_services_capability",
+        "revenue_stacking_sophistication"
+      ]
+    },
+    {
+      "group_id": "development_capabilities",
+      "name": "Development Capabilities & NY Execution",
+      "attribute_ids": [
+        "interconnection_experience",
+        "site_origination_capability",
+        "permitting_and_entitlement",
+        "ny_pipeline_size_mw",
+        "bess_technology_agnosticism"
+      ]
+    },
+    {
+      "group_id": "strategic_positioning",
+      "name": "Strategic Positioning & Competitive Threat",
+      "attribute_ids": [
+        "transaction_history_ny",
+        "solar_storage_integration",
+        "merchant_risk_tolerance",
+        "competitive_moat",
+        "replicability_threat"
+      ]
+    }
+  ],
+  "target_competitor_min": 12,
+  "target_competitor_max": 17,
+  "seeded_competitors": [
+    "Convergent Energy + Power",
+    "Osaka Gas USA",
+    "CleanCapital",
+    "Eolian LP",
+    "Amp Energy",
+    "Key Capture Energy",
+    "Sunwealth Power",
+    "Voltus",
+    "Greenbacker Renewable Energy",
+    "NineDot Energy",
+    "Borrego Energy",
+    "Orion Renewable Energy Group",
+    "Intersect Power",
+    "Hecate Energy",
+    "D.E. Shaw Renewable Investments (DESRI)",
+    "rPlus Energies",
+    "CPower"
+  ],
+  "rationale": "The New York distributed BESS development market is moderately concentrated but rapidly attracting entrants due to CLCPA mandates and strong NY incentive stacking. The named competitor list of 17 firms spans meaningfully distinct archetypes \u2014 pure storage developers (NineDot, Key Capture), solar-storage hybrids (Borrego, Intersect), aggregators/VPPs (Voltus, CPower), fund-backed developers (DESRI, Greenbacker, CleanCapital), and utility-affiliated players (Osaka Gas USA, Convergent) \u2014 each posing a different competitive threat to NEE's develop-and-sell model. A range of 12\u201317 competitors is appropriate: broad enough to capture cross-archetype dynamics and NY-specific players, tight enough to maintain analytical rigor and avoid dilution with utility-scale-only or non-NY actors. The attribute set is weighted toward NY-specific policy and execution capabilities (NYISO, NYSERDA, interconnection queues), revenue stacking sophistication, and IPP transaction history, which are the true differentiators in this market rather than generic firm size metrics."
+}

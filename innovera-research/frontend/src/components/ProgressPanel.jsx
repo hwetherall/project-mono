@@ -1,6 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
 import CategoryCard from './CategoryCard';
-import ActivityStream from './ActivityStream';
 
 const PHASE_CATEGORIES_BY_MODE = {
   demand_validation: {
@@ -174,55 +173,47 @@ export default function ProgressPanel({ run, onComplete }) {
         </div>
       )}
 
-      {/* Main content: Category Grid + Activity Stream */}
-      <div className={`grid grid-cols-1 ${isTableOnly ? '' : 'lg:grid-cols-2'} gap-6`}>
-        {/* Category Grid (hidden in table-only mode) */}
-        {!isTableOnly && <div className="space-y-4">
-          {Object.entries(PHASE_CATEGORIES).map(([phaseName, categoryIds]) => {
-            const phaseInfo = run.phases.find((p) => p.name === phaseName);
-            const isActive = phasesToShow.includes(phaseName);
-            if (!isActive && !phaseInfo) return null;
+      {/* Category Grid (hidden in table-only mode) */}
+      {!isTableOnly && <div className="space-y-4">
+        {Object.entries(PHASE_CATEGORIES).map(([phaseName, categoryIds]) => {
+          const phaseInfo = run.phases.find((p) => p.name === phaseName);
+          const isActive = phasesToShow.includes(phaseName);
+          if (!isActive && !phaseInfo) return null;
 
-            return (
-              <div key={phaseName}>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
-                    {PHASE_LABELS[phaseName] || phaseName}
-                  </h3>
-                  {phaseInfo?.status === 'complete' && (
-                    <span className="text-xs text-green-600 dark:text-green-400 font-medium">Complete</span>
-                  )}
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {categoryIds.map((cid) => (
-                    <CategoryCard
-                      key={cid}
-                      categoryId={cid}
-                      category={run.categories[cid]}
-                      onRetry={run.retryCategory}
-                      onResume={run.resumeCategory}
-                    />
-                  ))}
-                </div>
-
-                {phaseName === 'FOUNDATION' && run.competitorList.length > 0 && (
-                  <div className="mt-2 p-3 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg text-sm">
-                    <span className="font-medium text-purple-700 dark:text-purple-300">
-                      Extracted {run.competitorList.length} competitors:
-                    </span>{' '}
-                    <span className="text-purple-600 dark:text-purple-400">{run.competitorList.join(', ')}</span>
-                  </div>
+          return (
+            <div key={phaseName}>
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  {PHASE_LABELS[phaseName] || phaseName}
+                </h3>
+                {phaseInfo?.status === 'complete' && (
+                  <span className="text-xs text-green-600 dark:text-green-400 font-medium">Complete</span>
                 )}
               </div>
-            );
-          })}
-        </div>}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                {categoryIds.map((cid) => (
+                  <CategoryCard
+                    key={cid}
+                    categoryId={cid}
+                    category={run.categories[cid]}
+                    onRetry={run.retryCategory}
+                    onResume={run.resumeCategory}
+                  />
+                ))}
+              </div>
 
-        {/* Activity Stream */}
-        <div className="bg-slate-900 dark:bg-black rounded-lg border border-slate-700 overflow-hidden h-[400px] lg:h-auto lg:min-h-[400px]">
-          <ActivityStream entries={run.activityLog} />
-        </div>
-      </div>
+              {phaseName === 'FOUNDATION' && run.competitorList.length > 0 && (
+                <div className="mt-2 p-3 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg text-sm">
+                  <span className="font-medium text-purple-700 dark:text-purple-300">
+                    Extracted {run.competitorList.length} competitors:
+                  </span>{' '}
+                  <span className="text-purple-600 dark:text-purple-400">{run.competitorList.join(', ')}</span>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>}
     </div>
   );
 }

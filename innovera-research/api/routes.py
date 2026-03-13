@@ -13,7 +13,10 @@ import yaml
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
-from api.models import ResearchRequest, ResearchResponse, RunStatus, CategoryStatus
+from api.models import (
+    ResearchRequest, ResearchResponse, RunStatus, CategoryStatus,
+    ChainRequest, ChainResponse, ChainStepInfo, CHAIN_MODES, MODE_LABELS,
+)
 from api.progress_bridge import WebSocketProgressBridge
 from config.settings import VENTURE_DOCS_DIR, OUTPUT_DIR, MAX_CONCURRENT_CATEGORIES
 from orchestrator.checkpoints import load_checkpoint, load_all_checkpoints, is_resumable
@@ -22,10 +25,15 @@ router = APIRouter(prefix="/api")
 
 # In-memory store of active and completed runs
 active_runs: dict[str, dict] = {}
+active_chains: dict[str, dict] = {}
 
 
 def _is_any_run_active() -> bool:
-    return any(r["status"] == "running" for r in active_runs.values())
+    if any(r["status"] == "running" for r in active_runs.values()):
+        return True
+    if any(c["status"] == "running" for c in active_chains.values()):
+        return True
+    return False
 
 
 def _build_venture_brief(request: ResearchRequest) -> str:
@@ -205,6 +213,21 @@ async def start_research(request: ResearchRequest):
             run_output_dir.mkdir(parents=True, exist_ok=True)
             active_runs[run_id]["output_dir"] = run_output_dir
 
+            # Parse pre-built competitive table if provided
+            prebuilt_ct = None
+            if request.prebuilt_competitive_table is not None:
+                try:
+                    from competitive_table.models import CompetitiveTable as CTModel
+                    prebuilt_ct = CTModel.model_validate(request.prebuilt_competitive_table)
+                    progress.emit_log_detail(
+                        f"Pre-built competitive table loaded ({len(prebuilt_ct.competitors)} competitors, "
+                        f"{len(prebuilt_ct.attributes)} attributes) — Phase 0 will be skipped", "success"
+                    )
+                except Exception as e:
+                    progress.emit_log_detail(
+                        f"Failed to parse pre-built competitive table: {e} — will build from scratch", "warning"
+                    )
+
             if request.research_mode == "competitive_table":
                 # --- Competitive Table Only Mode ---
                 await _run_competitive_table_only(
@@ -230,6 +253,7 @@ async def start_research(request: ResearchRequest):
                         only_categories=only_categories,
                         research_mode=request.research_mode,
                         run_id=run_id,
+                        competitive_table=prebuilt_ct,
                     )
                     active_runs[run_id]["_runner"] = runner
                     with TerminalTee(progress):
@@ -299,6 +323,365 @@ async def start_research(request: ResearchRequest):
         status="started",
         message="Research pipeline started"
     )
+
+
+@router.post("/research/chain")
+async def start_chain(request: ChainRequest):
+    """Run all three research chapters sequentially: CT -> MR -> DV."""
+    if _is_any_run_active():
+        raise HTTPException(
+            status_code=409,
+            detail="A research run is already in progress. Please wait for it to complete."
+        )
+
+    chain_id = str(uuid.uuid4())
+    started_at = datetime.now(timezone.utc)
+
+    progress = WebSocketProgressBridge()
+
+    steps = [
+        ChainStepInfo(step_index=i, mode=mode, mode_label=MODE_LABELS[mode])
+        for i, mode in enumerate(CHAIN_MODES)
+    ]
+
+    active_chains[chain_id] = {
+        "task": None,
+        "progress": progress,
+        "status": "running",
+        "request": request,
+        "started_at": started_at,
+        "steps": [s.model_dump() for s in steps],
+        "current_step": 0,
+        "sub_run_ids": [],
+        "error": None,
+    }
+
+    # Write venture brief once for the whole chain
+    chain_docs_dir = VENTURE_DOCS_DIR / chain_id
+    chain_docs_dir.mkdir(parents=True, exist_ok=True)
+
+    criteria_lines = "\n".join(
+        f"{i+1}. {c}" for i, c in enumerate(request.success_criteria)
+    )
+    parts = [f"# Venture Brief\n\n{request.document_text}"]
+    if request.additional_context.strip():
+        parts.append(f"---\n\n## Additional Context\n\n{request.additional_context}")
+    parts.append(f"---\n\n## Core Strategic Question\n\n{request.core_question}")
+    parts.append(f"---\n\n## Success Criteria\n\n{criteria_lines}")
+    brief_content = "\n\n".join(parts)
+    (chain_docs_dir / "venture_brief.md").write_text(brief_content, encoding="utf-8")
+
+    async def run_chain():
+        try:
+            from context_extraction.extractor import ContextExtractor
+
+            metadata = {
+                "core_question": request.core_question,
+                "success_criteria": request.success_criteria,
+                "venture_name_override": request.venture_name or None,
+                "research_mode": "market_research",
+            }
+
+            progress.emit_log_detail("Extracting context signals (shared across all chapters)...", "info")
+            extractor = ContextExtractor()
+            context = extractor.extract(chain_docs_dir, metadata, research_mode="market_research")
+
+            progress.emit_context_ready(
+                venture_name=context.venture_name,
+                industry=context.industry_vertical,
+                competitor_count=len(context.named_competitors),
+                keyword_count=len(context.problem_keywords),
+            )
+            progress.emit_log_detail(
+                f"Context ready — {context.venture_name} ({context.industry_vertical})", "success"
+            )
+
+            chain_start = time.time()
+            shared_competitive_table = None
+
+            if request.prebuilt_competitive_table is not None:
+                from competitive_table.models import CompetitiveTable as CTModel
+                try:
+                    shared_competitive_table = CTModel.model_validate(request.prebuilt_competitive_table)
+                    progress.emit_log_detail(
+                        f"Pre-built competitive table loaded ({len(shared_competitive_table.competitors)} competitors, "
+                        f"{len(shared_competitive_table.attributes)} attributes)", "success"
+                    )
+
+                    # Archive it under the chain output dir
+                    chain_output_dir = OUTPUT_DIR / chain_id
+                    chain_output_dir.mkdir(parents=True, exist_ok=True)
+                    (chain_output_dir / "competitive_table.json").write_text(
+                        shared_competitive_table.model_dump_json(indent=2), encoding="utf-8"
+                    )
+
+                    # Mark the CT step as instantly completed
+                    active_chains[chain_id]["steps"][0]["status"] = "completed"
+                    progress._emit_sync({
+                        "type": "chain_step_start",
+                        "step_index": 0,
+                        "mode": "competitive_table",
+                        "mode_label": MODE_LABELS["competitive_table"],
+                        "run_id": None,
+                        "total_steps": len(CHAIN_MODES),
+                    })
+                    progress._emit_sync({
+                        "type": "chain_step_complete",
+                        "step_index": 0,
+                        "mode": "competitive_table",
+                        "mode_label": MODE_LABELS["competitive_table"],
+                        "run_id": None,
+                        "status": "completed",
+                        "succeeded": 0,
+                        "failed": 0,
+                        "error": None,
+                    })
+                except Exception as e:
+                    progress.emit_log_detail(
+                        f"Failed to parse pre-built competitive table: {e} — will build from scratch", "warning"
+                    )
+                    shared_competitive_table = None
+
+            for step_index, mode in enumerate(CHAIN_MODES):
+                # Skip CT step when a pre-built table was successfully loaded
+                if mode == "competitive_table" and shared_competitive_table is not None:
+                    continue
+                active_chains[chain_id]["current_step"] = step_index
+                sub_run_id = str(uuid.uuid4())
+                active_chains[chain_id]["steps"][step_index]["run_id"] = sub_run_id
+                active_chains[chain_id]["steps"][step_index]["status"] = "running"
+                active_chains[chain_id]["sub_run_ids"].append(sub_run_id)
+
+                mode_label = MODE_LABELS[mode]
+                progress._emit_sync({
+                    "type": "chain_step_start",
+                    "step_index": step_index,
+                    "mode": mode,
+                    "mode_label": mode_label,
+                    "run_id": sub_run_id,
+                    "total_steps": len(CHAIN_MODES),
+                })
+                progress.emit_log_detail(
+                    f"--- Starting chapter {step_index + 1}/{len(CHAIN_MODES)}: {mode_label} ---", "info"
+                )
+
+                # Reset per-step progress tracking on the bridge
+                progress.current_phase = ""
+                progress.category_statuses = {}
+                progress._category_start_times = {}
+                progress.suppress_run_complete = True
+
+                sub_output_dir = OUTPUT_DIR / sub_run_id
+                sub_output_dir.mkdir(parents=True, exist_ok=True)
+                sub_started_at = datetime.now(timezone.utc)
+
+                # Also register the sub-run in active_runs so status/output endpoints work
+                sub_request = ResearchRequest(
+                    document_text=request.document_text,
+                    additional_context=request.additional_context,
+                    core_question=request.core_question,
+                    success_criteria=request.success_criteria,
+                    venture_name=request.venture_name,
+                    max_concurrent=request.max_concurrent,
+                    research_mode=mode,
+                )
+                active_runs[sub_run_id] = {
+                    "task": None,
+                    "progress": progress,
+                    "status": "running",
+                    "request": sub_request,
+                    "started_at": sub_started_at,
+                    "results": None,
+                    "context": context,
+                    "output_dir": sub_output_dir,
+                    "yaml_path": None,
+                    "markdown_path": None,
+                    "error": None,
+                }
+
+                step_succeeded = 0
+                step_failed = 0
+                step_error = None
+
+                try:
+                    if mode == "competitive_table":
+                        await _run_competitive_table_only(
+                            sub_run_id, context, chain_docs_dir, sub_output_dir,
+                            progress, sub_request, sub_started_at,
+                        )
+                        active_runs[sub_run_id]["status"] = "completed"
+
+                        # Capture the table so MR/DV steps can reuse it
+                        table_path = sub_output_dir / "competitive_table.json"
+                        if table_path.exists():
+                            try:
+                                from competitive_table.models import CompetitiveTable as CTModel
+                                shared_competitive_table = CTModel.model_validate_json(
+                                    table_path.read_text(encoding="utf-8")
+                                )
+                                progress.emit_log_detail(
+                                    "Competitive table captured for reuse in subsequent chapters", "info"
+                                )
+                            except Exception:
+                                pass
+                    else:
+                        from orchestrator.runner import ResearchRunner
+                        from output.package_assembler import PackageAssembler
+                        from api.terminal_stream import TerminalTee
+
+                        max_conc = request.max_concurrent or MAX_CONCURRENT_CATEGORIES
+                        import config.settings as settings
+                        original_max = settings.MAX_CONCURRENT_CATEGORIES
+                        settings.MAX_CONCURRENT_CATEGORIES = max_conc
+
+                        progress.emit_log_detail(
+                            f"Starting {mode_label} with max {max_conc} concurrent categories...", "info"
+                        )
+
+                        try:
+                            runner = ResearchRunner(
+                                context=context,
+                                venture_docs_dir=chain_docs_dir,
+                                progress=progress,
+                                only_categories=None,
+                                research_mode=mode,
+                                run_id=sub_run_id,
+                                competitive_table=shared_competitive_table,
+                            )
+                            active_runs[sub_run_id]["_runner"] = runner
+                            with TerminalTee(progress):
+                                results = await runner.run_all()
+                        finally:
+                            settings.MAX_CONCURRENT_CATEGORIES = original_max
+
+                        active_runs[sub_run_id]["results"] = results
+
+                        if runner.competitor_list:
+                            progress.emit_competitor_list(runner.competitor_list)
+
+                        progress.emit_log_detail("Assembling evidence package...", "info")
+                        assembler = PackageAssembler(
+                            context, results, sub_output_dir,
+                            competitive_table=getattr(runner, 'competitive_table', None),
+                        )
+                        yaml_path, md_path = assembler.assemble()
+                        active_runs[sub_run_id]["yaml_path"] = yaml_path
+                        active_runs[sub_run_id]["markdown_path"] = md_path
+                        active_runs[sub_run_id]["status"] = "completed"
+
+                        step_succeeded = sum(1 for r in results.values() if r.status == "success")
+                        step_failed = sum(1 for r in results.values() if r.status == "failed")
+                        total_sources = sum(len(r.sources) for r in results.values())
+
+                        run_meta = {
+                            "run_id": sub_run_id,
+                            "started_at": sub_started_at.isoformat(),
+                            "completed_at": datetime.now(timezone.utc).isoformat(),
+                            "status": "completed",
+                            "venture_name": context.venture_name,
+                            "research_mode": mode,
+                            "categories_succeeded": step_succeeded,
+                            "categories_failed": step_failed,
+                            "total_sources": total_sources,
+                            "request": sub_request.model_dump(),
+                            "chain_id": chain_id,
+                        }
+                        meta_path = sub_output_dir / "run_meta.json"
+                        meta_path.write_text(
+                            json.dumps(run_meta, indent=2, default=str), encoding="utf-8"
+                        )
+
+                        progress.emit_log_detail(
+                            f"{mode_label} complete — {step_succeeded} categories, {total_sources} sources",
+                            "success",
+                        )
+
+                    active_chains[chain_id]["steps"][step_index]["status"] = "completed"
+
+                except Exception as e:
+                    step_error = str(e)
+                    active_chains[chain_id]["steps"][step_index]["status"] = "failed"
+                    active_runs[sub_run_id]["status"] = "failed"
+                    active_runs[sub_run_id]["error"] = step_error
+                    progress.emit_log_detail(
+                        f"{mode_label} failed: {step_error} — continuing to next chapter...", "error"
+                    )
+
+                progress._emit_sync({
+                    "type": "chain_step_complete",
+                    "step_index": step_index,
+                    "mode": mode,
+                    "mode_label": mode_label,
+                    "run_id": sub_run_id,
+                    "status": active_chains[chain_id]["steps"][step_index]["status"],
+                    "succeeded": step_succeeded,
+                    "failed": step_failed,
+                    "error": step_error,
+                })
+
+            total_elapsed = time.time() - chain_start
+            active_chains[chain_id]["status"] = "completed"
+
+            # Write chain_meta.json
+            chain_output_dir = OUTPUT_DIR / chain_id
+            chain_output_dir.mkdir(parents=True, exist_ok=True)
+            chain_meta = {
+                "chain_id": chain_id,
+                "started_at": started_at.isoformat(),
+                "completed_at": datetime.now(timezone.utc).isoformat(),
+                "status": "completed",
+                "venture_name": context.venture_name,
+                "total_elapsed_seconds": round(total_elapsed, 1),
+                "steps": active_chains[chain_id]["steps"],
+                "request": request.model_dump(),
+            }
+            (chain_output_dir / "chain_meta.json").write_text(
+                json.dumps(chain_meta, indent=2, default=str), encoding="utf-8"
+            )
+
+            progress._emit_sync({
+                "type": "chain_complete",
+                "chain_id": chain_id,
+                "elapsed_seconds": round(total_elapsed, 1),
+                "steps": active_chains[chain_id]["steps"],
+            })
+
+        except Exception as e:
+            active_chains[chain_id]["status"] = "failed"
+            active_chains[chain_id]["error"] = str(e)
+            progress.emit_run_error(str(e))
+
+    task = asyncio.create_task(run_chain())
+    active_chains[chain_id]["task"] = task
+
+    return ChainResponse(
+        chain_id=chain_id,
+        status="started",
+        message="Chain research pipeline started (CT → MR → DV)",
+        steps=steps,
+    )
+
+
+@router.get("/research/chain/{chain_id}/status")
+async def get_chain_status(chain_id: str):
+    chain = active_chains.get(chain_id)
+    if not chain:
+        chain_dir = OUTPUT_DIR / chain_id
+        meta_path = chain_dir / "chain_meta.json"
+        if meta_path.exists():
+            return json.loads(meta_path.read_text(encoding="utf-8"))
+        raise HTTPException(status_code=404, detail=f"Chain {chain_id} not found")
+
+    elapsed = (datetime.now(timezone.utc) - chain["started_at"]).total_seconds()
+    return {
+        "chain_id": chain_id,
+        "status": chain["status"],
+        "started_at": chain["started_at"].isoformat(),
+        "elapsed_seconds": round(elapsed, 1),
+        "current_step": chain["current_step"],
+        "steps": chain["steps"],
+        "error": chain.get("error"),
+    }
 
 
 @router.get("/research/{run_id}/status")
@@ -867,7 +1250,6 @@ async def _run_competitive_table_only(
         "success",
     )
 
-    # Signal run complete
     progress.complete(research_time)
 
 
@@ -991,4 +1373,27 @@ async def list_runs():
                 "venture_name": run.get("context", {}).venture_name if run.get("context") else "In Progress...",
             })
 
-    return {"runs": runs}
+    # Include chain runs
+    chains = []
+    for chain_id, chain in active_chains.items():
+        chains.append({
+            "chain_id": chain_id,
+            "status": chain["status"],
+            "started_at": chain["started_at"].isoformat(),
+            "steps": chain["steps"],
+        })
+
+    # Also scan disk for completed chain_meta.json
+    if output_base.exists():
+        for entry in sorted(output_base.iterdir(), reverse=True):
+            if entry.is_dir():
+                chain_meta_path = entry / "chain_meta.json"
+                if chain_meta_path.exists():
+                    try:
+                        meta = json.loads(chain_meta_path.read_text(encoding="utf-8"))
+                        if not any(c.get("chain_id") == meta.get("chain_id") for c in chains):
+                            chains.append(meta)
+                    except Exception:
+                        pass
+
+    return {"runs": runs, "chains": chains}
