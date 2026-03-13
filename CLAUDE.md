@@ -17,11 +17,15 @@ Recommended sequence:
 3. `claude-3.md`
    Broader v2 product work: report overhaul, history, search, sources, dark mode, PDF export, verdict dashboard, build order, and implementation notes.
 
+4. `claude-4.md`
+   Competitive Table feature: shared dynamic competitor matrix (dynamic X axis for competitors, dynamic Y axis for attributes), tiered research depth, universal parse depth increase, table construction pipeline, MR/CA integration, and frontend rendering.
+
 ## Guidance
 
 - If the task is a blocking runtime fix, start with `claude-1.md`.
 - If the task is timeout recovery or resumability, run `claude-2.md` after `claude-1.md` if needed.
 - If the task is the broader product/UI build, use `claude-3.md`.
+- If the task is the Competitive Table feature or competitive analysis infrastructure, use `claude-4.md`.
 - Keep the implementation modular. Avoid cross-cutting rewrites unless the module explicitly requires them.
 - Do not edit Python `site-packages`.
 - Assume a real local `.env` exists and contains the necessary secrets unless runtime evidence proves otherwise.

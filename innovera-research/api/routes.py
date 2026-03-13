@@ -175,10 +175,18 @@ async def start_research(request: ResearchRequest):
             from api.terminal_stream import TerminalTee
 
             # Step 1: Context extraction
-            mode_label = "Market Research" if request.research_mode == "market_research" else "Demand Validation"
+            MODE_LABELS = {
+                "market_research": "Market Research",
+                "demand_validation": "Demand Validation",
+                "competitive_table": "Competitive Table",
+            }
+            mode_label = MODE_LABELS.get(request.research_mode, request.research_mode)
+            # For competitive_table mode, extract context as market_research
+            extraction_mode = "market_research" if request.research_mode == "competitive_table" else request.research_mode
+
             progress.emit_log_detail(f"Extracting context signals for {mode_label}...", "info")
             extractor = ContextExtractor()
-            context = extractor.extract(run_docs_dir, metadata, research_mode=request.research_mode)
+            context = extractor.extract(run_docs_dir, metadata, research_mode=extraction_mode)
 
             active_runs[run_id]["context"] = context
 
@@ -193,78 +201,90 @@ async def start_research(request: ResearchRequest):
                 f"Context ready — {context.venture_name} ({context.industry_vertical})", "success"
             )
 
-            # Step 2: Research execution
-            max_conc = request.max_concurrent or MAX_CONCURRENT_CATEGORIES
-
-            # Temporarily override max concurrent in settings
-            import config.settings as settings
-            original_max = settings.MAX_CONCURRENT_CATEGORIES
-            settings.MAX_CONCURRENT_CATEGORIES = max_conc
-
-            progress.emit_log_detail(f"Starting {mode_label} with max {max_conc} concurrent categories...", "info")
-
-            try:
-                runner = ResearchRunner(
-                    context=context,
-                    venture_docs_dir=run_docs_dir,
-                    progress=progress,
-                    only_categories=only_categories,
-                    research_mode=request.research_mode,
-                    run_id=run_id,
-                )
-                with TerminalTee(progress):
-                    results = await runner.run_all()
-            finally:
-                settings.MAX_CONCURRENT_CATEGORIES = original_max
-
-            active_runs[run_id]["results"] = results
-
-            # Emit competitor list if available
-            if runner.competitor_list:
-                progress.emit_competitor_list(runner.competitor_list)
-                source_cat = "MR-06a" if request.research_mode == "market_research" else "EC-02"
-                progress.emit_log_detail(
-                    f"Extracted {len(runner.competitor_list)} competitors from {source_cat}", "info"
-                )
-
-            # Step 3: Package assembly
-            progress.emit_log_detail("Assembling evidence package...", "info")
             run_output_dir = OUTPUT_DIR / run_id
             run_output_dir.mkdir(parents=True, exist_ok=True)
-            assembler = PackageAssembler(context, results, run_output_dir)
-
-            progress.emit_log_detail("Writing YAML output...", "info")
-            yaml_path, md_path = assembler.assemble()
-            progress.emit_log_detail("Writing Markdown report...", "info")
-
             active_runs[run_id]["output_dir"] = run_output_dir
-            active_runs[run_id]["yaml_path"] = yaml_path
-            active_runs[run_id]["markdown_path"] = md_path
-            active_runs[run_id]["status"] = "completed"
 
-            # Save run metadata
-            succeeded = sum(1 for r in results.values() if r.status == "success")
-            failed_count = sum(1 for r in results.values() if r.status == "failed")
-            total_sources = sum(len(r.sources) for r in results.values())
+            if request.research_mode == "competitive_table":
+                # --- Competitive Table Only Mode ---
+                await _run_competitive_table_only(
+                    run_id, context, run_docs_dir, run_output_dir,
+                    progress, request, started_at,
+                )
+            else:
+                # --- Full Research Pipeline ---
+                # Step 2: Research execution
+                max_conc = request.max_concurrent or MAX_CONCURRENT_CATEGORIES
 
-            run_meta = {
-                "run_id": run_id,
-                "started_at": started_at.isoformat(),
-                "completed_at": datetime.now(timezone.utc).isoformat(),
-                "status": "completed",
-                "venture_name": context.venture_name,
-                "research_mode": request.research_mode,
-                "categories_succeeded": succeeded,
-                "categories_failed": failed_count,
-                "total_sources": total_sources,
-                "request": request.model_dump(),
-            }
-            meta_path = run_output_dir / "run_meta.json"
-            meta_path.write_text(json.dumps(run_meta, indent=2, default=str), encoding="utf-8")
+                import config.settings as settings
+                original_max = settings.MAX_CONCURRENT_CATEGORIES
+                settings.MAX_CONCURRENT_CATEGORIES = max_conc
 
-            progress.emit_log_detail(
-                f"Evidence package complete — {succeeded} categories, {total_sources} sources", "success"
-            )
+                progress.emit_log_detail(f"Starting {mode_label} with max {max_conc} concurrent categories...", "info")
+
+                try:
+                    runner = ResearchRunner(
+                        context=context,
+                        venture_docs_dir=run_docs_dir,
+                        progress=progress,
+                        only_categories=only_categories,
+                        research_mode=request.research_mode,
+                        run_id=run_id,
+                    )
+                    active_runs[run_id]["_runner"] = runner
+                    with TerminalTee(progress):
+                        results = await runner.run_all()
+                finally:
+                    settings.MAX_CONCURRENT_CATEGORIES = original_max
+
+                active_runs[run_id]["results"] = results
+
+                # Emit competitor list if available
+                if runner.competitor_list:
+                    progress.emit_competitor_list(runner.competitor_list)
+                    source_cat = "MR-06a" if request.research_mode == "market_research" else "EC-02"
+                    progress.emit_log_detail(
+                        f"Extracted {len(runner.competitor_list)} competitors from {source_cat}", "info"
+                    )
+
+                # Step 3: Package assembly
+                progress.emit_log_detail("Assembling evidence package...", "info")
+                assembler = PackageAssembler(
+                    context, results, run_output_dir,
+                    competitive_table=getattr(runner, 'competitive_table', None),
+                )
+
+                progress.emit_log_detail("Writing YAML output...", "info")
+                yaml_path, md_path = assembler.assemble()
+                progress.emit_log_detail("Writing Markdown report...", "info")
+
+                active_runs[run_id]["yaml_path"] = yaml_path
+                active_runs[run_id]["markdown_path"] = md_path
+                active_runs[run_id]["status"] = "completed"
+
+                # Save run metadata
+                succeeded = sum(1 for r in results.values() if r.status == "success")
+                failed_count = sum(1 for r in results.values() if r.status == "failed")
+                total_sources = sum(len(r.sources) for r in results.values())
+
+                run_meta = {
+                    "run_id": run_id,
+                    "started_at": started_at.isoformat(),
+                    "completed_at": datetime.now(timezone.utc).isoformat(),
+                    "status": "completed",
+                    "venture_name": context.venture_name,
+                    "research_mode": request.research_mode,
+                    "categories_succeeded": succeeded,
+                    "categories_failed": failed_count,
+                    "total_sources": total_sources,
+                    "request": request.model_dump(),
+                }
+                meta_path = run_output_dir / "run_meta.json"
+                meta_path.write_text(json.dumps(run_meta, indent=2, default=str), encoding="utf-8")
+
+                progress.emit_log_detail(
+                    f"Evidence package complete — {succeeded} categories, {total_sources} sources", "success"
+                )
 
         except Exception as e:
             active_runs[run_id]["status"] = "failed"
@@ -341,6 +361,15 @@ async def get_run_status(run_id: str):
     if run["markdown_path"]:
         output_files.append(str(run["markdown_path"]))
 
+    # Competitive table status
+    ct_status = None
+    ct_progress = None
+    runner = run.get("_runner")
+    if runner and hasattr(runner, 'competitive_table_status'):
+        ct_status = runner.competitive_table_status
+        if runner.competitive_table:
+            ct_progress = f"{len(runner.competitive_table.competitors)} competitors"
+
     return RunStatus(
         run_id=run_id,
         status=run["status"],
@@ -349,7 +378,32 @@ async def get_run_status(run_id: str):
         elapsed_seconds=round(elapsed, 1),
         output_files=output_files,
         error=run.get("error"),
+        competitive_table_status=ct_status,
+        competitive_table_progress=ct_progress,
     )
+
+
+@router.get("/research/{run_id}/competitive-table")
+async def get_competitive_table(run_id: str):
+    """Return the full CompetitiveTable as JSON."""
+    # Check in-memory active runs first
+    run = active_runs.get(run_id)
+    if run:
+        runner = run.get("_runner")
+        if runner and hasattr(runner, 'competitive_table') and runner.competitive_table:
+            return runner.competitive_table.model_dump()
+
+    # Fall back to disk
+    run_dir = _find_run_output_dir(run_id)
+    if run_dir:
+        table_path = run_dir / "competitive_table.json"
+        if table_path.exists():
+            try:
+                return json.loads(table_path.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+
+    raise HTTPException(status_code=404, detail="Competitive table not available for this run")
 
 
 @router.get("/research/{run_id}/output/yaml")
@@ -486,21 +540,38 @@ async def get_structured_output(run_id: str):
             "raw_report_markdown": raw_report_md,
         })
 
+    # Load competitive table if available
+    competitive_table = None
+    table_path = output_dir / "competitive_table.json"
+    if table_path.exists():
+        try:
+            competitive_table = json.loads(table_path.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+
+    # For competitive-table-only runs, pull metadata from the table itself
+    industry = context_signals.get("industry_vertical", "")
+    geography = context_signals.get("geography", "")
+    if not industry and competitive_table:
+        industry = competitive_table.get("industry", "")
+        geography = competitive_table.get("geography", "")
+
     return {
         "run_id": run_id,
-        "venture_name": meta.get("venture_name", "Unknown"),
+        "venture_name": meta.get("venture_name", competitive_table.get("venture_name", "Unknown") if competitive_table else "Unknown"),
         "research_mode": meta.get("research_mode", meta.get("request", {}).get("research_mode", "demand_validation")),
         "metadata": {
             "generated_at": meta.get("completed_at", ""),
             "started_at": meta.get("started_at", ""),
-            "industry": context_signals.get("industry_vertical", ""),
+            "industry": industry,
             "sub_vertical": context_signals.get("sub_vertical", ""),
-            "geography": context_signals.get("geography", ""),
+            "geography": geography,
             "stage": context_signals.get("stage", ""),
             "research_mode": meta.get("research_mode", "demand_validation"),
         },
         "context_signals": context_signals,
         "categories": categories,
+        "competitive_table": competitive_table,
         "gap_inventory": {
             "critical": gap_summary.get("critical_gaps", []),
             "moderate": gap_summary.get("moderate_gaps", []),
@@ -660,6 +731,144 @@ async def retry_category(run_id: str, category_id: str):
 
     asyncio.create_task(do_retry())
     return {"status": "retrying", "category_id": category_id}
+
+
+async def _run_competitive_table_only(
+    run_id: str, context, run_docs_dir, run_output_dir, progress, request, started_at,
+):
+    """Run only the competitive table pipeline — no category research."""
+    import time as _time
+    from competitive_table.models import CompetitiveTable
+    from competitive_table.schema_generator import generate_table_schema
+    from competitive_table.competitor_discovery import discover_competitors
+    from competitive_table.table_populator import populate_table, populate_venture_column
+    from competitive_table.table_validator import compute_metadata, validate_and_summarize
+    from config.settings import GPTR_CONFIG_DIR, CATEGORY_TIMEOUT_SECONDS
+
+    config_path = str(GPTR_CONFIG_DIR / "deep_landscape.json")
+    table_start = _time.time()
+
+    # Step 1: Schema generation
+    progress.emit_competitive_table_status("building", "schema_generation")
+    progress.emit_log_detail(
+        f"Generating competitive framework for {context.industry_vertical}...", "info"
+    )
+    schema = generate_table_schema(context)
+
+    # Step 2: Competitor discovery
+    progress.emit_competitive_table_status("building", "competitor_discovery")
+    progress.emit_log_detail(
+        f"Discovering competitors in {context.industry_vertical}...", "info"
+    )
+    import asyncio
+    competitors = await asyncio.wait_for(
+        discover_competitors(context, schema, config_path),
+        timeout=CATEGORY_TIMEOUT_SECONDS,
+    )
+    progress.emit_competitive_table_status(
+        "building", "competitor_discovery", found=len(competitors)
+    )
+
+    tier_counts = {}
+    for c in competitors:
+        tier_counts[c.tier] = tier_counts.get(c.tier, 0) + 1
+    tier_str = ", ".join(f"Tier {t}: {n}" for t, n in sorted(tier_counts.items()))
+    progress.emit_log_detail(f"Found {len(competitors)} competitors ({tier_str})", "info")
+
+    # Step 3: Table population
+    def progress_callback(step, completed, total):
+        progress.emit_competitive_table_status(
+            "building", step, completed=completed, total=total
+        )
+
+    populated = await populate_table(
+        competitors, schema.attributes, context, config_path,
+        progress_callback=progress_callback,
+        run_id=run_id,
+    )
+
+    # Step 4: Venture column
+    progress.emit_log_detail("Populating venture column from brief...", "info")
+    venture_brief_text = ""
+    brief_path = run_docs_dir / "venture_brief.md"
+    if brief_path.exists():
+        venture_brief_text = brief_path.read_text(encoding="utf-8")
+
+    venture_entry = await populate_venture_column(
+        context, schema.attributes, venture_brief_text
+    )
+
+    # Build the table
+    from datetime import datetime as dt, timezone as tz
+    research_time = _time.time() - table_start
+
+    table = CompetitiveTable(
+        table_id=run_id,
+        venture_name=context.venture_name,
+        industry=context.industry_vertical,
+        geography=context.geography,
+        generated_at=dt.now(tz.utc).isoformat(),
+        attributes=schema.attributes,
+        competitors=populated,
+        venture_entry=venture_entry,
+        attribute_groups=schema.attribute_groups,
+        metadata=compute_metadata(
+            CompetitiveTable(
+                table_id=run_id,
+                venture_name=context.venture_name,
+                industry=context.industry_vertical,
+                geography=context.geography,
+                attributes=schema.attributes,
+                competitors=populated,
+                venture_entry=venture_entry,
+                attribute_groups=schema.attribute_groups,
+            ),
+            research_time,
+        ),
+    )
+    table.metadata.rationale = schema.rationale
+
+    # Step 5: Validation & summary
+    progress.emit_log_detail("Validating competitive table...", "info")
+    await validate_and_summarize(table)
+
+    # Save table to disk
+    table_path = run_output_dir / "competitive_table.json"
+    table_path.write_text(table.model_dump_json(indent=2), encoding="utf-8")
+
+    # Save run metadata
+    run_meta = {
+        "run_id": run_id,
+        "started_at": started_at.isoformat(),
+        "completed_at": dt.now(tz.utc).isoformat(),
+        "status": "completed",
+        "venture_name": context.venture_name,
+        "research_mode": "competitive_table",
+        "categories_succeeded": 0,
+        "categories_failed": 0,
+        "total_sources": table.metadata.total_sources,
+        "request": request.model_dump(),
+    }
+    meta_path = run_output_dir / "run_meta.json"
+    meta_path.write_text(json.dumps(run_meta, indent=2, default=str), encoding="utf-8")
+
+    active_runs[run_id]["results"] = {}
+    active_runs[run_id]["status"] = "completed"
+
+    progress.emit_competitive_table_status(
+        "complete", "done",
+        competitors=len(table.competitors),
+        attributes=len(table.attributes),
+        coverage=table.metadata.coverage_percent,
+    )
+    progress.emit_log_detail(
+        f"Competitive table complete: {len(table.competitors)} competitors, "
+        f"{len(table.attributes)} attributes, {table.metadata.coverage_percent:.0f}% coverage",
+        "success",
+    )
+
+    # Signal run complete
+    progress.complete(research_time)
 
 
 async def _reassemble_package(run: dict, run_id: str, context, progress):

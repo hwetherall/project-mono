@@ -20,6 +20,7 @@ class MRBaseCategory(BaseCategory):
         self.market_definition_terms: list[str] = []
         self.known_competitors: list[str] = []
         self.known_segments: list[str] = []
+        self.competitive_table = None
 
     def inject_phase1_results(
         self,
@@ -34,6 +35,14 @@ class MRBaseCategory(BaseCategory):
             self.known_competitors = competitors
         if segments:
             self.known_segments = segments
+
+    def inject_competitive_table(self, table):
+        """Make the competitive table available to this category's query builder."""
+        self.competitive_table = table
+        # Also update known competitors from the table
+        if table and table.competitors:
+            table_names = [c.name for c in table.competitors]
+            self.known_competitors = list(set(self.known_competitors + table_names))
 
     def get_report_type(self) -> str:
         return "deep"

@@ -20,10 +20,12 @@ class PackageAssembler:
         context: ContextSignals,
         results: dict[str, CategoryResult],
         output_dir: Path,
+        competitive_table=None,
     ):
         self.context = context
         self.results = results
         self.output_dir = output_dir
+        self.competitive_table = competitive_table
 
         if context.research_mode == "market_research":
             self.consumption_map = get_mr_consumption_map()
@@ -49,7 +51,10 @@ class PackageAssembler:
         # Markdown output
         md_filename = f"{venture_slug}_evidence_{timestamp}.md"
         md_path = self.output_dir / md_filename
-        md_content = format_markdown_report(package, self.context, self.results)
+        md_content = format_markdown_report(
+            package, self.context, self.results,
+            competitive_table=self.competitive_table,
+        )
         md_path.write_text(md_content, encoding="utf-8")
 
         # Save raw reports individually

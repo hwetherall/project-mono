@@ -1,0 +1,360 @@
+{
+  "competitors": [
+    {
+      "competitor_id": "ninedot-energy",
+      "name": "NineDot Energy",
+      "tier": 1,
+      "description": "NineDot Energy is a direct competitor actively building a portfolio of 5 MW-class distributed BESS projects in New York, particularly in Con Edison territory. The company is identified as one of the most active players in precisely the same niche NEE is targeting, with demonstrated experience in originating and developing standalone and solar-paired storage projects in high-value networks and load pockets downstate.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "summit-ridge-energy",
+      "name": "Summit Ridge Energy",
+      "tier": 1,
+      "description": "Summit Ridge Energy is a direct competitor with an active community solar portfolio and distributed storage pipeline in New York. The company develops and sells 5 MW-class standalone and solar+storage projects in high-value networks, making it a close analog to NEE's develop-and-sell strategy and a primary share-of-wallet competitor in the distributed BESS segment.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-and-power",
+      "name": "Convergent Energy and Power",
+      "tier": 1,
+      "description": "Convergent Energy and Power is a direct competitor identified as actively building portfolios in the 5 MW-class distributed BESS niche in New York. With established expertise in behind-the-meter and front-of-the-meter storage, Convergent competes directly with NEE for project origination, interconnection slots, and revenue stacking opportunities across VDER, DRV, and NYISO DER aggregation pathways.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "nexamp",
+      "name": "Nexamp",
+      "tier": 1,
+      "description": "Nexamp is a direct competitor with active community solar and storage portfolios in New York, competing in the same 5 MW-class distributed segment NEE is targeting. The company's experience pairing community solar with storage and navigating VDER revenue stacks positions it as a strong incumbent in the downstate and Con Edison territory markets.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "agilitas-energy",
+      "name": "Agilitas Energy",
+      "tier": 1,
+      "description": "Agilitas Energy is a direct competitor actively originating and developing distributed BESS projects in New York's high-value networks. The company competes directly with NEE in the develop-and-sell model for 5 MW-class standalone and solar+storage projects, with demonstrated pipeline activity in Con Edison and other downstate utility territories.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "powerbank",
+      "name": "PowerBank",
+      "tier": 2,
+      "description": "PowerBank is an emerging entrant scaling its distributed storage pipeline in New York, often backed by programmatic financing and specialized operators. The company represents a newer but growing source of competition for NEE in the 5 MW-class distributed BESS segment, with increasing ability to compete for interconnection slots and VDER-eligible sites.",
+      "competitor_type": "emerging",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "cve-north-america",
+      "name": "CVE North America",
+      "tier": 2,
+      "description": "CVE North America is an emerging competitor scaling its energy storage pipeline in New York's distributed market. Backed by programmatic financing and specialized operational partners, CVE is building capacity in the same segment NEE is targeting and represents a growing competitive threat as it matures its New York market presence.",
+      "competitor_type": "emerging",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "aspen-power-partners",
+      "name": "Aspen Power Partners",
+      "tier": 2,
+      "description": "Aspen Power Partners is an emerging entrant in New York's distributed energy storage market, scaling pipelines with the support of programmatic financing structures and specialized operators. The company is actively developing distributed storage projects that compete with NEE for siting opportunities, interconnection positions, and NYSERDA retail program incentives.",
+      "competitor_type": "emerging",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "oya-solar",
+      "name": "OYA Solar",
+      "tier": 2,
+      "description": "OYA Solar is an emerging competitor in New York's distributed storage segment, leveraging its community solar experience to expand into solar-paired storage projects. The company is scaling its pipeline with programmatic financing support and competes with NEE for VDER-eligible sites and NYSERDA retail storage program participation in downstate networks.",
+      "competitor_type": "emerging",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "key-capture-energy",
+      "name": "Key Capture Energy",
+      "tier": 2,
+      "description": "Key Capture Energy is an established incumbent primarily concentrated in grid-scale storage segments in New York but identified as capable of pivoting into the distributed 5 MW-class market if compelled by incentives or interconnection dynamics. Its deep experience in NYISO markets, interconnection processes, and project development makes it a latent but significant competitive threat to NEE's distributed strategy.",
+      "competitor_type": "incumbent",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "terra-gen",
+      "name": "Terra-Gen",
+      "tier": 2,
+      "description": "Terra-Gen is an established incumbent focused on grid-scale energy storage in New York, particularly targeting ISC solicitations and bulk procurement opportunities. While currently concentrated in larger-scale segments, Terra-Gen's operational capabilities, capital access, and NYISO market expertise position it as a potential down-market competitor should incentives or interconnection dynamics shift toward the distributed storage niche.",
+      "competitor_type": "incumbent",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "syso-strata-solar-distributed-energy-operations",
+      "name": "SYSO (Strata Solar / Distributed Energy Operations)",
+      "tier": 3,
+      "description": "SYSO is identified as a specialized operator and potential operational partner in New York's distributed BESS market rather than a pure project developer, but its role as a sophisticated aggregator and operator makes it a competitive force in capturing stacked revenues across VDER, DLM/DRV, and NYISO DER aggregation pathways. Its capabilities represent both a partnership opportunity and a competitive substitute for NEE's operational functions.",
+      "competitor_type": "adjacent",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "cpower-energy-management",
+      "name": "CPower Energy Management",
+      "tier": 3,
+      "description": "CPower Energy Management is a specialized demand response and DER aggregation operator active in New York markets, identified as a key player in maximizing stacked revenues from distributed storage assets. While primarily an operator and aggregator rather than a developer, CPower competes with NEE in the value capture layer of distributed BESS projects and represents an adjacent competitive force in the NYISO DER aggregation and retail program participation ecosystem.",
+      "competitor_type": "adjacent",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen",
+        "https://www.businesswire.com/news/home/20260127169610/en/Catalyze-Closes-100-MW-Distributed-Solar-Tax-Equity-Financing-with-RBC",
+        "https://resources.convergentep.com/energy-storage-spotlight-solar-plus-sorage-provides-a-non-wires-alternative-for-national-grid"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924128+00:00"
+    },
+    {
+      "competitor_id": "eolian-energy",
+      "name": "Eolian Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924423+00:00"
+    },
+    {
+      "competitor_id": "spearmint-energy",
+      "name": "Spearmint Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924442+00:00"
+    },
+    {
+      "competitor_id": "convergent-energy-power",
+      "name": "Convergent Energy + Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924458+00:00"
+    },
+    {
+      "competitor_id": "glidepath-power",
+      "name": "Glidepath Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924471+00:00"
+    },
+    {
+      "competitor_id": "broad-reach-power",
+      "name": "Broad Reach Power",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924484+00:00"
+    },
+    {
+      "competitor_id": "hecate-energy",
+      "name": "Hecate Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924497+00:00"
+    },
+    {
+      "competitor_id": "orion-energy-partners",
+      "name": "Orion Energy Partners",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924509+00:00"
+    },
+    {
+      "competitor_id": "amp-energy",
+      "name": "Amp Energy",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924521+00:00"
+    },
+    {
+      "competitor_id": "national-grid-ventures",
+      "name": "National Grid Ventures",
+      "tier": 2,
+      "description": "Named in venture brief. Details to be researched.",
+      "competitor_type": "direct",
+      "attributes": {},
+      "sources": [
+        "https://www.mordorintelligence.com/industry-reports/north-america-battery-energy-storage-system-market",
+        "https://www.energy-storage.news/us-grid-scale-battery-storage-developer-key-capture-energy-acquired-by-sk-es/",
+        "https://www.energy-storage.news/flexgen-to-deploy-15mw-bess-in-puerto-rico-for-arclight-and-infinigen"
+      ],
+      "confidence": 0.0,
+      "last_researched": "2026-03-13T02:55:08.924534+00:00"
+    }
+  ]
+}

@@ -47,6 +47,15 @@ Research and report on ALL of the following. Cite specific sources for every dat
 
 For each competitor, use a consistent format with the company name in bold. Be specific — name companies, cite sources, provide concrete details. If pricing is not public, say so."""
 
+    @property
+    def extraction_schema(self) -> dict | None:
+        return {
+            "competitors": "List of competitor objects with name, type (direct/substitute/adjacent), positioning, and pricing model",
+            "market_share_estimates": "List of competitors with estimated market share percentages or revenue",
+            "distribution_channels": "Key distribution routes and their relative importance",
+            "competitive_dynamics": "Summary of competitive intensity and key dynamics",
+        }
+
     def parse_report(self, raw_report: str) -> dict:
         return {
             "raw_report_text": raw_report,

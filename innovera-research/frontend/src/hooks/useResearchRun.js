@@ -17,6 +17,7 @@ export default function useResearchRun() {
   const [activityLog, setActivityLog] = useState([]);
   const [contextInfo, setContextInfo] = useState(null);
   const [competitorList, setCompetitorList] = useState([]);
+  const [competitiveTableStatus, setCompetitiveTableStatus] = useState(null);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const wsRef = useRef(null);
@@ -181,6 +182,15 @@ export default function useResearchRun() {
         setCompetitorList(data.competitors || []);
         break;
 
+      case 'competitive_table_status':
+        setCompetitiveTableStatus(data);
+        if (data.status === 'complete') {
+          addLogEntry('success', `Competitive table complete: ${data.competitors} competitors, ${data.attributes} attributes, ${data.coverage?.toFixed(0)}% coverage`);
+        } else if (data.status === 'failed') {
+          addLogEntry('warning', 'Competitive table construction failed (non-blocking)');
+        }
+        break;
+
       case 'rate_limit':
         setCategories((prev) => ({
           ...prev,
@@ -243,6 +253,7 @@ export default function useResearchRun() {
     setActivityLog([]);
     setContextInfo(null);
     setCompetitorList([]);
+    setCompetitiveTableStatus(null);
     setResult(null);
     startTimeRef.current = Date.now();
 
@@ -367,6 +378,7 @@ export default function useResearchRun() {
     setActivityLog([]);
     setContextInfo(null);
     setCompetitorList([]);
+    setCompetitiveTableStatus(null);
     setResult(null);
     setError(null);
     startTimeRef.current = null;
@@ -381,6 +393,7 @@ export default function useResearchRun() {
     activityLog,
     contextInfo,
     competitorList,
+    competitiveTableStatus,
     result,
     error,
     startTime: startTimeRef.current,

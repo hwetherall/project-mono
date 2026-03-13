@@ -58,12 +58,14 @@ export default function ProgressPanel({ run, onComplete }) {
   // Detect research mode from category IDs present in run
   const detectedMode = useMemo(() => {
     const catIds = Object.keys(run.categories);
+    if (catIds.length === 0 && run.competitiveTableStatus) return 'competitive_table';
     if (catIds.some((id) => id.startsWith('MR-'))) return 'market_research';
     return 'demand_validation';
-  }, [run.categories]);
+  }, [run.categories, run.competitiveTableStatus]);
 
-  const PHASE_CATEGORIES = PHASE_CATEGORIES_BY_MODE[detectedMode];
-  const PHASE_LABELS = PHASE_LABELS_BY_MODE[detectedMode];
+  const isTableOnly = detectedMode === 'competitive_table';
+  const PHASE_CATEGORIES = PHASE_CATEGORIES_BY_MODE[detectedMode] || {};
+  const PHASE_LABELS = PHASE_LABELS_BY_MODE[detectedMode] || {};
 
   const activePhases = run.phases.map((p) => p.name);
   const currentPhase = run.phases.find((p) => p.status === 'running')?.name || '';
@@ -77,9 +79,11 @@ export default function ProgressPanel({ run, onComplete }) {
       ? 'Complete'
       : run.status === 'error'
         ? 'Failed'
-        : currentPhase
-          ? `Running - ${PHASE_LABELS[currentPhase] || currentPhase}`
-          : 'Starting...';
+        : isTableOnly
+          ? 'Building Competitive Table'
+          : currentPhase
+            ? `Running - ${PHASE_LABELS[currentPhase] || currentPhase}`
+            : 'Starting...';
 
   const statusColor =
     run.status === 'complete'
@@ -138,10 +142,42 @@ export default function ProgressPanel({ run, onComplete }) {
         </div>
       )}
 
+      {/* Competitive Table Progress */}
+      {run.competitiveTableStatus && (
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-lg border border-slate-200 dark:border-slate-700">
+          <div className="flex items-center gap-2 mb-2">
+            <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Competitive Table</h3>
+            {run.competitiveTableStatus.status === 'building' && (
+              <span className="inline-block w-3 h-3 border-2 border-purple-600 border-t-transparent rounded-full animate-spin" />
+            )}
+            {run.competitiveTableStatus.status === 'complete' && (
+              <span className="text-xs text-green-600 dark:text-green-400 font-medium">Complete</span>
+            )}
+            {run.competitiveTableStatus.status === 'failed' && (
+              <span className="text-xs text-amber-600 dark:text-amber-400 font-medium">Failed (non-blocking)</span>
+            )}
+          </div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">
+            {run.competitiveTableStatus.step === 'schema_generation' && 'Generating competitive framework...'}
+            {run.competitiveTableStatus.step === 'competitor_discovery' && (
+              run.competitiveTableStatus.found
+                ? `Found ${run.competitiveTableStatus.found} competitors`
+                : 'Discovering competitors...'
+            )}
+            {run.competitiveTableStatus.step === 'population' && (
+              `Populating data: ${run.competitiveTableStatus.completed || 0}/${run.competitiveTableStatus.total || '?'} competitors`
+            )}
+            {run.competitiveTableStatus.step === 'done' && (
+              `${run.competitiveTableStatus.competitors} competitors, ${run.competitiveTableStatus.attributes} attributes, ${run.competitiveTableStatus.coverage?.toFixed(0)}% coverage`
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Main content: Category Grid + Activity Stream */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Category Grid */}
-        <div className="space-y-4">
+      <div className={`grid grid-cols-1 ${isTableOnly ? '' : 'lg:grid-cols-2'} gap-6`}>
+        {/* Category Grid (hidden in table-only mode) */}
+        {!isTableOnly && <div className="space-y-4">
           {Object.entries(PHASE_CATEGORIES).map(([phaseName, categoryIds]) => {
             const phaseInfo = run.phases.find((p) => p.name === phaseName);
             const isActive = phasesToShow.includes(phaseName);
@@ -180,7 +216,7 @@ export default function ProgressPanel({ run, onComplete }) {
               </div>
             );
           })}
-        </div>
+        </div>}
 
         {/* Activity Stream */}
         <div className="bg-slate-900 dark:bg-black rounded-lg border border-slate-700 overflow-hidden h-[400px] lg:h-auto lg:min-h-[400px]">

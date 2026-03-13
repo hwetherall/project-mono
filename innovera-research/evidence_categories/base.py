@@ -279,6 +279,15 @@ class BaseCategory(ABC):
         )
 
         structured = self.parse_report(raw_report)
+
+        # Universal parse depth: LLM-based structured extraction
+        try:
+            llm_findings = await self.extract_structured_findings(raw_report)
+            if llm_findings:
+                structured = {**structured, **llm_findings}
+        except Exception as exc:
+            logger.debug("LLM structured extraction failed for %s: %s", self.category_id, exc)
+
         gaps = self._identify_gaps(structured)
 
         # Stage: parsed
@@ -408,6 +417,56 @@ class BaseCategory(ABC):
             # No usable checkpoint — fall back to full execution
             logger.info("%s: Checkpoint stage '%s' not resumable, running from scratch", self.category_id, stage)
             return await self._execute_once()
+
+    @property
+    def extraction_schema(self) -> dict | None:
+        """Override in subclasses to define LLM extraction fields.
+        Return a dict mapping field names to descriptions, e.g.:
+        {"market_terms": "List of market category labels found", "tam_estimate": "Total addressable market size"}
+        Returns None to skip LLM extraction (default).
+        """
+        return None
+
+    async def extract_structured_findings(self, raw_report: str) -> dict:
+        """Use LLM to extract structured findings from the raw report."""
+        schema = self.extraction_schema
+        if not schema:
+            return {}
+
+        from openai import OpenAI
+        from competitive_table.prompts import STRUCTURED_EXTRACTION_SYSTEM, STRUCTURED_EXTRACTION_USER
+        from config.settings import (
+            OPENROUTER_API_KEY, OPENROUTER_BASE_URL,
+            CONTEXT_LLM_MODEL,
+        )
+
+        client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=OPENROUTER_API_KEY)
+
+        schema_text = "\n".join(f"- {k}: {v}" for k, v in schema.items())
+
+        user_message = STRUCTURED_EXTRACTION_USER.format(
+            category_id=self.category_id,
+            category_name=self.category_name,
+            extraction_schema=schema_text,
+            raw_report=raw_report[:12000],
+        )
+
+        response = client.chat.completions.create(
+            model=CONTEXT_LLM_MODEL,
+            max_tokens=4096,
+            messages=[
+                {"role": "system", "content": STRUCTURED_EXTRACTION_SYSTEM},
+                {"role": "user", "content": user_message},
+            ],
+        )
+
+        response_text = response.choices[0].message.content
+        if response_text.startswith("```"):
+            response_text = response_text.split("\n", 1)[1]
+            response_text = response_text.rsplit("```", 1)[0]
+
+        import json as _json
+        return _json.loads(response_text)
 
     def _use_hybrid(self) -> bool:
         """Override in subclasses that should use hybrid (web + local docs) mode."""

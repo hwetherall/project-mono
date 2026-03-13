@@ -12,7 +12,8 @@
       "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"\nfrom orchestrator.runner import MR_CATEGORY_CLASSES\nfrom orchestrator.phases import get_mr_execution_plan\nplan = get_mr_execution_plan\\(\\)\nfor p in plan:\n    print\\(f\\\\\"Phase {p['phase_name']}: {p['categories']}\\\\\"\\)\nprint\\(f'Total classes: {len\\(MR_CATEGORY_CLASSES\\)}'\\)\n\")",
       "Bash(python -c \"import gpt_researcher; import os; print\\(os.path.dirname\\(gpt_researcher.__file__\\)\\)\")",
       "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"import gpt_researcher.retrievers.tavily; print\\(gpt_researcher.retrievers.tavily.__file__\\)\" 2>&1; python -c \"from gpt_researcher.retrievers.tavily import tavily_search; print\\(dir\\(tavily_search\\)\\)\" 2>&1)",
-      "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"\nfrom gpt_researcher.retrievers.tavily.tavily_search import TavilySearch\nimport inspect\nprint\\(inspect.getsource\\(TavilySearch\\)\\)\n\" 2>&1)"
+      "Bash(cd \"C:\\\\Users\\\\hweth\\\\OneDrive\\\\Desktop\\\\Innovera\\\\Rapid Prototyping\\\\project-mono\\\\innovera-research\" && python -c \"\nfrom gpt_researcher.retrievers.tavily.tavily_search import TavilySearch\nimport inspect\nprint\\(inspect.getsource\\(TavilySearch\\)\\)\n\" 2>&1)",
+      "Bash(cd \"/c/Users/hweth/OneDrive/Desktop/Innovera/Rapid Prototyping/project-mono/innovera-research/frontend\" && npx vite build 2>&1)"
     ]
   }
 }

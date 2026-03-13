@@ -16,6 +16,16 @@ class MR06bCompetitiveIntelligence(MRBaseCategory):
     def category_name(self) -> str:
         return "Competitive Intelligence"
 
+    @property
+    def extraction_schema(self) -> dict | None:
+        return {
+            "review_sentiment": "Summary of review-site sentiment patterns by competitor",
+            "geographic_footprint": "Competitor geographic strengths and weaknesses",
+            "partnerships": "Key partnerships and ecosystem integrations by competitor",
+            "litigation_ip": "Material lawsuits, IP disputes, or regulatory enforcement",
+            "acquisitions": "Recent acquisitions with dates and strategic rationale",
+        }
+
     def build_query(self) -> str:
         ctx = self._market_context_block()
         solution = self.context.solution_category

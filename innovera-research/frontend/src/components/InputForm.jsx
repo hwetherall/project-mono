@@ -142,9 +142,11 @@ export default function InputForm({ onSubmit }) {
       <div>
         <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-1">New Research Run</h2>
         <p className="text-slate-500 dark:text-slate-400">
-          {researchMode === 'market_research'
-            ? 'Provide a market or topic briefing to begin market research.'
-            : 'Provide your venture details to begin the evidence pipeline.'}
+          {researchMode === 'competitive_table'
+            ? 'Provide your venture details to build a dynamic competitor matrix.'
+            : researchMode === 'market_research'
+              ? 'Provide a market or topic briefing to begin market research.'
+              : 'Provide your venture details to begin the evidence pipeline.'}
         </p>
       </div>
 
@@ -153,7 +155,7 @@ export default function InputForm({ onSubmit }) {
         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">
           Research Mode
         </label>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <label
             className={`border rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${
               researchMode === 'demand_validation'
@@ -190,6 +192,25 @@ export default function InputForm({ onSubmit }) {
             <div>
               <div className="font-medium text-slate-900 dark:text-slate-100">Market Research</div>
               <div className="text-sm text-slate-500 dark:text-slate-400">Map a market's structure, economics, and GTM dynamics across 10 categories.</div>
+            </div>
+          </label>
+          <label
+            className={`border rounded-lg p-4 cursor-pointer flex items-start gap-3 transition-colors ${
+              researchMode === 'competitive_table'
+                ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600'
+            }`}
+          >
+            <input
+              type="radio"
+              name="research_mode"
+              checked={researchMode === 'competitive_table'}
+              onChange={() => setResearchMode('competitive_table')}
+              className="mt-1 accent-purple-600"
+            />
+            <div>
+              <div className="font-medium text-slate-900 dark:text-slate-100">Competitive Table</div>
+              <div className="text-sm text-slate-500 dark:text-slate-400">Build a dynamic competitor matrix with tiered research depth. No category reports.</div>
             </div>
           </label>
         </div>
@@ -376,7 +397,7 @@ export default function InputForm({ onSubmit }) {
               </div>
             </div>
 
-            <div className="space-y-3">
+            {researchMode !== 'competitive_table' && <div className="space-y-3">
               <label className="block text-sm text-slate-600 dark:text-slate-400">Categories to Run</label>
               {Object.entries(categoryPhases).map(([phase, cats]) => (
                 <div key={phase}>
@@ -397,7 +418,7 @@ export default function InputForm({ onSubmit }) {
                   </div>
                 </div>
               ))}
-            </div>
+            </div>}
           </div>
         )}
       </section>
@@ -410,10 +431,16 @@ export default function InputForm({ onSubmit }) {
                      hover:bg-blue-700 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed
                      transition-colors text-sm"
         >
-          {submitting ? 'Starting...' : 'Start Research'}
+          {submitting
+            ? 'Starting...'
+            : researchMode === 'competitive_table'
+              ? 'Build Competitive Table'
+              : 'Start Research'}
         </button>
         <span className="text-xs text-slate-400 dark:text-slate-500">
-          Estimated: 30-90 minutes &middot; $12-22
+          {researchMode === 'competitive_table'
+            ? 'Estimated: 15-45 minutes'
+            : 'Estimated: 30-90 minutes \u00B7 $12-22'}
         </span>
       </div>
     </form>

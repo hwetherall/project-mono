@@ -102,6 +102,8 @@ class ResearchRunner:
         self.only_categories = set(only_categories) if only_categories else None
         self.research_mode = research_mode
         self.run_id = run_id
+        self.competitive_table = None
+        self.competitive_table_status = None  # pending | building | complete | failed
 
         # Select the correct category classes and registry based on mode
         if self.research_mode == "market_research":
@@ -125,6 +127,9 @@ class ResearchRunner:
             plan = get_execution_plan()
 
         total_start = time.time()
+
+        # Phase 0: Build Competitive Table (before category phases)
+        await self._build_competitive_table()
 
         for phase_info in plan:
             phase_name = phase_info["phase_name"]
@@ -223,6 +228,9 @@ class ResearchRunner:
                     competitors=self.context.named_competitors,
                     segments=getattr(self.context, 'buyer_segments', []),
                 )
+            # Inject competitive table if available
+            if self.competitive_table and hasattr(category, 'inject_competitive_table'):
+                category.inject_competitive_table(self.competitive_table)
 
         try:
             result = await asyncio.wait_for(
@@ -317,3 +325,209 @@ class ResearchRunner:
     def _filter_by_priority(self, category_ids: list[str]) -> list[str]:
         """Optionally filter out low-priority categories. V1: run everything."""
         return category_ids
+
+    async def _build_competitive_table(self):
+        """Phase 0: Build the Competitive Table before category phases."""
+        import json
+        import logging
+        from datetime import datetime, timezone
+        from config.settings import OUTPUT_DIR, GPTR_CONFIG_DIR, CATEGORY_TIMEOUT_SECONDS
+
+        logger = logging.getLogger(__name__)
+
+        self.competitive_table_status = "pending"
+
+        # Check for existing completed table checkpoint
+        if self.run_id:
+            from orchestrator.checkpoints import load_checkpoint
+            ct_checkpoint = load_checkpoint(self.run_id, "CT-complete")
+            if ct_checkpoint and ct_checkpoint.get("stage") == "finalized":
+                try:
+                    from competitive_table.models import CompetitiveTable
+                    table_path = OUTPUT_DIR / self.run_id / "competitive_table.json"
+                    if table_path.exists():
+                        table_data = json.loads(table_path.read_text(encoding="utf-8"))
+                        self.competitive_table = CompetitiveTable.model_validate(table_data)
+                        self.competitive_table_status = "complete"
+                        self._enrich_context_from_table()
+                        self.progress.log("Competitive table loaded from checkpoint")
+                        return
+                except Exception as exc:
+                    logger.warning("Failed to load table from checkpoint: %s", exc)
+
+        try:
+            self.competitive_table_status = "building"
+
+            from competitive_table.models import CompetitiveTable, CompetitiveTableSchema
+            from competitive_table.schema_generator import generate_table_schema
+            from competitive_table.competitor_discovery import discover_competitors
+            from competitive_table.table_populator import populate_table, populate_venture_column
+            from competitive_table.table_validator import compute_metadata, validate_and_summarize
+
+            config_path = str(GPTR_CONFIG_DIR / "deep_landscape.json")
+            table_start = time.time()
+
+            # Emit progress
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                self.progress.emit_competitive_table_status("building", "schema_generation")
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Generating competitive framework for {self.context.industry_vertical}...", "info"
+                )
+
+            # Step 1: Schema generation
+            schema = generate_table_schema(self.context)
+            self._save_ct_checkpoint("CT-schema", schema.model_dump())
+
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                self.progress.emit_competitive_table_status("building", "competitor_discovery")
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Discovering competitors in {self.context.industry_vertical}...", "info"
+                )
+
+            # Step 2: Competitor discovery
+            competitors = await asyncio.wait_for(
+                discover_competitors(self.context, schema, config_path),
+                timeout=CATEGORY_TIMEOUT_SECONDS,
+            )
+            self._save_ct_checkpoint("CT-discovery", {
+                "competitors": [c.model_dump() for c in competitors],
+            })
+
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                self.progress.emit_competitive_table_status(
+                    "building", "competitor_discovery", found=len(competitors)
+                )
+            if hasattr(self.progress, 'emit_log_detail'):
+                tier_counts = {}
+                for c in competitors:
+                    tier_counts[c.tier] = tier_counts.get(c.tier, 0) + 1
+                tier_str = ", ".join(f"Tier {t}: {n}" for t, n in sorted(tier_counts.items()))
+                self.progress.emit_log_detail(
+                    f"Found {len(competitors)} competitors ({tier_str})", "info"
+                )
+
+            # Step 3: Table population
+            def progress_callback(step, completed, total):
+                if hasattr(self.progress, 'emit_competitive_table_status'):
+                    self.progress.emit_competitive_table_status(
+                        "building", step, completed=completed, total=total
+                    )
+
+            populated = await populate_table(
+                competitors, schema.attributes, self.context, config_path,
+                progress_callback=progress_callback,
+                run_id=self.run_id,
+            )
+
+            # Step 4: Venture column
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail("Populating venture column from brief...", "info")
+
+            venture_brief_text = ""
+            brief_path = self.venture_docs_dir / "venture_brief.md"
+            if brief_path.exists():
+                venture_brief_text = brief_path.read_text(encoding="utf-8")
+
+            venture_entry = await populate_venture_column(
+                self.context, schema.attributes, venture_brief_text
+            )
+
+            # Build the table
+            research_time = time.time() - table_start
+            table = CompetitiveTable(
+                table_id=self.run_id or "local",
+                venture_name=self.context.venture_name,
+                industry=self.context.industry_vertical,
+                geography=self.context.geography,
+                generated_at=datetime.now(timezone.utc).isoformat(),
+                attributes=schema.attributes,
+                competitors=populated,
+                venture_entry=venture_entry,
+                attribute_groups=schema.attribute_groups,
+                metadata=compute_metadata(
+                    CompetitiveTable(
+                        table_id=self.run_id or "local",
+                        venture_name=self.context.venture_name,
+                        industry=self.context.industry_vertical,
+                        geography=self.context.geography,
+                        attributes=schema.attributes,
+                        competitors=populated,
+                        venture_entry=venture_entry,
+                        attribute_groups=schema.attribute_groups,
+                    ),
+                    research_time,
+                ),
+            )
+            table.metadata.rationale = schema.rationale
+
+            # Step 5: Validation & summary
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail("Validating competitive table...", "info")
+
+            await validate_and_summarize(table)
+
+            # Save table to disk
+            if self.run_id:
+                table_dir = OUTPUT_DIR / self.run_id
+                table_dir.mkdir(parents=True, exist_ok=True)
+                table_path = table_dir / "competitive_table.json"
+                table_path.write_text(
+                    table.model_dump_json(indent=2),
+                    encoding="utf-8",
+                )
+                self._save_ct_checkpoint("CT-complete", {"stage": "finalized"})
+
+            self.competitive_table = table
+            self.competitive_table_status = "complete"
+            self._enrich_context_from_table()
+
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                self.progress.emit_competitive_table_status(
+                    "complete", "done",
+                    competitors=len(table.competitors),
+                    attributes=len(table.attributes),
+                    coverage=table.metadata.coverage_percent,
+                )
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Competitive table complete: {len(table.competitors)} competitors, "
+                    f"{len(table.attributes)} attributes, {table.metadata.coverage_percent:.0f}% coverage",
+                    "success",
+                )
+
+        except Exception as exc:
+            self.competitive_table_status = "failed"
+            logger.warning("Competitive table construction failed: %s", exc, exc_info=True)
+            if hasattr(self.progress, 'emit_competitive_table_status'):
+                self.progress.emit_competitive_table_status("failed", "error")
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Competitive table failed (non-blocking): {exc}", "warning"
+                )
+            # Non-blocking: existing pipeline continues without the table
+
+    def _enrich_context_from_table(self):
+        """Update ContextSignals with competitor names from the table."""
+        if not self.competitive_table:
+            return
+        table_names = [c.name for c in self.competitive_table.competitors]
+        self.context.named_competitors = list(set(
+            self.context.named_competitors + table_names
+        ))
+        self.competitor_list = list(self.context.named_competitors)
+
+    def _save_ct_checkpoint(self, checkpoint_id: str, data: dict):
+        """Save a competitive table checkpoint."""
+        if not self.run_id:
+            return
+        try:
+            import json
+            from config.settings import OUTPUT_DIR
+            cp_dir = OUTPUT_DIR / self.run_id / "checkpoints"
+            cp_dir.mkdir(parents=True, exist_ok=True)
+            cp_path = cp_dir / f"{checkpoint_id}.json"
+            cp_path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
+        except Exception:
+            pass

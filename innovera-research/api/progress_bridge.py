@@ -132,6 +132,35 @@ class WebSocketProgressBridge:
             "message": message,
         })
 
+    def emit_competitive_table_status(
+        self, status: str, step: str,
+        found: int | None = None,
+        completed: int | None = None,
+        total: int | None = None,
+        competitors: int | None = None,
+        attributes: int | None = None,
+        coverage: float | None = None,
+    ):
+        """Emit a competitive table construction progress event."""
+        event = {
+            "type": "competitive_table_status",
+            "status": status,
+            "step": step,
+        }
+        if found is not None:
+            event["found"] = found
+        if completed is not None:
+            event["completed"] = completed
+        if total is not None:
+            event["total"] = total
+        if competitors is not None:
+            event["competitors"] = competitors
+        if attributes is not None:
+            event["attributes"] = attributes
+        if coverage is not None:
+            event["coverage"] = coverage
+        self._emit_sync(event)
+
     def _get_category_name(self, category_id: str) -> str:
         try:
             from evidence_categories.registry import CATEGORY_REGISTRY

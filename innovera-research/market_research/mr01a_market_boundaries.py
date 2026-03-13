@@ -16,6 +16,15 @@ class MR01aMarketBoundaries(MRBaseCategory):
     def category_name(self) -> str:
         return "Market Definition & Boundaries"
 
+    @property
+    def extraction_schema(self) -> dict | None:
+        return {
+            "market_terms_extracted": "List of canonical market labels and search terms discovered",
+            "market_boundaries": "Description of what is included and excluded from this market",
+            "adjacent_markets": "List of adjacent or overlapping markets",
+            "market_maturity": "Stage of market development (nascent, emerging, growing, mature, declining)",
+        }
+
     def build_query(self) -> str:
         ctx = self._market_context_block()
         geo = self.context.geography

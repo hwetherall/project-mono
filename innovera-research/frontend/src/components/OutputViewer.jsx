@@ -5,6 +5,7 @@ import VerdictDashboard from './VerdictDashboard';
 import ReportSidebar from './ReportSidebar';
 import ReportSearch from './ReportSearch';
 import SourcePanel, { SourceChips } from './SourcePanel';
+import CompetitiveTable from './CompetitiveTable';
 
 export default function OutputViewer({ run, onNewRun, historicalRunId }) {
   const [structuredData, setStructuredData] = useState(null);
@@ -109,18 +110,22 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
           {structuredData?.venture_name || 'Research Results'}
         </h2>
         <div className="flex gap-2">
-          <button
-            onClick={() => handleDownload('markdown')}
-            className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
-          >
-            Download MD
-          </button>
-          <button
-            onClick={() => handleDownload('yaml')}
-            className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
-          >
-            Download YAML
-          </button>
+          {structuredData?.categories?.length > 0 && (
+            <>
+              <button
+                onClick={() => handleDownload('markdown')}
+                className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
+              >
+                Download MD
+              </button>
+              <button
+                onClick={() => handleDownload('yaml')}
+                className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
+              >
+                Download YAML
+              </button>
+            </>
+          )}
           <button
             onClick={() => window.print()}
             className="px-3 py-1.5 text-sm border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition-colors"
@@ -155,6 +160,7 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
             <ReportSidebar
               categories={structuredData.categories}
               activeSection={activeSection}
+              hasCompetitiveTable={!!structuredData.competitive_table}
             />
           </div>
         )}
@@ -205,6 +211,11 @@ export default function OutputViewer({ run, onNewRun, historicalRunId }) {
                 )}
               </div>
             </div>
+          )}
+
+          {/* Competitive Table */}
+          {structuredData?.competitive_table && (
+            <CompetitiveTable table={structuredData.competitive_table} />
           )}
 
           {/* Category Sections */}

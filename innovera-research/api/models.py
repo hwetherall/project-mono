@@ -39,7 +39,7 @@ class ResearchRequest(BaseModel):
         ge=1, le=6,
         description="Max parallel categories per phase."
     )
-    research_mode: Literal["demand_validation", "market_research"] = Field(
+    research_mode: Literal["demand_validation", "market_research", "competitive_table"] = Field(
         default="demand_validation",
         description="Which research pipeline to run."
     )
@@ -73,3 +73,5 @@ class RunStatus(BaseModel):
     elapsed_seconds: float
     output_files: list[str]
     error: str | None = None
+    competitive_table_status: str | None = None  # pending | building | complete | failed
+    competitive_table_progress: str | None = None  # e.g. "5/18 competitors populated"

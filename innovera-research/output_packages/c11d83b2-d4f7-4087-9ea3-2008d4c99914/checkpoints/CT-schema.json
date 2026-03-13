@@ -1,0 +1,327 @@
+{
+  "attributes": [
+    {
+      "attribute_id": "name",
+      "name": "Company Name",
+      "description": "Legal or operating name of the competitor entity.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "description",
+      "name": "Company Description",
+      "description": "Brief narrative of what the company does and its core business model in the storage/cleantech space.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "year_founded",
+      "name": "Year Founded",
+      "description": "Year the company was established.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "hq_location",
+      "name": "HQ Location",
+      "description": "Primary headquarters city and state.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "employee_count",
+      "name": "Employee Count",
+      "description": "Approximate number of full-time employees.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_estimate",
+      "name": "Revenue Estimate",
+      "description": "Estimated annual revenue or AUM in development pipeline (USD).",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "funding_raised",
+      "name": "Funding / Capital Backing",
+      "description": "Total equity raised, credit facility size, or parent company backing \u2014 relevant to development pipeline capacity.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "primary_business_model",
+      "name": "Primary Business Model",
+      "description": "Core model: develop-and-sell, develop-own-operate, EPC contractor, IPP, technology provider, or hybrid.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_market_presence",
+      "name": "NY Market Presence",
+      "description": "Active presence in New York State storage market \u2014 number of deployed or in-development NY projects.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_deployed_mw",
+      "name": "NY Deployed / Pipeline MW",
+      "description": "Estimated megawatts of BESS capacity deployed or in active NY pipeline.",
+      "group": "market_position",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "target_buyer_segment",
+      "name": "Target Buyer / Off-taker",
+      "description": "Primary customer or off-taker type: IPP, utility, municipality, C&I end-user, or own balance sheet.",
+      "group": "market_position",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "project_scale_focus",
+      "name": "Project Scale Focus (MW)",
+      "description": "Typical project size range pursued \u2014 distributed (<10 MW), mid-scale (10\u2013100 MW), or utility-scale (>100 MW).",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "storage_standalone_vs_hybrid",
+      "name": "Standalone vs. Solar+Storage Hybrid",
+      "description": "Whether competitor pursues standalone BESS, solar+storage hybrid, or both configurations.",
+      "group": "market_position",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "nyiso_participation",
+      "name": "NYISO Market Participation",
+      "description": "Depth of NYISO engagement: capacity market (UCAP), ancillary services (regulation, spinning reserves), energy arbitrage, or none.",
+      "group": "ny_regulatory_incentive",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "ny_incentive_program_access",
+      "name": "NY Incentive Program Access",
+      "description": "Demonstrated access to NY-specific incentive programs: NYSERDA TCES, Consolidated Edison BQDM, NY-SUN, or Con Edison/National Grid programs.",
+      "group": "ny_regulatory_incentive",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "itc_utilization",
+      "name": "ITC / Tax Credit Utilization",
+      "description": "Approach to monetizing federal Investment Tax Credit (ITC) and IRA adders \u2014 own tax appetite, tax equity partnership, transferability.",
+      "group": "ny_regulatory_incentive",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "interconnection_queue_experience",
+      "name": "NY Interconnection Queue Experience",
+      "description": "Track record navigating NYISO or Con Edison/NYSEG distribution interconnection queues for storage projects.",
+      "group": "ny_regulatory_incentive",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "permitting_siting_capability",
+      "name": "NY Permitting & Siting Capability",
+      "description": "In-house or proven external capability for Article 10/Article 94 or local permitting processes in NY.",
+      "group": "ny_regulatory_incentive",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "development_pipeline_capacity",
+      "name": "Development Pipeline Capacity",
+      "description": "Estimated number of projects or MW in active development pipeline nationally and in NY.",
+      "group": "project_development_capability",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "site_origination_model",
+      "name": "Site Origination Model",
+      "description": "How competitor sources project sites: proprietary prospecting, broker relationships, landowner outreach, utility partnerships.",
+      "group": "project_development_capability",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "replicability_of_project_model",
+      "name": "Project Model Replicability",
+      "description": "Degree to which competitor has a standardized, repeatable project template (site criteria, configuration, contract structure) enabling multi-site rollout.",
+      "group": "project_development_capability",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "bess_technology_partnerships",
+      "name": "BESS OEM / Technology Partnerships",
+      "description": "Key battery technology suppliers or OEM partners (e.g., Tesla Megapack, Fluence, BYD, CATL, LG, Powin) and exclusivity or preferred terms.",
+      "group": "project_development_capability",
+      "data_type": "list",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "epc_delivery_model",
+      "name": "EPC / Construction Delivery Model",
+      "description": "Whether competitor self-performs EPC, uses a captive EPC subsidiary, or procures from third-party contractors.",
+      "group": "project_development_capability",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ipp_buyer_relationships",
+      "name": "IPP Buyer Relationships",
+      "description": "Established relationships with IPP acquirers active in NY (e.g., AES, Orion, LS Power, Eolian, Spearmint, Key Capture) as repeat buyers.",
+      "group": "commercial_financial",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "project_sale_transaction_track_record",
+      "name": "Develop-and-Sell Transaction Track Record",
+      "description": "Number and MW of storage development projects successfully sold to IPPs or third-party acquirers.",
+      "group": "commercial_financial",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "returns_hurdle_viability",
+      "name": "Demonstrated Returns / IRR Viability",
+      "description": "Evidence (public, inferred, or disclosed) that competitor achieves acceptable project-level or developer returns in distributed NY BESS context.",
+      "group": "commercial_financial",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "revenue_stack_optimization",
+      "name": "Revenue Stack Optimization",
+      "description": "Sophistication in stacking and optimizing multiple NY revenue streams: capacity, ancillary services, energy arbitrage, incentives, demand charge reduction.",
+      "group": "commercial_financial",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "competitive_moat",
+      "name": "Competitive Moat / Differentiation",
+      "description": "Primary source of durable advantage: pipeline depth, policy relationships, proprietary software, balance sheet, brand, technology exclusivity.",
+      "group": "strategic_positioning",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "geographic_focus",
+      "name": "Geographic Focus",
+      "description": "Primary state or regional markets of activity \u2014 NY-focused, Northeast, national, or global.",
+      "group": "strategic_positioning",
+      "data_type": "list",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "solar_storage_integration_capability",
+      "name": "Solar + Storage Integration Capability",
+      "description": "Whether competitor has proven capability to co-develop and co-optimize solar PV and BESS on shared sites, including shared interconnection.",
+      "group": "strategic_positioning",
+      "data_type": "boolean",
+      "priority": "important"
+    }
+  ],
+  "attribute_groups": [
+    {
+      "group_id": "profile",
+      "name": "Company Profile",
+      "attribute_ids": [
+        "name",
+        "description",
+        "year_founded",
+        "hq_location",
+        "employee_count",
+        "revenue_estimate",
+        "funding_raised"
+      ]
+    },
+    {
+      "group_id": "market_position",
+      "name": "NY Market Position & Business Model",
+      "attribute_ids": [
+        "primary_business_model",
+        "ny_market_presence",
+        "ny_deployed_mw",
+        "target_buyer_segment",
+        "project_scale_focus",
+        "storage_standalone_vs_hybrid"
+      ]
+    },
+    {
+      "group_id": "ny_regulatory_incentive",
+      "name": "NY Regulatory, Incentive & Market Access",
+      "attribute_ids": [
+        "nyiso_participation",
+        "ny_incentive_program_access",
+        "itc_utilization",
+        "interconnection_queue_experience",
+        "permitting_siting_capability"
+      ]
+    },
+    {
+      "group_id": "project_development_capability",
+      "name": "Project Development Capability",
+      "attribute_ids": [
+        "development_pipeline_capacity",
+        "site_origination_model",
+        "replicability_of_project_model",
+        "bess_technology_partnerships",
+        "epc_delivery_model"
+      ]
+    },
+    {
+      "group_id": "commercial_financial",
+      "name": "Commercial & Financial Performance",
+      "attribute_ids": [
+        "ipp_buyer_relationships",
+        "project_sale_transaction_track_record",
+        "returns_hurdle_viability",
+        "revenue_stack_optimization"
+      ]
+    },
+    {
+      "group_id": "strategic_positioning",
+      "name": "Strategic Positioning & Differentiation",
+      "attribute_ids": [
+        "competitive_moat",
+        "geographic_focus",
+        "solar_storage_integration_capability"
+      ]
+    }
+  ],
+  "target_competitor_min": 8,
+  "target_competitor_max": 16,
+  "seeded_competitors": [
+    "Key Capture Energy",
+    "Eolian Energy",
+    "Spearmint Energy",
+    "Convergent Energy + Power",
+    "Glidepath Power",
+    "Broad Reach Power",
+    "Hecate Energy",
+    "Orion Energy Partners",
+    "Amp Energy",
+    "National Grid Ventures"
+  ],
+  "rationale": "The NY distributed BESS developer market is moderately concentrated: a small tier of well-capitalized pure-play storage developers (Key Capture, Eolian, Spearmint, Convergent) have established meaningful NY pipelines, while a secondary tier of solar-storage hybrid developers, IPP subsidiaries, and regional entrants compete for the same distributed-scale sites and NYISO market access. The 8\u201316 range is appropriate because: (1) the distributed sub-10 MW class narrows the field relative to utility-scale \u2014 most national storage developers focus above this threshold; (2) NY's unique regulatory complexity (NYISO, NYSERDA, Article 94, Con Edison territory rules) creates meaningful barriers that filter out less-sophisticated entrants; (3) NEE's develop-and-sell model means the matrix should include both direct development competitors and the IPP buyers who are also sometimes vertical developers, creating a bounded but meaningful competitive set. Fewer than 8 would miss important regional players; more than 16 would dilute signal with peripheral participants who are not true analogs to NEE's specific configuration and buyer target."
+}

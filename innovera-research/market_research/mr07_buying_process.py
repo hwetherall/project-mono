@@ -15,6 +15,17 @@ class MR07BuyingProcess(MRBaseCategory):
     def category_name(self) -> str:
         return "Buying Process, Budget & Pricing"
 
+    @property
+    def extraction_schema(self) -> dict | None:
+        return {
+            "sales_cycle_days": "Average sales cycle length in days",
+            "dmu_size": "Decision-making unit size (number of stakeholders)",
+            "pricing_models": "List of pricing models observed in market",
+            "average_deal_size": "Average deal size or ACV",
+            "churn_rate": "Industry benchmark churn rate if available",
+            "common_objections": "Top buyer objections during sales process",
+        }
+
     def build_query(self) -> str:
         ctx = self._market_context_block()
         geo = self.context.geography

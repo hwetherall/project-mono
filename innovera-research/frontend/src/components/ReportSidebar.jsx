@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export default function ReportSidebar({ categories = [], activeSection }) {
+export default function ReportSidebar({ categories = [], activeSection, hasCompetitiveTable = false }) {
   const sidebarSections = [
     { id: 'section-verdict', label: 'Verdict Dashboard' },
     { id: 'section-summary', label: 'Executive Summary' },
+    ...(hasCompetitiveTable ? [{ id: 'section-competitive-table', label: 'Competitive Landscape' }] : []),
     ...categories.map((cat) => ({
       id: `section-${cat.category_id}`,
       label: `${cat.category_id}: ${cat.category_name}`,

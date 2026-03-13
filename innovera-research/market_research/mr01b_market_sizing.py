@@ -16,6 +16,17 @@ class MR01bMarketSizing(MRBaseCategory):
     def category_name(self) -> str:
         return "Market Sizing & Methodology"
 
+    @property
+    def extraction_schema(self) -> dict | None:
+        return {
+            "tam_estimate": "Total addressable market size with currency and year",
+            "sam_estimate": "Serviceable addressable market size if mentioned",
+            "growth_rate": "Market CAGR or annual growth rate",
+            "market_terms_extracted": "List of market category labels found in report",
+            "key_sources": "List of analyst firms or data sources cited for sizing",
+            "methodology": "Bottom-up vs top-down methodology used",
+        }
+
     def build_query(self) -> str:
         ctx = self._market_context_block()
         geo = self.context.geography

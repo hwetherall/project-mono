@@ -11,6 +11,7 @@ def format_markdown_report(
     package: dict,
     context: ContextSignals,
     results: dict[str, CategoryResult],
+    competitive_table=None,
 ) -> str:
     """Format the evidence package as a human-readable Markdown report."""
     meta = package["research_package"]["metadata"]
@@ -62,6 +63,63 @@ def format_markdown_report(
     sections.append("")
     sections.append(f"**Named Competitors:** {', '.join(context.named_competitors) if context.named_competitors else 'None identified'}")
     sections.append("")
+
+    # Competitive Landscape (if table available)
+    if competitive_table:
+        sections.append("---")
+        sections.append("")
+        sections.append("## Competitive Landscape")
+        sections.append("")
+
+        md = competitive_table.metadata if hasattr(competitive_table, 'metadata') else None
+        if md and md.table_summary:
+            sections.append(md.table_summary)
+            sections.append("")
+
+        # Render the table as a markdown table
+        if competitive_table.attributes and competitive_table.competitors:
+            # Build header
+            all_entries = []
+            if competitive_table.venture_entry:
+                all_entries.append(competitive_table.venture_entry)
+            all_entries.extend(competitive_table.competitors[:15])  # Cap for readability
+
+            header_names = ["Attribute"] + [e.name for e in all_entries]
+            sections.append("| " + " | ".join(header_names) + " |")
+            sections.append("| " + " | ".join(["---"] * len(header_names)) + " |")
+
+            for attr in competitive_table.attributes:
+                row = [f"**{attr.name}**"]
+                for entry in all_entries:
+                    cell = entry.attributes.get(attr.attribute_id)
+                    if cell and cell.value is not None:
+                        val = str(cell.value)
+                        if len(val) > 60:
+                            val = val[:57] + "..."
+                        row.append(val)
+                    else:
+                        row.append("—")
+                sections.append("| " + " | ".join(row) + " |")
+            sections.append("")
+
+        # Strengths / Weaknesses
+        if md and md.venture_strengths:
+            sections.append("### Venture Strengths")
+            for s in md.venture_strengths:
+                sections.append(f"- {s}")
+            sections.append("")
+
+        if md and md.venture_weaknesses:
+            sections.append("### Venture Weaknesses")
+            for w in md.venture_weaknesses:
+                sections.append(f"- {w}")
+            sections.append("")
+
+        if md and md.dangerous_competitors:
+            sections.append("### Most Dangerous Competitors")
+            for d in md.dangerous_competitors:
+                sections.append(f"- {d}")
+            sections.append("")
 
     # Evidence/Research Categories
     sections.append("---")
