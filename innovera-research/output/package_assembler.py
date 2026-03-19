@@ -21,11 +21,13 @@ class PackageAssembler:
         results: dict[str, CategoryResult],
         output_dir: Path,
         competitive_table=None,
+        consultant_context=None,
     ):
         self.context = context
         self.results = results
         self.output_dir = output_dir
         self.competitive_table = competitive_table
+        self.consultant_context = consultant_context
 
         if context.research_mode == "market_research":
             self.consumption_map = get_mr_consumption_map()
@@ -54,6 +56,7 @@ class PackageAssembler:
         md_content = format_markdown_report(
             package, self.context, self.results,
             competitive_table=self.competitive_table,
+            consultant_context=self.consultant_context,
         )
         md_path.write_text(md_content, encoding="utf-8")
 
@@ -122,5 +125,26 @@ class PackageAssembler:
                     "critical_gaps": critical_gaps,
                     "moderate_gaps": moderate_gaps,
                 },
+                **self._build_consultant_coverage(),
             }
+        }
+
+    def _build_consultant_coverage(self) -> dict:
+        """Build consultant coverage data for the package if available."""
+        if not self.consultant_context or not self.consultant_context.has_consultant_coverage:
+            return {}
+        ctx = self.consultant_context
+        firms: dict[str, int] = {}
+        for s in ctx.sources:
+            firms[s.firm_name] = firms.get(s.firm_name, 0) + 1
+        return {
+            "consultant_coverage": {
+                "total_sources": len(ctx.sources),
+                "firms": firms,
+                "tier1_count": ctx.tier1_count,
+                "tier2_count": ctx.tier2_count,
+                "tier3_count": ctx.tier3_count,
+                "search_queries_used": ctx.search_queries_used,
+                "execution_time_seconds": round(ctx.execution_time_seconds, 1),
+            },
         }

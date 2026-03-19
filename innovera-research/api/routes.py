@@ -276,6 +276,7 @@ async def start_research(request: ResearchRequest):
                 assembler = PackageAssembler(
                     context, results, run_output_dir,
                     competitive_table=getattr(runner, 'competitive_table', None),
+                    consultant_context=getattr(runner, 'consultant_context', None),
                 )
 
                 progress.emit_log_detail("Writing YAML output...", "info")
@@ -563,6 +564,7 @@ async def start_chain(request: ChainRequest):
                         assembler = PackageAssembler(
                             context, results, sub_output_dir,
                             competitive_table=getattr(runner, 'competitive_table', None),
+                            consultant_context=getattr(runner, 'consultant_context', None),
                         )
                         yaml_path, md_path = assembler.assemble()
                         active_runs[sub_run_id]["yaml_path"] = yaml_path

@@ -35,5 +35,11 @@ TOTAL_TIMEOUT_SECONDS = 5400               # 90 min max for entire run
 RATE_LIMIT_MAX_RETRIES = 5                 # Retry attempts on 429 errors
 RATE_LIMIT_BASE_DELAY = 10                 # Base delay in seconds (exponential backoff)
 
+# --- Consultant Primer Config ---
+CONSULTANT_PRIMER_ENABLED = os.getenv("CONSULTANT_PRIMER_ENABLED", "true").lower() == "true"
+CONSULTANT_PRIMER_MAX_SOURCES = int(os.getenv("CONSULTANT_PRIMER_MAX_SOURCES", "20"))
+CONSULTANT_PRIMER_TIMEOUT = int(os.getenv("CONSULTANT_PRIMER_TIMEOUT", "300"))  # 5 minutes
+CONSULTANT_PRIMER_MAX_CONTENT_CHARS = int(os.getenv("CONSULTANT_PRIMER_MAX_CONTENT_CHARS", "50000"))
+
 # --- Output Config ---
 INCLUDE_RAW_REPORTS = True

@@ -124,11 +124,13 @@ class BaseCategory(ABC):
     """
 
     def __init__(self, context: ContextSignals, venture_docs_dir: Path,
-                 run_id: Optional[str] = None, research_mode: str = "demand_validation"):
+                 run_id: Optional[str] = None, research_mode: str = "demand_validation",
+                 consultant_context=None):
         self.context = context
         self.venture_docs_dir = venture_docs_dir
         self.run_id = run_id
         self.research_mode = research_mode
+        self.consultant_context = consultant_context  # Optional[ConsultantContext]
 
     @property
     @abstractmethod
@@ -236,6 +238,11 @@ class BaseCategory(ABC):
             import os
             os.environ["DOC_PATH"] = str(self.venture_docs_dir)
             researcher_kwargs["report_source"] = "hybrid"
+
+        # Inject consultant context if available
+        if self.consultant_context and self.consultant_context.has_consultant_coverage:
+            consultant_text = self.consultant_context.get_context_text(max_chars=40000)
+            researcher_kwargs["context"] = [consultant_text]
 
         # Stage: research_started
         self._save_checkpoint("research_started", query=query, config_path=config_path, report_type=report_type)

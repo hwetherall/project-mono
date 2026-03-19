@@ -90,7 +90,10 @@ def main():
 
     # --- Step 3: Package Assembly ---
     console.print("\n[bold]Step 3: Assembling evidence package...[/bold]")
-    assembler = PackageAssembler(context, results, output_dir)
+    assembler = PackageAssembler(
+        context, results, output_dir,
+        consultant_context=runner.consultant_context,
+    )
     yaml_path, md_path = assembler.assemble()
 
     console.print(f"\n[bold green]+ Evidence package generated:[/bold green]")

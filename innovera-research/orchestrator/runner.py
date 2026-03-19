@@ -17,7 +17,7 @@ from market_research.registry import (
 )
 from orchestrator.phases import get_execution_plan, get_mr_execution_plan
 from orchestrator.progress import ProgressTracker
-from config.settings import MAX_CONCURRENT_CATEGORIES, CATEGORY_TIMEOUT_SECONDS
+from config.settings import MAX_CONCURRENT_CATEGORIES, CATEGORY_TIMEOUT_SECONDS, CONSULTANT_PRIMER_ENABLED
 from orchestrator.checkpoints import load_checkpoint, mark_checkpoint_error, is_resumable
 
 # Import all EC category classes
@@ -105,6 +105,7 @@ class ResearchRunner:
         self.run_id = run_id
         self.competitive_table = competitive_table
         self.competitive_table_status = "complete" if competitive_table else None
+        self.consultant_context = None  # Populated by _run_consultant_primer()
 
         # Select the correct category classes and registry based on mode
         if self.research_mode == "market_research":
@@ -128,6 +129,9 @@ class ResearchRunner:
             plan = get_execution_plan()
 
         total_start = time.time()
+
+        # Pre-Phase: Consultant Primer (before everything else)
+        await self._run_consultant_primer()
 
         # Phase 0: Build Competitive Table (before category phases)
         await self._build_competitive_table()
@@ -211,6 +215,7 @@ class ResearchRunner:
             venture_docs_dir=self.venture_docs_dir,
             run_id=self.run_id,
             research_mode=self.research_mode,
+            consultant_context=self.consultant_context,
         )
 
         # Demand validation: inject competitor list for Phase 2 categories
@@ -326,6 +331,60 @@ class ResearchRunner:
     def _filter_by_priority(self, category_ids: list[str]) -> list[str]:
         """Optionally filter out low-priority categories. V1: run everything."""
         return category_ids
+
+    async def _run_consultant_primer(self):
+        """Pre-Phase: Search consulting firm domains and extract insights."""
+        import json as _json
+        import logging
+
+        _logger = logging.getLogger(__name__)
+
+        if not CONSULTANT_PRIMER_ENABLED:
+            self.progress.log("Consultant primer disabled, skipping")
+            return
+
+        # Check for existing checkpoint
+        if self.run_id:
+            cp = load_checkpoint(self.run_id, "CONSULTANT-PRIMER")
+            if cp and cp.get("stage") == "completed":
+                try:
+                    from consultant_primer.models import ConsultantContext
+                    self.consultant_context = ConsultantContext.model_validate(
+                        cp.get("payload", {})
+                    )
+                    self.progress.log(
+                        f"Consultant primer loaded from checkpoint: "
+                        f"{self.consultant_context.coverage_summary}"
+                    )
+                    return
+                except Exception as exc:
+                    _logger.warning("Failed to load consultant primer checkpoint: %s", exc)
+
+        try:
+            from consultant_primer.primer import run_consultant_primer
+            from consultant_primer.models import ConsultantContext
+
+            self.consultant_context = await run_consultant_primer(
+                context=self.context,
+                progress=self.progress,
+            )
+
+            # Save checkpoint
+            if self.run_id:
+                self._save_ct_checkpoint("CONSULTANT-PRIMER", {
+                    "stage": "completed",
+                    "payload": self.consultant_context.model_dump(),
+                })
+
+        except Exception as exc:
+            _logger.warning("Consultant primer failed (non-blocking): %s", exc, exc_info=True)
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Consultant primer failed (non-blocking): {exc}", "warning"
+                )
+            else:
+                self.progress.log(f"Consultant primer failed (non-blocking): {exc}")
+            # Graceful degradation: continue without consultant context
 
     async def _build_competitive_table(self):
         """Phase 0: Build the Competitive Table before category phases."""

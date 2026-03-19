@@ -12,6 +12,7 @@ def format_markdown_report(
     context: ContextSignals,
     results: dict[str, CategoryResult],
     competitive_table=None,
+    consultant_context=None,
 ) -> str:
     """Format the evidence package as a human-readable Markdown report."""
     meta = package["research_package"]["metadata"]
@@ -63,6 +64,25 @@ def format_markdown_report(
     sections.append("")
     sections.append(f"**Named Competitors:** {', '.join(context.named_competitors) if context.named_competitors else 'None identified'}")
     sections.append("")
+
+    # Consultant & Analyst Coverage
+    if consultant_context and consultant_context.has_consultant_coverage:
+        sections.append("## Consultant & Analyst Coverage")
+        sections.append("")
+
+        # Firm breakdown
+        firms: dict[str, int] = {}
+        for s in consultant_context.sources:
+            firms[s.firm_name] = firms.get(s.firm_name, 0) + 1
+        firm_str = ", ".join(f"{name}: {count}" for name, count in sorted(firms.items()))
+
+        sections.append(f"**Sources found:** {len(consultant_context.sources)} ({firm_str})")
+        sections.append(f"**Tier 1 (MBB):** {consultant_context.tier1_count} sources")
+        sections.append(f"**Tier 2 (Big Four+):** {consultant_context.tier2_count} sources")
+        sections.append(f"**Tier 3 (Analyst):** {consultant_context.tier3_count} sources")
+        sections.append("")
+        sections.append("Key findings pre-loaded into all categories from these sources.")
+        sections.append("")
 
     # Competitive Landscape (if table available)
     if competitive_table:

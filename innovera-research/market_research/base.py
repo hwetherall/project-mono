@@ -15,8 +15,10 @@ class MRBaseCategory(BaseCategory):
     """
 
     def __init__(self, context: ContextSignals, venture_docs_dir: Path,
-                 run_id: str | None = None, research_mode: str = "market_research"):
-        super().__init__(context, venture_docs_dir, run_id=run_id, research_mode=research_mode)
+                 run_id: str | None = None, research_mode: str = "market_research",
+                 consultant_context=None):
+        super().__init__(context, venture_docs_dir, run_id=run_id, research_mode=research_mode,
+                         consultant_context=consultant_context)
         self.market_definition_terms: list[str] = []
         self.known_competitors: list[str] = []
         self.known_segments: list[str] = []
