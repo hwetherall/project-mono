@@ -1,0 +1,628 @@
+{
+  "stage": "completed",
+  "payload": {
+    "sources": [
+      {
+        "url": "https://www.bain.com/insights/medtech-m-and-a-report-2026/",
+        "title": "M&A in Medtech: The Boom in Portfolio Reshaping",
+        "firm_name": "Bain",
+        "tier": 1,
+        "publication_date": "2026-01",
+        "raw_content_length": 8293,
+        "key_facts": [
+          "Medtech deal value rose year over year and rebounded above pre-2023 levels in 2025, bolstered by renewed strategic confidence and several large transactions.",
+          "Spin-offs and divestitures accounted for more than one-third of strategic deal value in the first 11 months of 2025, a noticeable increase from the previous five-year average.",
+          "The second half of 2025 nearly doubled first-half deal value as valuations continued to decline.",
+          "Bain research finds that across industries, 50% of companies pursuing a separation fail to create any new shareholder value after two years.",
+          "25% of companies pursuing a separation destroy a significant amount of shareholder value in the process.",
+          "Top-quartile companies that succeed in carve-outs substantially outperform by having a clear separation thesis and a sustainable roadmap to value creation.",
+          "Waters acquired BD's biosciences and diagnostics businesses as one of the large headline deals in 2025.",
+          "Stryker acquired Inari Medical as another large headline deal in 2025.",
+          "BD separated its biosciences and diagnostics solutions businesses to streamline its portfolio and accelerate performance in core markets.",
+          "Solventum divested its purification and filtration unit to support debt reduction and sharpen focus on core operations.",
+          "Medtronic and Johnson & Johnson announced activity signaling a broader shift toward portfolio focus and category leadership.",
+          "Robust dealmaking is expected to continue into 2026.",
+          "Softer valuations in 2026 will intensify competition for quality assets, making speed, conviction, and disciplined execution essential.",
+          "Serial, targeted, capability-building deals that sharpen a company's edge in robotics, diagnostics, or imaging can often be more effective in increasing category leadership than headline acquisitions."
+        ],
+        "market_data_points": [
+          "Spin-offs and divestitures represented more than one-third (>33%) of strategic medtech deal value in the first 11 months of 2025.",
+          "Second-half 2025 medtech deal value nearly doubled first-half 2025 deal value.",
+          "50% of companies pursuing a separation fail to create any new shareholder value after two years, based on Bain cross-industry research.",
+          "25% of companies pursuing a separation destroy a significant amount of shareholder value within two years."
+        ],
+        "trend_signals": [
+          "Portfolio reshaping through spin-offs and divestitures is accelerating in medtech, with activity from BD, Solventum, Medtronic, and Johnson & Johnson signaling continued momentum into 2026.",
+          "Category leadership\u2014not deal size\u2014is increasingly defining winners in medtech M&A.",
+          "Softer valuations in 2026 are expected to intensify competition for high-quality medtech assets.",
+          "Serial, targeted, capability-building acquisitions in focused areas such as robotics, diagnostics, and imaging are becoming a preferred strategy over large headline deals.",
+          "Medtech leaders are increasingly asking whether assets belong in their core portfolio and whether a different owner could create more value.",
+          "Carve-out capability\u2014including separating manufacturing and supply chains, disentangling quality systems, and minimizing stranded costs\u2014is becoming a critical competency for medtech companies.",
+          "Medtech deal momentum is expected to continue into 2026, driven by strategic confidence and valuation opportunities."
+        ],
+        "competitive_mentions": [
+          "Waters acquired BD's biosciences and diagnostics businesses.",
+          "Stryker acquired Inari Medical.",
+          "BD separated its biosciences and diagnostics solutions businesses to focus on core markets.",
+          "Solventum divested its purification and filtration unit.",
+          "Medtronic announced portfolio restructuring activity signaling a shift toward category leadership.",
+          "Johnson & Johnson announced portfolio restructuring activity signaling a shift toward category leadership."
+        ],
+        "regulatory_mentions": [],
+        "relevance_score": 0.25
+      },
+      {
+        "url": "https://www.pwc.com/us/en/industries/health-industries/library/future-of-medtech.html",
+        "title": "Future of medtech: Orchestrating the next evolution ...",
+        "firm_name": "PwC",
+        "tier": 2,
+        "publication_date": "null",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "By 2035, medtech companies are poised to be defined not just by the devices they make, but by the ecosystems they enable.",
+          "Medtech companies are increasingly positioned to act as orchestrators of outcomes by connecting patients, providers, payers, pharma, technology partners, and others through data and intelligent systems.",
+          "Medtech is positioned at the intersection of diagnostics, devices, and data, uniquely equipped to design the infrastructure, standards, and governance that link technology to patient care.",
+          "Robotics, intelligent sensors, and agentic AI are expected to fundamentally change how patient care is delivered and how caregivers are enabled.",
+          "In hospitals, surgical robots integrate imaging and analytics to guide decisions in real time.",
+          "At home, AI-enabled systems support daily care, guiding patients safely and independently under virtual oversight and targeted caregiver interventions.",
+          "Healthcare generates an estimated 30 percent of the world's data, with a single hospital producing as much as 50 petabytes each year.",
+          "Up to 97 percent of healthcare data goes unused, and roughly 80 percent remains unstructured, limiting its value for clinical or operational decision-making.",
+          "Next-generation BCI and neuromodulation platforms convert brain or nerve activity into digital signals that guide continuous monitoring, adaptive therapy, and personalized rehabilitation.",
+          "Connected implants and wearable sensors capture movement and recovery data, linking patients, clinicians, and care teams to track outcomes and optimize rehabilitation in real time.",
+          "Cross-category integrations are connecting continuous glucose, sleep, and activity data to create comprehensive health profiles enabling both clinical oversight and patient self-management.",
+          "AI-enabled cardiac and pulmonary monitoring programs are reducing hospital readmissions for heart failure and COPD by detecting deterioration early and triggering proactive virtual interventions.",
+          "Continuous data from connected devices becomes the foundation of modern evidence generation, capturing safety, efficacy, and performance in real-world settings.",
+          "The medtech industry's next opportunity is to evolve from supplying devices to linking proven hospital strengths to the wider health ecosystem.",
+          "Success in medtech ecosystems will depend on shared governance, open standards, and ethical frameworks that ensure automation enhances rather than replaces human judgment."
+        ],
+        "market_data_points": [
+          "Healthcare cost annual growth is approaching 8%.",
+          "The U.S. could face a shortfall of nearly 200,000 physicians by 2037.",
+          "A third of consumers report delaying or skipping needed care due to affordability.",
+          "Healthcare generates an estimated 30 percent of the world's data.",
+          "A single hospital produces as much as 50 petabytes of data each year.",
+          "Up to 97 percent of healthcare data goes unused.",
+          "Roughly 80 percent of healthcare data remains unstructured."
+        ],
+        "trend_signals": [
+          "Medtech companies are transitioning from standalone device manufacturers to ecosystem orchestrators by 2035.",
+          "Care is shifting from centralized facility-based delivery to a distributed, automated, and connected model.",
+          "Connected wearables are detecting health risks and prompting intervention before symptoms appear.",
+          "Interoperable platforms built on open standards such as FHIR are enabling real-time clinical and operational decision-making.",
+          "Next-generation devices and diagnostics will not only measure but interpret, communicate, and adapt.",
+          "Value-based reimbursement models are changing what it means to be 'innovative' in medtech.",
+          "Continuous glucose monitoring is being integrated with sleep and activity data to create comprehensive metabolic health profiles.",
+          "Brain-computer interfaces and neuromodulation platforms are emerging as connected systems for adaptive therapy and personalized rehabilitation.",
+          "Embedded sensing, ambient AI, integrated robotics, and connected workflows are converging as key hospital ecosystem dynamics.",
+          "Predictive tools are being used to manage patient flow, reduce complications, and shorten hospital length of stay.",
+          "The medtech industry is evolving from selling products to enabling systems across the care continuum."
+        ],
+        "competitive_mentions": [],
+        "regulatory_mentions": [
+          "In 2025, U.S. and European authorities introduced guidance that expands the use of real-world data and adaptive artificial intelligence across the medical device lifecycle, from post-market monitoring to iterative improvement.",
+          "Regulatory frameworks in 2025 signal growing acceptance of continuous evidence generation, de-identified real-world data, and learning systems that evolve safely over time.",
+          "Regulation is struggling to keep pace with technology, creating pressure for medtech to help shape regulatory frameworks.",
+          "Public funding and value-based reimbursement models are changing reimbursement standards for medical innovation.",
+          "FHIR (Fast Healthcare Interoperability Resources) standards are cited as enabling measurable gains in care coordination, safety, and patient outcomes when adopted."
+        ],
+        "relevance_score": 0.72
+      },
+      {
+        "url": "https://www.pwc.com/us/en/industries/health-industries/medical-technology/medtech-industry-insights.html",
+        "title": "Next in medtech 2025: Prepare to win in the future of health",
+        "firm_name": "PwC",
+        "tier": 2,
+        "publication_date": "2025-01",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "More than $1 trillion of annual US healthcare spend is expected to shift from today's fragmented, infrastructure-heavy model toward digital-first, consumer-centered, and data-powered care.",
+          "The next 12\u201324 months are identified as a critical window for medtech companies to modernize commercial execution, make data AI-ready, reshape operating models, launch ecosystem partnerships, and reshape portfolios.",
+          "Profit pools in medtech are shifting toward product-enabled services, data-driven solutions, and integrated care models where value is created over time.",
+          "The home is becoming the hub for diagnosis, intervention, and recovery in the evolving healthcare model.",
+          "Hospitals are evolving into modular care ports designed for short-stay procedures.",
+          "Virtual teams, remote monitoring, and AI-supported decision-making are extending care far beyond traditional facilities.",
+          "Medtech companies are expected to evolve from stand-alone hardware to intelligent infrastructure.",
+          "Devices are described as moving beyond data collection to enabling real-time diagnostics and insights that guide decision-making across the care continuum.",
+          "Brain-computer interfaces, remote monitoring, robotics, and neuromodulation are identified as next-wave differentiation vectors as software and connectivity advance.",
+          "Medtech data often remains locked in silos, constrained by outdated governance and legacy IT systems, limiting visibility and slowing decisions.",
+          "Leaders in medtech are treating data as a product that is discoverable, consumable, and actively exchanged internally and through a robust data marketplace accessible to partners.",
+          "AI centers of excellence where business, technology, and clinical teams co-design, test, and launch solutions in rapid iterative sprints are identified as a proven accelerator for medtech operating model transformation.",
+          "Leading medtech companies are making deliberate choices about where to compete, where to partner, and how to share value through joint ventures, co-development partnerships, and collaborations with retailers, payers, or digital platforms.",
+          "PwC identifies five foundations for medtech success: data, operating model, ecosystems, portfolio, and commercial excellence.",
+          "Regulatory and reimbursement hurdles are identified as intensifying challenges for medtech leaders.",
+          "AI-native competitors are described as entering the medtech market and redrawing competitive lines.",
+          "Embedded intelligence will link devices directly to care teams, enabling timely interventions whether the patient is at home, in the hospital, or on the move.",
+          "Top-quartile divesting medtech companies achieved superior shareholder returns, based on PwC analysis of 297 transactions between December 31, 2011, and October 31, 2022.",
+          "Medtech companies should become orchestrators of care with diagnostics and therapeutics converging into one seamless, adaptive system.",
+          "Small differences in medtech execution over the next 18 to 24 months are expected to compound into lasting advantages in growth, competitiveness, and investor returns."
+        ],
+        "market_data_points": [
+          "More than $1 trillion of annual US healthcare spend is expected to shift toward digital-first, consumer-centered, and data-powered care models.",
+          "PwC analysis covered 297 transactions between December 31, 2011, and October 31, 2022, examining acquisition and divestiture rates among S&P 500 companies.",
+          "A majority of commercial processes (quoting, contracting, customer service) are targeted to be automated or self-service enabled within 12\u201318 months as a key success indicator.",
+          "The critical action window for medtech transformation is identified as the next 12\u201324 months."
+        ],
+        "trend_signals": [
+          "Shift from hospital-centered to home-centered care as the primary hub for diagnosis, intervention, and recovery.",
+          "Rise of brain-computer interfaces (BCI) as a next-wave medtech differentiation vector alongside remote monitoring, robotics, and neuromodulation.",
+          "Convergence of diagnostics and therapeutics into seamless, adaptive systems.",
+          "Transition of medtech devices from stand-alone hardware to intelligent, connected infrastructure enabling real-time diagnostics.",
+          "Growth of AI-native competitors entering the medtech market.",
+          "Expansion of product-enabled services, data-driven solutions, and integrated care models as the primary profit pool destinations.",
+          "Shift toward ecosystem orchestration models where medtech companies partner with retailers, payers, and digital platforms to create integrated care pathways.",
+          "Industrialization of AI centers of excellence as permanent fixtures in medtech operating models.",
+          "Increasing use of remote monitoring and AI-supported decision-making extending care beyond traditional facilities.",
+          "Growing emphasis on outcome-based revenue models and interoperable technology in medtech partnerships.",
+          "Continuous portfolio reshaping through disciplined M&A and divestitures is becoming a strategic imperative for medtech leaders."
+        ],
+        "competitive_mentions": [
+          "AI-native competitors are entering the medtech market and redrawing competitive lines.",
+          "New entrants and digital platforms are described as redrawing the lines of competition in medtech.",
+          "Data-native competitors are identified as emerging threats to traditional medtech companies.",
+          "Top-quartile divesting companies are outperforming peers in shareholder returns, creating a competitive divide among medtech companies."
+        ],
+        "regulatory_mentions": [
+          "Regulatory and reimbursement hurdles are described as intensifying for medtech companies.",
+          "Faster regulatory approvals are cited as a direct benefit of treating data as an AI-ready product in medtech operations."
+        ],
+        "relevance_score": 0.62
+      },
+      {
+        "url": "https://www.deloitte.com/us/en/Industries/life-sciences-health-care/blogs/health-care/three-key-trends-likely-to-shape-medtech.html",
+        "title": "Three Key Trends Likely to Shape Medtech in 2026",
+        "firm_name": "Deloitte",
+        "tier": 2,
+        "publication_date": "2026-01",
+        "raw_content_length": 14142,
+        "key_facts": [
+          "Medtech portfolio reconstruction is increasingly centered on high-growth, high-margin therapeutic areas including pulsed field ablation, structural heart disease, and neuromodulation.",
+          "Medtech companies are experiencing margin pressure, prompting aggressive restructuring and cost-efficiency programs alongside portfolio realignment.",
+          "The CMS 2026 HOPPS and ASC Payment System final rule adds more than 500 procedures to the ASC Covered Procedures List, including AFib-treating cardiac catheter ablation.",
+          "High-acuity cardiology and spine procedures previously performed exclusively in hospital settings are now eligible for ambulatory surgery centers under the new CMS rule.",
+          "AI is described as becoming a core capability driving advancements across medtech organizations, but execution and adoption remain uneven across the industry.",
+          "Significant challenges in data quality, regulatory compliance, and change management are impeding AI adoption in medtech.",
+          "Industry leaders are investing in data governance, talent, and robust processes as critical enablers to harness AI potential.",
+          "Medtech companies are creating centers of excellence, developing AI playbooks, and standardizing data-management practices across markets.",
+          "Neuromodulation is identified as one of the fastest-growing segments in the medtech industry.",
+          "ASCs typically operate with different cost structures, purchasing behaviors, and value propositions compared to hospitals, requiring medtech companies to rethink commercial and product-delivery models.",
+          "AI capability is described as rapidly becoming the primary competitive differentiator in medtech, with the gap between leaders and laggards expected to compound over time."
+        ],
+        "market_data_points": [
+          "Total medtech deal value reached $32.6 billion by the end of the third quarter of 2025.",
+          "The CMS 2026 final rule adds more than 500 procedures to the ASC Covered Procedures List, announced November 21, 2025.",
+          "Johnson & Johnson announced intent to separate its orthopaedics business on October 14, 2025."
+        ],
+        "trend_signals": [
+          "Portfolio reconstruction toward high-growth, high-margin therapeutic areas such as neuromodulation, pulsed field ablation, and structural heart disease.",
+          "Shift of high-acuity procedures from hospital settings to ambulatory surgery centers, expanding the ASC addressable market.",
+          "AI becoming a primary competitive differentiator in medtech, with consolidation risk for companies lacking AI capabilities.",
+          "Resurgence in medtech M&A activity, with laggards in AI capability becoming acquisition targets.",
+          "Decentralization of medtech sales strategies to reach physician-owners and smaller administrative teams at ASCs.",
+          "Growing emphasis on real-world evidence generation to demonstrate clinical effectiveness and productivity.",
+          "Centralization and standardization of core business processes to enable scalable AI solutions in a historically decentralized sector."
+        ],
+        "competitive_mentions": [
+          "Companies that lack resources to build comprehensive AI capabilities are expected to become acquisition targets, accelerating consolidation.",
+          "Medtronic expanded its board to pursue M&A efficiencies following an activist investor taking a stake (August 19, 2025).",
+          "Johnson & Johnson announced intent to divest its orthopaedics business as part of portfolio realignment."
+        ],
+        "regulatory_mentions": [
+          "CMS 2026 Hospital Outpatient Prospective Payment System (OPPS) and Ambulatory Surgical Center (ASC) Payment System final rule announced November 21, 2025.",
+          "The CMS 2026 final rule adds more than 500 procedures to the ASC Covered Procedures List, including high-acuity cardiology and spine procedures.",
+          "AI regulatory compliance is identified as a significant challenge for medtech companies adopting AI.",
+          "AI systems in medtech must be designed for auditability, with documented verification and validation protocols and formalized human review roles to meet regulatory requirements."
+        ],
+        "relevance_score": 0.45
+      },
+      {
+        "url": "https://www.ey.com/content/dam/ey-unified-site/ey-com/en-us/campaigns/life-sciences/documents/ey-pulse-of-the-industry-2021-v11-single.pdf",
+        "title": "Pulse of the industry: Medical technology report 2021",
+        "firm_name": "EY",
+        "tier": 2,
+        "publication_date": "2021-10",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "MedTech industry achieved record revenues of US$446 billion in 2020, growing for the fourth consecutive year at 6.3%.",
+          "MedTech revenue growth for the first half of 2021 was over 16%, demonstrating sector resiliency.",
+          "MedTech emerging leader companies (revenues below US$500 million) saw a 128% rise in valuations between January 2020 and August 2021.",
+          "MedTech valuations outperformed Pharma and Biotech by more than 50%.",
+          "R&D spending by pure-play MedTechs grew 17.2% to US$23.8 billion in 2020, the highest annual growth rate since before the 2007 financial crisis.",
+          "MedTech companies executed 288 M&A deals in the 12 months ending June 2021, the highest annual number since EY began tracking in 2007.",
+          "US and European VC investment in MedTech reached US$9.1 billion in the 12-month period to June 2021, up 34% over the previous year and the highest level in the past decade.",
+          "Total equity investment in MedTech reached a new peak of US$34 billion, comprising US$9 billion in VC, US$6 billion in IPO, US$4 billion in SPAC, and US$16 billion in follow-on investment.",
+          "The non-imaging-diagnostics segment recorded a 24% annual growth rate in 2020, largely from pandemic-related demand.",
+          "94% of commercial leaders and conglomerates that reported first-half 2021 financials improved their revenues compared to 2020.",
+          "Baxter signed a US$10.5 billion deal to acquire connected care specialist Hillrom in September 2021.",
+          "Philips purchased BioTelemetry, a maker of digital patient monitoring platforms and AI-based analytics, for US$2.8 billion.",
+          "Boston Scientific announced a US$1.3 billion buy-out of Preventice Solutions, which designs remote monitoring services and mobile health solutions for cardiac arrhythmia patients.",
+          "Siemens Healthineers acquired Varian Medical Systems for US$16.4 billion, the largest disclosed deal in the evaluated period.",
+          "The US Centers for Medicare & Medicaid Services introduced the Acute Hospital Care At Home program, which had been adopted by 53 health systems and 116 hospitals across 29 states as of April 2021.",
+          "MedTechs are identified as needing to prioritize enabling patient-centric care outside of hospital and clinic settings, and building data strategies and capabilities.",
+          "COVID-19 has pushed healthcare outside standard delivery channels, accelerating a shift toward home and telehealth settings."
+        ],
+        "market_data_points": [
+          "MedTech global revenues reached a record US$446 billion in 2020.",
+          "MedTech R&D spending grew 17.2% to US$23.8 billion in 2020.",
+          "Total MedTech equity investment reached US$34 billion (US$9b VC, US$6b IPO, US$4b SPAC, US$16b follow-on).",
+          "US and European VC investment in MedTech was US$9.1 billion for the 12-month period to June 2021, up 34% year-over-year.",
+          "MedTech emerging leader valuations grew 128% between January 2020 and August 2021.",
+          "288 MedTech M&A deals were executed in the 12 months ending June 2021.",
+          "Non-imaging diagnostics segment grew 24% annually in 2020.",
+          "First-half 2021 MedTech revenue growth exceeded 16%.",
+          "Baxter acquired Hillrom for US$10.5 billion in September 2021.",
+          "Philips acquired BioTelemetry for US$2.8 billion.",
+          "Boston Scientific acquired Preventice Solutions for US$1.225 billion.",
+          "Tecan Group acquired Paramit for US$1.0 billion."
+        ],
+        "trend_signals": [
+          "Accelerating shift of healthcare delivery from hospitals and clinics to home and telehealth settings.",
+          "Growing demand for connected care and remote patient monitoring technologies.",
+          "MedTechs increasingly prioritizing data strategies and digital capabilities to support patient-centric care.",
+          "Rise of wearable and remote monitoring M&A activity as a strategic priority for large MedTech companies.",
+          "COVID-19 identified as a catalyst permanently accelerating patient-centered technology adoption.",
+          "Increasing investor confidence in MedTech emerging leaders over established commercial leaders.",
+          "Strong rebound in MedTech R&D investment signaling sustained innovation pipeline growth.",
+          "ESG agenda identified as a central forward priority for MedTech companies.",
+          "Supply chain resilience and agility identified as a strategic imperative for MedTechs going forward.",
+          "Regulatory reform identified as a key priority area for the MedTech industry going forward."
+        ],
+        "competitive_mentions": [
+          "Medtronic (partnership with Amazon's distribution network for patient-centered technology delivery).",
+          "Baxter (acquired Hillrom for US$10.5 billion to expand connected care capabilities).",
+          "Philips (acquired BioTelemetry for US$2.8 billion to build patient monitoring scale).",
+          "Boston Scientific (acquired Preventice Solutions for US$1.225 billion for remote cardiac monitoring).",
+          "Siemens Healthineers (acquired Varian Medical Systems for US$16.4 billion in oncology).",
+          "Steris (acquired Cantel Medical for US$4.6 billion for portfolio expansion).",
+          "Roche (acquired GenMark Diagnostics for US$1.8 billion to expand diagnostics portfolio).",
+          "DiaSorin (acquired Luminex for US$1.8 billion for diagnostics portfolio expansion).",
+          "Hologic (acquired Mobidiag for US$808 million to build diagnostics scale).",
+          "Tecan Group (acquired Paramit for US$1.0 billion for surgical tools and diagnostics portfolio expansion).",
+          "Humana (alliance with DispatchHealth to offer around-the-clock home care services)."
+        ],
+        "regulatory_mentions": [
+          "US Centers for Medicare & Medicaid Services (CMS) introduced the Acute Hospital Care At Home program, providing eligible hospitals with regulatory flexibilities to treat patients at home.",
+          "The Acute Hospital Care At Home program had been adopted by 53 health systems and 116 hospitals across 29 states as of April 2021.",
+          "Regulatory reform identified as a central forward priority for the MedTech industry.",
+          "New regulatory and reimbursement models identified as a key strategic focus area for MedTechs."
+        ],
+        "relevance_score": 0.35
+      },
+      {
+        "url": "https://www.deloitte.com/us/en/insights/industry/health-care/life-sciences-and-health-care-industry-outlooks/2026-life-sciences-executive-outlook.html",
+        "title": "2026 Life sciences outlook | Deloitte Insights",
+        "firm_name": "Deloitte",
+        "tier": 2,
+        "publication_date": "2025-12",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "More than 75% of responding biopharma and medtech executives are confident in their own organizations' financial outlooks for 2026.",
+          "Only 41% of surveyed life sciences executives feel optimistic about the health of the global economy.",
+          "Surveyed medtech executives tend to be more optimistic about the future than their biopharma peers, with 81% anticipating revenue growth.",
+          "There is no statistically significant difference between the growth expectations of medtech executives in the United States (84%) and those in several countries outside the United States (78%).",
+          "Only 22% of life sciences leaders said they have successfully scaled AI, and just 9% reported achieving significant returns on these AI efforts.",
+          "One-third of respondents (33%) said connected care delivery is a top trend for 2026, a rise of 15 percentage points year over year.",
+          "35% of respondents cited customer adoption of digital tools as a top trend for 2026.",
+          "Nearly half of respondents (48%) identified accelerated digital transformation as a trend likely to have a substantial impact on their organizations in 2026.",
+          "Concern about geopolitical tensions has risen sharply, with 39% of respondents naming it as a top issue\u2014a jump of 20 percentage points from the prior year.",
+          "The Deloitte 2026 Life Sciences Outlook Survey included 280 C-suite executives from biopharma and medtech companies across the United States, Europe (France, Germany, Switzerland, and the United Kingdom), and Asia (China and Japan).",
+          "90% of biopharma leaders in surveyed European and Asian countries report 'positive' or 'cautiously positive' expectations for 2026.",
+          "83% of biopharma leaders in surveyed European and Asian countries predict steady or strong revenue growth for 2026.",
+          "56% of US-based biopharma leaders express a positive or cautiously positive outlook for 2026, while 27% remain negative or uncertain.",
+          "71% of US biopharma respondents anticipate revenue gains, but 18% foresee a decline.",
+          "A US medtech supply chain executive noted a need to automate processes for customers due to insufficient phlebotomists, lab managers, and people capacity."
+        ],
+        "market_data_points": [
+          "280 C-suite executives from biopharma and medtech companies were surveyed between August and September 2025.",
+          "48% of respondents identified accelerated digital transformation as a substantial impact trend for 2026, a statistically significant increase compared with 2025.",
+          "41% of respondents identified proliferation of generative AI as an influential trend for 2026.",
+          "30% of respondents cited agentic AI as an influential trend, a new survey category in 2026.",
+          "35% of respondents said cybersecurity concerns will affect their strategy in 2026.",
+          "44% of respondents cited pricing and access to medications, therapies, and medical technologies as major strategic considerations for 2026.",
+          "37% of respondents cited increased competitive pressure from generics and biosimilars as a key trend for 2026.",
+          "26% of respondents cited expiration of blockbuster drugs and impending patent cliffs as a key trend for 2026.",
+          "39% of respondents identified geopolitical tensions as a top issue for 2026, a 20 percentage point increase year over year.",
+          "38% of respondents identified inflation, broader economic pressures, and supply chain risks as factors likely to shape organizational strategies in 2026.",
+          "32% of respondents cited evolving customer needs and preferences as a top trend for 2026.",
+          "51% of non-US respondents pointed to national regulatory changes expected to shape organizational strategy in 2026.",
+          "36% of US respondents highlighted FDA and HHS agency restructuring as a key trend.",
+          "39% of US respondents cited economic policy changes, including tariffs, as a key trend for 2026.",
+          "Medtech executives anticipate 81% revenue growth, comparable to biopharma peers outside the US at 83%."
+        ],
+        "trend_signals": [
+          "Accelerated digital transformation is a top organizational trend for life sciences in 2026, cited by nearly half of respondents.",
+          "Agentic AI\u2014AI systems that can act autonomously\u2014is an emerging trend newly tracked in 2026, cited by 30% of respondents.",
+          "Connected care delivery is a rapidly rising trend, up 15 percentage points year over year to 33% of respondents in 2026.",
+          "Geopolitical uncertainty is the fastest-growing concern among life sciences executives, rising 20 percentage points to 39% of respondents.",
+          "Supply chain automation is an emerging priority for medtech companies facing healthcare workforce shortages.",
+          "Life sciences companies are shifting from a US-focused growth strategy toward a more fragmented and complex global operating model.",
+          "Real transformation in 2026 is expected to involve innovative thinking, agile operating models, and robust external partnerships.",
+          "Companies are increasingly weighing nuanced decisions about which products to advance, where to launch them, and how to set prices.",
+          "AI investment in life sciences has not yet achieved broad scale or significant financial returns as of 2025.",
+          "Regulatory and policy influence is the most frequently cited trend expected to shape organizational strategy in 2026."
+        ],
+        "competitive_mentions": [
+          "Increased competitive pressure from generics and biosimilars was cited by 37% of respondents as a key 2026 trend.",
+          "Expiration of blockbuster drugs and impending patent cliffs were cited by 26% of respondents as competitive pressures."
+        ],
+        "regulatory_mentions": [
+          "EU AI Act is cited as a national regulatory change likely to affect market access, pricing, and reimbursement models for non-US life sciences companies.",
+          "Corporate Sustainability Reporting Directive is cited as a regulatory change affecting non-US life sciences companies.",
+          "European Health Data Space is cited as a regulatory development influencing life sciences strategies in Europe.",
+          "China's volume-based procurement program is cited as a regulatory/policy change affecting market access and pricing.",
+          "FDA agency restructuring is cited by 36% of US respondents as a key regulatory trend for 2026.",
+          "HHS agency restructuring is cited by 36% of US respondents as a regulatory concern for 2026.",
+          "US tariffs and economic policy changes are cited by 39% of US respondents as regulatory/policy drivers affecting strategy."
+        ],
+        "relevance_score": 0.35
+      },
+      {
+        "url": "https://www.ey.com/content/dam/ey-unified-site/ey-com/en-us/campaigns/life-sciences/documents/ey-pulse-of-the-industry-medical-technology-report-2022.pdf",
+        "title": "In today's disruptive health care environment, how will ...",
+        "firm_name": "EY",
+        "tier": 2,
+        "publication_date": "2022-10",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "The US and European medical technology industry revenues passed the milestone of half a trillion dollars for the first time in 2021.",
+          "The medtech industry recorded 16% revenue growth in 2021, its highest level since before the 2008 financial crisis.",
+          "Therapeutic devices\u2014the largest medtech segment\u2014grew 10% in 2021, with orthopedic, cardiovascular, dental, ophthalmic and women's health all increasing revenues by at least 16%.",
+          "Non-imaging diagnostics grew 26% in 2021, leading all product segments, largely driven by COVID-19 testing demand.",
+          "Innovation capital (raised by companies with less than US$500 million in revenue) fell 35%, or nearly US$10 billion, in the 12-month period ending 30 June 2022.",
+          "Total financing levels for medtech dropped 30% in the 12-month period ending 30 June 2022.",
+          "Companies with over US$500 million in revenue saw average growth of 16% in 2021, which dropped to over 6% in 2022.",
+          "Total M&A spend in the 12 months ending 30 June 2022 was up 24% on the previous 12 months, despite a 13% drop in the number of deals signed (252 compared to 288).",
+          "EY identifies four key focus areas for medtech: Innovation, New commercial models, Supply chain transformation, and Talent crisis.",
+          "Medtronic announced an August 2022 deal with BioIntelliSense to build its remote monitoring capabilities.",
+          "Home-based care and remote patient monitoring are identified as growth areas, with evidence that remote patient monitoring can reduce readmission rates, falls, and adverse events.",
+          "Studies have shown that hospital-at-home programs can help stabilize or improve chronic conditions and prevent hospital readmission.",
+          "The medtech IPO market saw a rapid decline in the first six months of 2022, with SPAC deals significantly slowing.",
+          "EY medtech commercial leaders were up 47% on composite stock price from start of 2020 to start of 2022, falling to 14% by end of July 2022.",
+          "EY medtech emerging (noncommercial) leaders were up 119% from start of 2020 to start of 2022, falling to 54% by end of July 2022.",
+          "The pandemic accelerated supply chain resilience efforts including localization and near-shoring in the medtech industry.",
+          "Sonavi Labs developed an auditory device that can identify lung issues such as pneumonia without an X-ray.",
+          "The Centers for Medicare & Medicaid Services (CMS) released a roadmap in August 2022 to end the officially ongoing public health emergency."
+        ],
+        "market_data_points": [
+          "US and European medtech industry revenues exceeded US$500 billion for the first time in 2021.",
+          "Medtech industry revenue growth was 16% in 2021.",
+          "Non-imaging diagnostics segment grew 26% in 2021.",
+          "Therapeutic devices segment grew 10% in 2021.",
+          "Innovation capital fell 35%, or nearly US$10 billion, in the 12 months ending 30 June 2022.",
+          "Total medtech financing levels fell 30% in the 12-month period ending 30 June 2022.",
+          "Average revenue growth for companies with over US$500 million in revenue dropped from 16% in 2021 to over 6% in 2022.",
+          "Total M&A spend was up 24% in the 12 months ending 30 June 2022 versus the prior 12 months.",
+          "Number of M&A deals dropped 13% to 252 from 288 in the 12 months ending 30 June 2022.",
+          "Medtech commercial leaders' composite stock price gain fell from 47% (start of 2022 vs. start of 2020) to 14% (end of July 2022 vs. start of 2020).",
+          "Medtech emerging leaders' composite stock price gain fell from 119% (start of 2022 vs. start of 2020) to 54% (end of July 2022 vs. start of 2020)."
+        ],
+        "trend_signals": [
+          "Medtech innovation is shifting toward personalized virtual care delivery in home and nontraditional settings.",
+          "Home-based care is expected to be a primary growth area, with major drugstore chains acquiring home health care platforms in the US.",
+          "Remote patient monitoring is an expanding care model with demonstrated clinical and operational benefits.",
+          "Digital transformation and omnichannel commercial models are reshaping medtech go-to-market strategies.",
+          "Supply chain localization and near-shoring are accelerating as medtechs respond to global supply chain vulnerabilities.",
+          "Convergence of digital technologies, data science, AI, and connected devices is driving next-generation medtech innovation.",
+          "Non-imaging diagnostics identified as a consistent high-performing segment and potential enabler of precision medicine and remote care.",
+          "Tighter financing and reduced IPO/SPAC activity may increase the appeal of acquisition for smaller medtech companies.",
+          "Talent recruitment, retention, and engagement around data, AI, and connected devices is a growing strategic challenge for medtech.",
+          "Health care worker shortages are identified as a continuing threat to medtech growth.",
+          "Global chip shortages and geopolitical supply chain disruptions are ongoing challenges for medtech."
+        ],
+        "competitive_mentions": [
+          "Medtronic announced a partnership with BioIntelliSense in August 2022 to expand remote monitoring capabilities.",
+          "Johnson & Johnson's DePuy Synthes (led by Aldo Denti) is identified as a leader in transforming orthopedic medtech.",
+          "Owens & Minor (represented by EVP Dan Starck) is identified as a company driving the home health care revolution.",
+          "Sonavi Labs developed an auditory device for non-X-ray detection of lung issues including pneumonia.",
+          "Nottingham Spirk (represented by VP of Engineering Jason Ertel) is noted for shifting medtech innovation priorities.",
+          "Major US drugstore chains are acquiring home health care platforms, signaling entry into medtech-adjacent markets.",
+          "Rock Health Digital Health Public Company Index is referenced as a benchmark for digital health market performance."
+        ],
+        "regulatory_mentions": [
+          "The Centers for Medicare & Medicaid Services (CMS) released a roadmap in August 2022 to end the officially ongoing public health emergency.",
+          "Regulatory and reimbursement flexibilities and waivers permitted on an emergency basis during COVID-19 may not continue into 2023.",
+          "FDA approval trends are tracked as a key industry metric in the full EY Pulse of the Industry report.",
+          "EY highlights that US and European policymakers' regulatory and reimbursement environment is a key determinant of whether home-based care models will endure post-pandemic."
+        ],
+        "relevance_score": 0.35
+      },
+      {
+        "url": "https://www.ey.com/content/dam/ey-unified-site/ey-com/nl-nl/technical/tax/documents/ey-tax-eyfn-260122-life-sciences-and-health-subsidy-calendar-2026.pdf",
+        "title": "Life Sciences & Health - Your 2026 funding roadmap",
+        "firm_name": "EY",
+        "tier": 2,
+        "publication_date": "2026-01",
+        "raw_content_length": 6732,
+        "key_facts": [
+          "Cardiovascular diseases cause 1.7 million deaths annually in the EU.",
+          "Cardiovascular diseases cost the EU \u20ac282 billion annually.",
+          "The EU medical devices sector employs nearly one million people.",
+          "The EU medical devices sector is worth \u20ac170 billion.",
+          "Proposed EU medical device regulatory reforms are projected to deliver \u20ac3.3 billion in yearly savings.",
+          "The EIC Pathfinder program funds early-stage, high-risk research at TRL 1-3 with 100% funding rate and a maximum grant of \u20ac4 million.",
+          "The EIC Transition program supports maturation of breakthrough technologies at TRL 4-5 with 100% funding rate and a maximum grant of \u20ac2.5 million.",
+          "The EIC Accelerator provides up to \u20ac2.5 million in grants plus \u20ac1-10 million in equity for SMEs at TRL 6-8 with a maximum 70% funding rate.",
+          "The EIC STEP initiative provides \u20ac10-30 million in equity investment for deep-tech companies at TRL 8-9.",
+          "Horizon Europe Health funding supports research at TRL 3-9 with grants of \u20ac6-8 million and up to 70-100% funding rate.",
+          "The Eurostars program supports innovative SMEs with grants up to \u20ac500k at TRL 4-6 with a maximum 50% funding rate.",
+          "The Innovative Health Initiative is a European public-private partnership funding collaborative research at TRL 5-8 with grants of \u20ac5-15 million at a 55% funding rate.",
+          "The Dutch WBSO fiscal scheme offers tax benefits for R&D activities with up to 50% of eligible costs funded, available year-round.",
+          "The Dutch Innovatiekrediet loan program provides \u20ac5-10 million risk-bearing financing for innovative projects at TRL 3-8 with up to 70-100% funding rate."
+        ],
+        "market_data_points": [
+          "Cardiovascular diseases are projected to rise by 90% by 2050 in the EU.",
+          "The EU medical devices sector is valued at \u20ac170 billion.",
+          "Proposed EU medical device reforms are expected to deliver \u20ac3.3 billion in yearly savings.",
+          "Cardiovascular diseases cost the EU \u20ac282 billion annually.",
+          "EIC Pathfinder deadline: 12 May 2026; maximum grant \u20ac4 million.",
+          "EIC Transition deadline: 16 September 2026; maximum grant \u20ac2.5 million.",
+          "EIC Accelerator has 6 deadlines throughout 2026; maximum grant \u20ac2.5 million plus \u20ac1-10 million equity.",
+          "EIC STEP has 4 deadlines throughout 2026; investment range \u20ac10-30 million.",
+          "Horizon Europe Health deadline: 16 April 2026; grant range \u20ac6-8 million.",
+          "Eurostars deadlines: 19 March 2026 and October 2026; maximum grant \u20ac500k.",
+          "Innovative Health Initiative deadline: 21 April 2026; grant range \u20ac5-15 million.",
+          "Innovatiekrediet deadline: 31 December 2026; loan range \u20ac5-10 million."
+        ],
+        "trend_signals": [
+          "The EU Safe Hearts Plan introduces the first comprehensive EU cardiovascular strategy leveraging personalised tools, digital health, and AI solutions.",
+          "The proposed EU Biotech Act aims to strengthen Europe's biotechnology potential by improving funding options, supporting bio-manufacturing, and simplifying regulations.",
+          "EU medical device regulatory reforms are being proposed to simplify rules, strengthen EMA's role, and speed up access to safe devices.",
+          "Life sciences dealmaking and M&A activity is highlighted as a growth strategy trend for 2026 per EY Firepower report.",
+          "The Innovative Health Initiative reflects a trend toward integrating pharmaceuticals, biotech, medical technology, and digital health in collaborative research."
+        ],
+        "competitive_mentions": [],
+        "regulatory_mentions": [
+          "The proposed EU Biotech Act aims to simplify regulations, accelerate clinical trial authorisations, and establish single regulatory pathways for complex products.",
+          "The EU Safe Hearts Plan introduces national plans, dashboards, and an AI Incubator as part of a comprehensive cardiovascular disease strategy.",
+          "Proposed EU medical device regulatory reforms aim to simplify current rules and strengthen the European Medicines Agency's (EMA) role.",
+          "The Innovative Health Initiative is a European public-private partnership operating under an EU regulatory framework for collaborative healthcare research."
+        ],
+        "relevance_score": 0.35
+      },
+      {
+        "url": "https://www.deloitte.com/us/en/insights/industry/health-care/life-sciences-and-health-care-industry-outlooks/2026-global-health-care-outlook.html",
+        "title": "2026 Global health care outlook",
+        "firm_name": "Deloitte",
+        "tier": 2,
+        "publication_date": "2025-12",
+        "raw_content_length": 15000,
+        "key_facts": [
+          "More than 80% of health system executives surveyed in Australia, Canada, Germany, the Netherlands, and the United Kingdom reported a 'positive' or 'cautiously positive' outlook for their own organizations for 2026.",
+          "72% of non-US health system executives surveyed said they were upbeat about the health care industry overall for 2026.",
+          "20% of US respondents expressed a negative industry outlook for 2026, and 33% expressed uncertainty\u2014up from 3% who expressed uncertainty a year ago.",
+          "About 30% of surveyed health systems report operating generative AI at scale in select areas of their organizations.",
+          "Just 2% of surveyed health systems have deployed AI across their entire enterprise.",
+          "About 70% of non-US health system executives expect operating revenue and margins to increase in 2026.",
+          "Over 50% of non-US health system executives predict that operating costs will be flat or decline slightly in 2026.",
+          "Only 13% of respondents expect operating costs to increase 'significantly' in 2026.",
+          "64% of respondents said AI could reduce costs by standardizing and automating workflows.",
+          "55% of respondents see savings potential from increased use of predictive analytics to optimize the workforce.",
+          "49% of respondents expect benefits from tech-enabled patient engagement and remote monitoring.",
+          "Nearly half (45%) of non-US health system executives cited care model transformation as a leading trend in 2026.",
+          "38% of non-US health system executives said their organizations would focus on preventive care and early detection in 2026.",
+          "Only 7% of US health system executives expect preventive care to be a major trend for their organizations in 2026.",
+          "More than 90% of health system executives said improving productivity would be a priority in 2026.",
+          "The World Health Organization projects a shortage of 4.5 million nurses by 2030.",
+          "In the United Kingdom, 40% of general practitioners expect to leave the profession within the next five years.",
+          "Nearly 40% of today's job skills may become outdated because of AI and automation, according to the World Economic Forum.",
+          "Deloitte Global surveyed 180 C-suite executives from large health systems in August and September 2025 for its annual global outlook survey.",
+          "Survey respondents were based in Australia, Canada, Germany, the Netherlands, the United Kingdom, and the United States.",
+          "Ransomware and supply chain attacks are identified as major threats to health systems around the world.",
+          "Health system leaders across all six countries agreed that their 2026 strategies will be strongly influenced by financial pressures, workforce challenges, and cybersecurity risks."
+        ],
+        "market_data_points": [
+          "180 C-suite executives from large health systems were surveyed in August and September 2025 across six countries.",
+          "30% of surveyed health systems report operating generative AI at scale in select areas as of 2025.",
+          "2% of surveyed health systems have deployed AI across their entire enterprise as of 2025.",
+          "The WHO projects a shortage of 4.5 million nurses by 2030.",
+          "40% of UK general practitioners expect to leave the profession within the next five years.",
+          "70% of non-US health system executives expect operating revenue and margins to increase in 2026.",
+          "64% of respondents identified AI-driven workflow standardization and automation as a source of cost reduction in 2026.",
+          "49% of health system executives expect benefits from tech-enabled patient engagement and remote monitoring in 2026.",
+          "33% of US health system executives expressed uncertainty about the industry outlook for 2026, up from 3% a year ago.",
+          "20% of US respondents expressed a negative industry outlook for 2026."
+        ],
+        "trend_signals": [
+          "Remote monitoring and tech-enabled patient engagement are identified as key cost-saving and care transformation strategies for 2026.",
+          "Shift of care to lower-cost settings such as neighborhood clinics, outpatient facilities, and at-home care via remote monitoring and virtual visits is an emerging priority.",
+          "Expansion of outpatient services and digital care offerings is expected to contribute to revenue growth in 2026.",
+          "Preventive care and early detection are prioritized by 38% of non-US health system executives for 2026.",
+          "AI-driven risk stratification based on genetics, environment, and lifestyle is emerging as a proactive health intervention tool.",
+          "Generative AI and agentic AI are on the horizon for health care but most executives do not expect major strategic impact from AI in 2026.",
+          "Cybersecurity, particularly ransomware and supply chain attacks, is an escalating threat to health systems globally.",
+          "Offshoring of IT and administrative tasks to regions like Eastern Europe is a growing efficiency strategy for health systems.",
+          "Workforce shortages and aging populations are creating sustained pressure on global health systems through at least 2030.",
+          "Care model transformation toward whole-health and outcomes-based approaches is a key strategic direction for 2026."
+        ],
+        "competitive_mentions": [],
+        "regulatory_mentions": [
+          "US health system leaders cited ongoing uncertainties regarding tariffs, drug pricing, and regulatory changes as contributing to a more cautious outlook for 2026.",
+          "The United Kingdom does not allow the offshoring of patient-level data, restricting certain efficiency strategies.",
+          "The fee-for-service model used predominantly in US private insurance incentivizes volume over value, emphasizing treatment over prevention."
+        ],
+        "relevance_score": 0.25
+      },
+      {
+        "url": "https://www.pwc.com/us/en/industries/health-industries/library/pharma-life-sciences-deals-outlook.html",
+        "title": "Pharmaceutical and life sciences: US Deals 2026 outlook",
+        "firm_name": "PwC",
+        "tier": 2,
+        "publication_date": "2025-12",
+        "raw_content_length": 9840,
+        "key_facts": [
+          "The pharmaceutical sector enters 2026 with confidence and ample capital to deploy following a strong second half of 2025 defined by precision-driven biopharma M&A.",
+          "Dealmakers are prioritizing disciplined deployment of capital and meticulous portfolio-shaping to secure high-quality innovation and scarce assets.",
+          "Financial and strategic interest will continue to prioritize therapeutic areas including cardiometabolic, CNS, oncology, and immunology.",
+          "Truly differentiated clinical profiles continue to command elevated premiums with competitive processes producing outsized pricing for assets with meaningful patient benefits.",
+          "There has been a preference more recently for biopharma M&A in the $5B to $15B range.",
+          "China-to-the-West licensing and co-development programs are now a core vector in corporate and business development strategies as Chinese biotechs move efficiently through trials and scale manufacturing rapidly.",
+          "Private equity and structured financing are now mainstream tools to bridge the gap from late-stage development to commercialization via royalties, options, and minority interests.",
+          "Predictive models are sharpening the probability of technical and regulatory success (PTRS), safety, and value forecasts, compressing decision cycles.",
+          "The sector is increasingly shaped by tech-enabled, empowered consumers and patients who expect a seamless, end-to-end health experience.",
+          "Medtech deals are reported separately from pharmaceutical and life sciences deals by PwC."
+        ],
+        "market_data_points": [
+          "Biopharma M&A preference has been concentrated in the $5B to $15B deal range in recent periods.",
+          "Global pharmaceutical revenue faces loss-of-exclusivity (LOE) headwinds ramping up over the next four years.",
+          "Activity in 2025 was skewed toward targeted and asset-centric transactions that filled pipeline gaps.",
+          "LOE pressures are described as mounting and becoming more pronounced over the next few years.",
+          "Interest rates are generally expected to be lower in 2026 relative to 2025."
+        ],
+        "trend_signals": [
+          "Precision-led growth and asset-centric M&A transactions are expected to continue in 2026.",
+          "Larger-scale M&A may be pursued as LOE headwinds intensify and companies seek definitive therapeutic area strength coupled with IP runway.",
+          "Cross-border collaboration, particularly China-to-West licensing and co-development, is deepening and expected to increase in 2026.",
+          "AI is being embedded across diligence and post-close value-creation programs as a differentiator for leading dealmakers.",
+          "Capital structures are evolving toward alternatives including minority stakes, royalties, and staged options.",
+          "Biotech IPO listings and structured exits are expected to improve with better financing and funding environment in 2026.",
+          "Integration of diligence, regulatory planning, and manufacturing from the outset is identified as a key competitive differentiator.",
+          "Private equity is expected to remain active in pharma tech and pharma services sectors in 2026."
+        ],
+        "competitive_mentions": [
+          "Western pharma companies are using structured licenses, regional development and commercialization rights, and financial tools to access Chinese biotech innovation.",
+          "Chinese biotechs are moving efficiently through trials and scaling manufacturing rapidly, making them attractive co-development partners.",
+          "EPS-challenged innovators are increasingly using private equity and structured financing structures for runway and flexibility."
+        ],
+        "regulatory_mentions": [
+          "Assets with clear regulatory paths and credible commercial ramps are commanding elevated acquisition premiums.",
+          "Tariffs, pricing, and geopolitical headwinds held back biopharma dealmaking for the first part of 2025 but have somewhat receded.",
+          "Government policies are becoming more predictable, enabling dealmakers to pivot from wait-and-see toward proactive growth.",
+          "IP, data security, and supply chain risks are being managed through clear governance, data-segmentation protocols, and parallel manufacturing strategies in cross-border deals.",
+          "Regulatory planning integrated from the outset of deals is identified as translating clinical catalysts into faster approvals."
+        ],
+        "relevance_score": 0.1
+      },
+      {
+        "url": "https://www.ey.com/en_us/life-sciences/pulse-of-medtech-industry-outlook",
+        "title": "Pulse of the MedTech Industry Report 2025",
+        "firm_name": "EY",
+        "tier": 2,
+        "publication_date": "2025-01",
+        "raw_content_length": 5145,
+        "key_facts": [
+          "EY has a designated Global MedTech Leader named John Babitt who provides industry insights.",
+          "EY has an Americas Life Sciences Leader named Arda Ural, PhD.",
+          "EY publishes an annual 'Pulse of the MedTech Industry Report,' with the 2025 edition available.",
+          "A 2024 edition of the Pulse of the MedTech Industry Report also exists, indicating this is a recurring annual publication."
+        ],
+        "market_data_points": [],
+        "trend_signals": [],
+        "competitive_mentions": [],
+        "regulatory_mentions": [],
+        "relevance_score": 0.05
+      }
+    ],
+    "total_sources_found": 34,
+    "total_sources_extracted": 11,
+    "tier1_count": 1,
+    "tier2_count": 10,
+    "tier3_count": 0,
+    "search_queries_used": [
+      "Medical Devices / MedTech market overview report North America, Europe (initial); Global (expansion)",
+      "Medical Devices / MedTech market size TAM North America, Europe (initial); Global (expansion) 2026",
+      "Medical Devices / MedTech trends outlook forecast North America, Europe (initial); Global (expansion)",
+      "CoF substrate market entry flexible circuit medical devices high-density electrode substrates implantable device components wearable sensor modules Advanced Medical Device Substrates, Flexible Circuit Components, and Electrode Modules for Wearable and Implantable Medical Devices analysis",
+      "Medical Devices / MedTech competitive landscape CorTec NeuroNexus Microprobes for Life Science"
+    ],
+    "execution_time_seconds": 504.6298062801361
+  }
+}

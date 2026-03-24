@@ -51,6 +51,16 @@ def format_markdown_report(
             sections.append(f"- **{gap['category_id']}** ({gap['category_name']}): {gap['gap']}")
         sections.append("")
 
+    # Brief Questions (front and center)
+    if context.brief_questions:
+        sections.append("## Client Brief Questions")
+        sections.append("")
+        sections.append("The following questions were extracted from the venture brief. Each category's research was directed to address these where relevant.")
+        sections.append("")
+        for i, q in enumerate(context.brief_questions, 1):
+            sections.append(f"{i}. {q}")
+        sections.append("")
+
     # Context Signals Summary
     sections.append("## Context Signals")
     sections.append("")

@@ -1,0 +1,640 @@
+# 1. [PDF] The next big arenas of competition - McKinsey Global Institute
+
+**URL:** https://www.mckinsey.com/~/media/mckinsey/mckinsey%20global%20institute/our%20research/the%20next%20big%20arenas%20of%20competition/the-next-big-arenas-of-competition_final.pdf
+**Firm:** McKinsey
+**Publication:** 2024-10
+## Key facts
+
+- McKinsey Global Institute identified 18 potential arenas of the future that could reshape the global economy by 2040.
+- Space is identified as one of the 18 future arenas of competition that could generate significant revenues by 2040.
+- Arenas are defined by two characteristics: high growth and high dynamism, capturing an outsize share of economy's growth with significant market share shifts among players.
+- In 2005, arenas generated 9 percent of total global economic profit; by 2019, arenas accounted for half of total global economic profit.
+- In 2020, 34 percent of arenas' total market capitalization was held by companies that had been outsiders in 2005—companies that did not exist, had market caps of less than $3.5 billion, or were not yet meaningful competitors.
+- Three combined ingredients in an arena-creation potion generate escalatory competition: business model or technological step changes, escalatory investments, and a large and/or growing addressable market.
+- Arenas spawn a disproportionate number of global giants and offer unusually strong opportunities for new entrants to become powerhouses.
+- 62 percent of US business R&D spend went to arenas and arena-adjacent industries in 2005, increasing to 65 percent by 2020.
+- The 12 arenas of today had a revenue CAGR of 10 percent and market capitalization CAGR of 16 percent from 2005 to 2020.
+- The 12 arenas of today tripled their global GDP share from 3 to 9 percent between 2005 and 2020.
+- Non-arenas had only a 4 percent revenue CAGR and a 6 percent market cap CAGR from 2005 to 2020.
+- Businesses new to non-arena industries held just 15 percent of total market capitalization in 2020, compared to 34 percent for arenas.
+
+## Market data points
+
+- 18 future arenas could generate $29 trillion to $48 trillion in revenues by 2040.
+- 18 future arenas could generate $2 trillion to $6 trillion in profit by 2040.
+- The collective share of global GDP from future arenas could increase from 4 percent to 10 to 16 percent by 2040.
+- In 2005, arenas generated $53 billion, or 9 percent of total global economic profit.
+- In 2019, arenas were generating $250 billion—half of total global economic profit.
+- In 2020, 34 percent of arenas' total market capitalization was held by companies that had been outsiders in 2005.
+- The analysis is based on a customized data set of the top 3,000 companies by market cap.
+- Arenas' revenue CAGR was 10 percent and market capitalization CAGR was 16 percent from 2005 to 2020.
+- Non-arenas had a 4 percent revenue CAGR and a 6 percent market cap CAGR from 2005 to 2020.
+- Semiconductors and electrical components accounted for the largest share of R&D investment among arenas, followed by biopharmaceuticals and software.
+
+## Trend signals
+
+- Space is identified as a future arena of competition expected to generate significant revenues by 2040.
+- Artificial intelligence software and services is identified as a future arena of competition.
+- The global economy's future growth is expected to be concentrated in 18 specific arenas, including space, AI, cybersecurity, and semiconductors.
+- New entrants have a disproportionate opportunity to become powerhouses in arenas, suggesting significant room for non-incumbent players in space technology.
+- Arena formation is driven by business model or technological step changes combined with escalatory investments and large addressable markets—all conditions present in satellite communications.
+- The share of global GDP captured by arenas is forecast to grow from 4 percent to 10–16 percent by 2040, signaling a major structural shift in the global economy.
+- Arenas attract outsize levels of R&D investment, with arenas and arena-adjacent industries capturing 65 percent of US business R&D spend by 2020.
+- Electric vehicles and cloud services are among the 12 arenas of today, indicating that capital-intensive technology infrastructure industries can become dominant arenas.
+
+## Competitive mentions
+
+- The 12 arenas of today include software, semiconductors, consumer internet, e-commerce, consumer electronics, biopharmaceuticals, industrial electronics, payments, video and audio entertainment, cloud services, electric vehicles, and information-enabled business services.
+- Space is listed alongside cybersecurity, AI, semiconductors, and shared autonomous vehicles as a future arena of competition.
+- In arenas, 34 percent of total market capitalization in 2020 was held by companies that were outsiders in 2005, indicating high competitive disruption potential.
+- Every arena except industrial electronics moved up in economic profit rankings when comparing 2005 to 2019 and 2020.
+
+
+---
+
+# 2. [PDF] The infrastructure moment - McKinsey
+
+**URL:** https://www.mckinsey.com/~/media/mckinsey/industries/infrastructure/our%20insights/the%20infrastructure%20moment/the-infrastructure-moment-investing-in-the-expanding-foundations-of-modern-society.pdf
+**Firm:** McKinsey
+**Publication:** 2025-09
+## Key facts
+
+- McKinsey estimates that a cumulative $106 trillion in investment will be necessary through 2040 to meet the need for new and updated infrastructure.
+- Digital infrastructure investment needs are projected at $19 trillion through 2040.
+- Transport and logistics requires the largest share of infrastructure investment at $36 trillion through 2040.
+- Energy and power infrastructure investment needs are projected at $23 trillion through 2040.
+- Private infrastructure assets under management surged from about $500 billion in 2016 to $1.5 trillion in 2024.
+- Private infrastructure is now described as the most desired asset class for increased investment.
+- Infrastructure verticals are increasingly interdependent—technically, operationally, and financially.
+- The geopolitical landscape is upending investment decisions and trade in infrastructure.
+- Social infrastructure investment needs are projected at $16 trillion through 2040.
+- Waste and water infrastructure investment needs are projected at $6 trillion through 2040.
+- Agriculture infrastructure investment needs are projected at $5 trillion through 2040.
+- Defense infrastructure investment needs are projected at $2 trillion through 2040.
+- Human development and infrastructure expansion are highly correlated, with an R² of 0.85 at the country level.
+- Outdated assets, rapid urbanization, geopolitical shifts, and technological advancements are exposing the limitations of yesterday's infrastructure.
+- Newer infrastructure assets such as fiber-optic networks, hyperscale data centers, and electric-vehicle charging stations are increasingly considered vital infrastructure.
+- A supporting layer of specialized services—maintenance, inspection, compliance, and remote monitoring—is increasingly considered to be infrastructure as well.
+- Ongoing labor shortages are affecting infrastructure projects globally.
+
+## Market data points
+
+- $106 trillion in cumulative infrastructure investment needed globally through 2040.
+- Digital infrastructure vertical requires $19 trillion in investment through 2040.
+- Private infrastructure assets under management grew from ~$500 billion in 2016 to $1.5 trillion in 2024, a 3x increase.
+- Transport and logistics: $36 trillion investment need through 2040.
+- Energy and power: $23 trillion investment need through 2040.
+- Social infrastructure: $16 trillion investment need through 2040.
+- Waste and water: $6 trillion investment need through 2040.
+- Agriculture: $5 trillion investment need through 2040.
+- Defense: $2 trillion investment need through 2040.
+- Country-level R² correlation between infrastructure score and Human Development Index is 0.85 (data from 2019 and 2023).
+
+## Trend signals
+
+- The definition of infrastructure is expanding to include digital networks, fiber-optic systems, hyperscale data centers, and EV charging stations.
+- Infrastructure verticals are blurring at their boundaries, with critical needs existing at intersections such as AI deployment and the energy transition.
+- Skyrocketing demand for sustainable energy and water to power AI and cool data centers is driving convergence of energy, water, and digital infrastructure.
+- Private capital has emerged as a key and growing force in infrastructure financing.
+- Geopolitical landscape shifts are upending infrastructure investment decisions and trade flows.
+- Rapid urbanization and demographic shifts are adding pressure on infrastructure globally.
+- Digital technology and AI are driving advances in infrastructure design, monitoring, and maintenance.
+- The global transition to cleaner energy is progressing and driving infrastructure investment.
+- AI- and IoT-powered predictive maintenance systems are increasingly integrated with traditional infrastructure.
+- A siloed approach to infrastructure planning and investment may no longer be viable given cross-vertical interdependencies.
+
+## Competitive mentions
+
+- Starlink is cited in the venture context as a predominantly U.S.-controlled satellite broadband provider creating geopolitical and sovereignty concerns.
+- The report notes that geopolitical shifts are upending investment decisions, implying competition between geopolitical blocs for infrastructure control.
+
+## Regulatory mentions
+
+- Policymakers are advised to create frameworks to attract private capital and streamline regulatory processes for infrastructure.
+- Many infrastructure assets are owned or operated by a single or few public entities and are highly regulated.
+- Governments are advised to strategically prioritize infrastructure verticals and repurpose underused assets.
+- The geopolitical landscape is upending investment decisions and trade, implying shifting regulatory and policy environments for infrastructure.
+
+---
+
+# 3. [PDF] 2024 Report Accelerating sustainable and inclusive growth for all
+
+**URL:** https://www.mckinsey.com/~/media/mckinsey/about%20us/social%20responsibility/sustainable%20inclusive%20growth%20report/sustainable-and-inclusive-growth-report-2024.pdf
+**Firm:** McKinsey
+**Publication:** 2024-01
+## Key facts
+
+- McKinsey was founded in 1926 and operates as a single global partnership across 67 countries.
+- McKinsey served 3,500 clients in 2024.
+- McKinsey invested $1.27 billion in innovation, knowledge, and capabilities in 2024.
+- McKinsey's clients contributed 18% of global GDP growth between 2018–2023.
+- McKinsey's clients contributed an average of 1 million new jobs per year between 2018–2023.
+- McKinsey's clients accounted for more than 80% of reported CO2 emissions reductions among publicly held companies analyzed.
+- McKinsey contributed $1.05 billion in monetary and in-kind support since 2020 toward a $2 billion commitment to social responsibility by 2030.
+- McKinsey contributed $194 million in monetary and in-kind support in 2024.
+- McKinsey helped build more than 100 businesses in 2024, averaging two per week.
+- McKinsey Business Building (formerly Leap by McKinsey) has built 700 new businesses since 2019.
+- McKinsey achieved a 62% reduction in Scope 1 & 2 emissions, outperforming its 25% reduction target for 2025.
+- McKinsey achieved a 50% reduction in business travel emissions per FTE, outperforming its 35% reduction target for 2025.
+- 3,200 McKinsey colleagues worked on 1,640 sustainability engagements with 720 clients across 58 countries.
+- 51% of McKinsey's global new hires in 2024 were women.
+- McKinsey vets 100% of new clients against its CITIO client service framework.
+- McKinsey reached 230,000 new learners through its Forward program.
+- McKinsey helped upskill, reskill, or otherwise support nearly 20 million people through nonprofit partners and pro bono programs.
+- McKinsey partnered with Emirates NBD bank on an AI-powered transformation poised to generate $150 billion in value.
+- More than 670 companies received technical consultancy and 30,000 employees were upskilled through MEXT, McKinsey's innovation and learning center established with the Turkish Employers' Association of Metal Industries.
+- McKinsey partnered with Banco de Crédito del Perú to help grow Yape, a digital payment app that helped five million unbanked people gain access to the financial system and enhanced financial inclusion for over 16 million users.
+- McKinsey committed to a 20 million ton advance market commitment for nature-based carbon removal projects by 2030 together with other Symbiosis members.
+
+## Market data points
+
+- McKinsey's clients contributed 18% of global GDP growth based on analysis of publicly held companies between 2018–2023.
+- McKinsey's clients created an average of 1 million net new jobs per year between 2018–2023.
+- McKinsey invested $1.27 billion in innovation, knowledge, and capabilities in 2024.
+- McKinsey contributed $1.05 billion in monetary and in-kind support since 2020, against a $2 billion pledge by 2030.
+- McKinsey contributed $194 million in monetary and in-kind support in 2024.
+- McKinsey achieved a 62% reduction in Scope 1 & 2 emissions against a 25% target for 2025.
+- McKinsey achieved a 50% reduction in business travel emissions per FTE against a 35% target for 2025.
+- 3,200 colleagues worked on 1,640 sustainability engagements with 720 clients across 58 countries.
+- McKinsey has built 700 new businesses since 2019 through McKinsey Business Building.
+- Emirates NBD bank AI-powered transformation is poised to generate $150 billion in value.
+- Yape digital payment app enhanced financial inclusion for over 16 million users and helped 5 million unbanked people access the financial system.
+- McKinsey operates across 67 countries and served 3,500 clients.
+- McKinsey reached 230,000 new learners through its Forward program.
+- McKinsey supported nearly 20 million people through nonprofit partners and pro bono programs.
+- McKinsey committed to a 20 million ton advance market commitment for nature-based carbon removal projects by 2030.
+
+## Trend signals
+
+- AI-powered business transformation is being adopted by major financial institutions, with McKinsey citing an AI transformation at Emirates NBD bank poised to generate $150 billion in value.
+- Digital financial inclusion is expanding in emerging markets, with apps like Yape bringing 5 million unbanked people into the financial system.
+- Sustainability engagements are scaling rapidly, with McKinsey conducting 1,640 engagements with 720 clients across 58 countries in 2024.
+- Corporate decarbonization is accelerating, with McKinsey's clients accounting for more than 80% of reported CO2 emissions reductions among analyzed public companies.
+- Workforce digitalization and upskilling are growing priorities, with 30,000 employees upskilled through MEXT in Turkey alone.
+- Nature-based carbon removal is gaining traction as a climate solution, with a 20 million ton advance market commitment by Symbiosis members by 2030.
+- Geopolitical shifts and technological disruptions were identified as defining characteristics of the pace of change in 2024.
+
+## Competitive mentions
+
+- TIME and Statista named McKinsey the #1 Company for Future Leaders for the second consecutive year.
+- Forbes named McKinsey among the World's Best Management Consulting Firms.
+- Forrester named McKinsey a Leader in Cybersecurity Consulting Services (Q2 2024).
+- Forrester named McKinsey a Leader in Customer Experience Strategy Consulting Services.
+- EcoVadis rated McKinsey in the top 1% of companies in its industry for sustainable procurement.
+
+## Regulatory mentions
+
+- McKinsey vets 100% of new clients against its CITIO client service framework, assessing engagements across Country, Institution, Topic, Individual, and Operational considerations.
+
+---
+
+# 4. The Impact of Satellite Constellations and LEO Technology
+
+**URL:** https://www.rolandberger.com/en/Insights/Publications/Constellations-Telco-Race-in-outer-space.html
+**Firm:** Roland Berger
+**Publication:** 2024-01
+## Key facts
+
+- Satellite constellations, led by Starlink, are turning satellite connectivity into a mainstream solution through massive investments ranging from USD 10 billion to USD 30 billion.
+- Satellite broadband costs have been dropping at approximately 15% per year since 2021.
+- Starlink has over 4 million subscribers as of 2024, significantly outpacing competitors.
+- Starlink operates a constellation of more than 4,500 satellites enabling home broadband, maritime, and in-flight connectivity.
+- In the U.S., 4 million customers in rural areas lacking fiber access now rely on satellite broadband.
+- In Kenya, constellation pricing is directly competitive with local telecom operators, and superior speeds are making satellite an increasingly attractive choice for consumers.
+- Direct-to-cell technology allows satellites to connect directly with standard mobile phones without requiring hardware modifications on mobile devices.
+- AST SpaceMobile, Lynk, and Starlink have already demonstrated 4G connectivity established from space without hardware modifications on mobile devices.
+- Starlink's V2 Mini satellites are already equipped with direct-to-cell functionality.
+- eSIM technology enables satellite operators to directly connect with customers, bypassing traditional mobile telcos by eliminating the need for local SIM distribution and carrier partnerships.
+- eSIM platforms such as Airalo, Nomad, and Holafly could allow constellations to directly address customers in underserved areas.
+- Direct-to-cell technology relies on L, S, and 600–900 MHz frequency bands that are already allocated to terrestrial operators, requiring satellite providers to negotiate agreements with local telecom players.
+- In Europe, the fragmented market makes it likely that at least one operator per country will be open to leasing underutilized spectrum frequencies to satellite providers.
+- Non-GEO satellite capacity is set to double annually until 2028, far outpacing the 19% growth of older geostationary models.
+- Large-scale rollouts planned by Starlink, Amazon's Kuiper, OneWeb, and Telesat are expected to drive decreasing satellite connectivity prices well beyond 2035.
+- Telecom operators can respond to satellite market entry through three strategies: resistance via regulatory influence, partnership to distribute satellite products, or development of their own alternative solutions.
+- Starlink's spending now exceeds the total investment of the traditional satellite sector, marking a shift from a niche business-focused industry to a mass-market consumer offering.
+
+## Market data points
+
+- Satellite constellation investments range from USD 10 billion to USD 30 billion.
+- Satellite broadband costs have declined approximately 15% per year since 2021.
+- Starlink surpassed 4 million subscribers as of 2024.
+- Starlink operates more than 4,500 satellites as of the report date.
+- Non-GEO satellite capacity is forecast to double annually until 2028.
+- Legacy geostationary satellite capacity is growing at 19% per year, compared to the much faster growth of LEO constellations.
+- Connectivity price declines driven by competition among satellite operators are expected to continue well beyond 2035.
+- Direct-to-cell spectrum requirements center on L, S, and 600–900 MHz frequency bands.
+
+## Trend signals
+
+- LEO satellite constellations are transitioning satellite connectivity from a niche, business-focused offering to a mainstream mass-market consumer product.
+- Non-GEO satellite capacity is doubling annually, triggering sharp declines in connectivity prices through at least 2035.
+- Direct-to-cell technology is expected to enable smartphones to connect via satellite without hardware modifications, expanding mobile coverage to unserved areas.
+- eSIM adoption is enabling satellite operators to bypass traditional telco distribution channels and reach end customers directly.
+- Satellite operators are increasingly competing head-to-head with traditional telecom providers in home broadband, including on price and performance.
+- Satellite-based 4G services are emerging as a solution for connectivity gaps in rural and underserved areas globally.
+- Spectrum partnerships between satellite operators and local telecom players are becoming a critical prerequisite for satellite mobile expansion.
+- Regulators are anticipated to play a facilitating role in enabling satellite-terrestrial spectrum agreements to bridge rural connectivity gaps.
+- Traditional telecom operators face a strategic inflection point requiring them to choose between resisting, partnering with, or competing directly against satellite constellations.
+
+## Competitive mentions
+
+- Starlink (SpaceX) — dominant LEO constellation provider with 4 million+ subscribers and 4,500+ satellites, leader in direct-to-cell and home broadband.
+- Amazon Kuiper — large-scale LEO constellation rollout planned, contributing to satellite market competition and price decline.
+- OneWeb — LEO constellation operator with large-scale rollout planned.
+- Telesat — LEO constellation operator with large-scale rollout planned.
+- AST SpaceMobile — demonstrated direct-to-cell 4G connectivity from space.
+- Lynk — demonstrated direct-to-cell 4G connectivity from space.
+- SES — referenced as a legacy/traditional satellite operator being outpaced by new constellation entrants in investment scale.
+- Airalo, Nomad, Holafly — eSIM platforms that could serve as distribution channels for satellite operators to bypass traditional telcos.
+- Traditional telecom operators in Europe face fragmented market conditions making them likely targets for satellite spectrum leasing agreements.
+
+## Regulatory mentions
+
+- Direct-to-cell satellite services require negotiated agreements with local telecom operators for access to L, S, and 600–900 MHz spectrum bands already allocated to terrestrial operators.
+- European regulators are seen as potential facilitators of satellite-terrestrial spectrum agreements, viewing satellite solutions as a way to bridge connectivity gaps in rural and underserved areas.
+- Telecom operators can pursue a resistance strategy by influencing regulatory bodies to delay satellite market entry, though this is considered a short-term and not long-term solution.
+- Spectrum access for satellite-based 4G services will depend heavily on regulatory and industry partnerships, making these agreements essential for expansion.
+
+---
+
+# 5. Perspectives from the Global Telecom Outlook, 2025–2029 - PwC
+
+**URL:** https://www.pwc.com/gx/en/industries/tmt/telecom-outlook-perspectives.html
+**Firm:** PwC
+**Publication:** 2026-02
+## Key facts
+
+- Global telecom service revenue is set to rise from US$1.15 trillion in 2024 to roughly $1.32 trillion in 2029, representing a CAGR of around 2.8%.
+- Global mobile ARPU is expected to tick down marginally to $6.20 in 2029 from $6.32 in 2024.
+- Fixed broadband ARPU inched up to only $19.81 in 2024 from $19.73 in 2023, dampened by a decline in fixed voice revenue.
+- Telecoms' capex spending on long-lived assets as a share of revenue stepped down from 26.9% in 2022 to 22.9% in 2024.
+- Capex as a share of revenue is expected to register a marginally positive 0.62% CAGR later in the period as 5G-Advanced and early 6G roll out.
+- India is still underpenetrated on fixed broadband at just 15.5% in 2024, with fixed broadband subscriptions expected to nearly double to 95.8 million by 2029.
+- The UAE has 100% 5G coverage and the fastest IoT revenue growth of any market at a 40.1% CAGR.
+- Saudi Arabia is seeing FWA as the fastest-growing fixed segment, lifted by the country's ambitious smart-city agenda.
+- South Africa's fixed subscriptions are set to grow at an 8.1% CAGR to 13.1 million by 2029.
+- Brazil has 36.3 million FTTH connections representing 74% of fixed lines, making it the world's third biggest FTTH market.
+- Singapore is now an all-fibre nation pushing towards 10 gigabits per second (Gbps).
+- China has 206.8 million fibre connections and the world's largest footprint in both fibre and 5G.
+- France already has 73% fibre subscriptions with a planned copper switch-off by 2030.
+- Germany will see fibre's share of subscriptions rise from 16% at end of 2024 to nearly 50% by 2029.
+- Romania has fibre already accounting for 80.5% of subscriptions.
+- The UK is set to see fibre subscriptions accelerate towards 70% by 2029.
+- In the US, cable connectivity is on a downward path to lose first place during 2026, ceding to fibre.
+- Canada saw fibre overtake cable in 2025.
+- Mexico's high spectrum fees are curbing 5G, with total sector capex set to fall at a -0.7% CAGR through to 2029.
+- The UAE has launched 5-10 Gbps fibre-to-the-home (FTTH) retail plans.
+- AI and data centres are driving a new infrastructure investment super-cycle requiring high-capacity, low-latency, reliable interconnection.
+- Hyperscalers and investors are racing to build large compute clusters and may build their own fibre rather than buying from operators.
+- Telecoms can capture growth by delivering AI-era connectivity and sovereignty solutions.
+
+## Market data points
+
+- Global telecom service revenue: US$1.15 trillion in 2024, projected ~$1.32 trillion in 2029 (CAGR ~2.8%).
+- Global mobile ARPU: $6.32 in 2024, expected to decline to $6.20 in 2029.
+- Fixed broadband ARPU: $19.73 in 2023, rising to $19.81 in 2024.
+- Telecom capex as % of revenue: 26.9% in 2022, declining to 22.9% in 2024.
+- India fixed broadband penetration: 15.5% in 2024; subscriptions projected to nearly double to 95.8 million by 2029.
+- UAE IoT revenue CAGR: 40.1% — fastest of any market.
+- South Africa fixed subscriptions CAGR: 8.1%, reaching 13.1 million by 2029.
+- Brazil FTTH connections: 36.3 million (74% of fixed lines) — world's 3rd largest FTTH market.
+- France fibre subscription share: 73%, with copper switch-off planned by 2030.
+- Germany fibre subscription share: 16% at end of 2024, projected to reach ~50% by 2029.
+- Romania fibre subscription share: 80.5%.
+- UK fibre subscriptions: projected to accelerate towards 70% by 2029.
+- Mexico total sector capex: projected CAGR of -0.7% through 2029.
+- China fixed broadband: 206.8 million fibre connections.
+- Capex CAGR (later period): marginally positive at 0.62%.
+
+## Trend signals
+
+- Global telecom usage is soaring while revenue growth remains modest, creating structural pressure on margins.
+- AI integration is being adopted by telecoms to lower service costs, reduce downtime, improve capital allocation, and raise productivity.
+- Telecoms are adopting simpler 'puretone' portfolio models and AI-native 'TelcOS' operating models.
+- AI and data centre infrastructure investment is creating a new super-cycle for high-capacity, low-latency connectivity.
+- Fibre is the dominant fixed-broadband upgrade path globally, with FWA serving as a bridge technology.
+- Fixed wireless access (FWA) is a fast-growing segment particularly in the Middle East (Saudi Arabia) using 4G/5G headroom capacity.
+- Hyperscalers may bypass telecom operators by building their own fibre networks, threatening operator relevance.
+- 5G-Advanced and early 6G rollouts are expected to drive a marginal uptick in capex later in the 2025-2029 period.
+- Sovereign connectivity and digital sovereignty solutions are emerging as a growth opportunity for telecoms.
+- The compute economy risks growing around operator-built networks if backhaul and data centre interconnect do not keep pace.
+- Telecoms are pursuing product simplification, legacy shutdowns, footprint reduction, and vendor consolidation.
+- Enterprise demand in Asia-Pacific (especially China) is offsetting mobile ARPU decline.
+- Smart-city agendas in the Middle East (Saudi Arabia, UAE) are accelerating fibre and IoT deployment.
+- Cable-to-fibre migration is accelerating in North America, with cable losing dominance in the US during 2026.
+
+## Competitive mentions
+
+- Hyperscalers (unnamed) are racing to build large compute clusters and may build their own fibre, competing with traditional telecom operators for connectivity infrastructure.
+- Altnet consolidation is occurring in the UK fixed broadband market.
+- China telecom operators lead globally in fibre and 5G footprint, with China exerting downward pressure on global mobile ARPU.
+- Singapore has achieved all-fibre nationwide coverage, setting a benchmark for other markets.
+
+## Regulatory mentions
+
+- France has a planned copper network switch-off by 2030, mandating fibre migration.
+- Mexico's high spectrum fees are curbing 5G investment and reducing sector capex.
+- Saudi Arabia's smart-city agenda is a government policy driver accelerating fibre and IoT deployment.
+- Telecoms can capture growth by delivering sovereignty solutions, implying government policy interest in sovereign/non-foreign-controlled connectivity infrastructure.
+
+---
+
+# 6. Southeast Asia Space Industry Report - Deloitte
+
+**URL:** https://www.deloitte.com/southeast-asia/en/services/consulting/perspectives/sea-space-industry-report.html
+**Firm:** Deloitte
+## Key facts
+
+- Deloitte projects that the analysis and application of satellite data across Southeast Asia's key industries will drive US$100 billion of GDP contribution by 2030.
+- Earth observation (EO) is described as the practice of collecting and analysing satellite data and is at the forefront of creating value across industries in Southeast Asia.
+- Land-intensive industries including Agriculture, Mining, Oil & Gas, Electricity & Utilities, and Government & Public Services are poised to capture the majority of EO's added GDP contribution in Southeast Asia.
+- Financial Services & Insurance industries are leveraging EO for improved risk modelling, ESG compliance, supply chain financing optimization, and microinsurance innovation.
+- The report was authored in collaboration with Singapore Space & Technology Think Tank.
+- Deloitte's Southeast Asia Space Practice leverages over 15 years of global expertise and supports clients in over 15 countries.
+- Singapore Space and Technology Ltd is a non-profit organisation established in 2007 that champions the Southeast Asia space ecosystem.
+- Southeast Asian businesses are applying satellite data to everyday challenges, including Thai rice farmers using satellite analysis to improve agricultural productivity and Malaysian real estate developers using satellite imagery for site selection.
+
+## Market data points
+
+- Space has the potential to unlock US$100 billion in economic value contribution across Southeast Asia between 2023 and 2030.
+- Deloitte's Southeast Asia Space Practice supports clients in over 15 countries.
+- Deloitte's Southeast Asia Space Practice has over 15 years of global expertise in space technologies.
+- Singapore Space and Technology Ltd was established in 2007.
+
+## Trend signals
+
+- Southeast Asia's space industry is described as being 'on the rise' with capabilities developed across the value chain.
+- Earth observation is projected to revolutionise businesses across Southeast Asia, leading to significant opportunities for productivity increases and cost avoidance.
+- EO benefits are expected to be felt indirectly across the entirety of the regional economy, extending beyond directly land-intensive sectors.
+- The ASEAN space ecosystem is connecting to the global space agenda to drive business opportunities.
+- Commercialisation of new space enterprises is identified as an emerging opportunity in Southeast Asia.
+
+
+## Regulatory mentions
+
+- ESG compliance is identified as a driver for Financial Services & Insurance sector adoption of Earth observation data in Southeast Asia.
+
+---
+
+# 7. [PDF] Navigating space - KPMG agentic corporate services
+
+**URL:** https://assets.kpmg.com/content/dam/kpmg/ae/pdf-2021/09/navigating-space-a-vision-for-space-in-defense.pdf
+**Firm:** KPMG
+**Publication:** 2021-08
+## Key facts
+
+- The space domain is becoming more congested and contested, with new governmental and commercial players vying for advantage.
+- Ground stations were attacked during the 1991 Gulf War and in the 2011 conflict in Libya, demonstrating the military importance of space assets.
+- Jamming of SatCom and GPS networks has been reported in numerous regions and theaters of conflict.
+- Countries including Australia, Canada, China, France, India, Japan, Russia, the UK, and the US are establishing space commands to develop domestic capabilities and enable foreign partnerships.
+- African countries placed 41 satellites into orbit in 2019 alone.
+- Middle Eastern nations have national strategic priorities in the space domain, including the launch of Mars-bound missions.
+- The US Space Force's Chief of Space Operations stated that space will become the most vital domain for national security, surpassing air, land, and sea.
+- Satellites and spacecraft are inherently vulnerable to cyber-attacks, jamming/spoofing, and physical attacks.
+- Concerns about resilience are leading some actors to move away from large 'exquisite' satellite configurations toward diversified constellations for greater redundancy.
+- Commercial players are now offering a range of Earth Observation data in near real-time, with some interviewees expecting public intelligence sources to rival classified sources within a few years.
+- Space will become more critical as an economic hub, with significant wealth expected to be generated in the space domain over the long term.
+- KPMG International and the Space Foundation interviewed nearly two dozen industry and defense leaders at the highest levels of the space domain for this report.
+- Many capabilities being developed for space can deliver broad benefits to civilians, including assured communications, protection of space assets, manufacturing in space, space tugs, and laser and optical communication.
+- Non-governmental organizations, most notably commercial ventures such as SpaceX, are crowding into the space domain.
+- Earth observation, space situational awareness, and satellite communications are increasingly being offered commercially as off-the-shelf solutions.
+
+## Market data points
+
+- Between 2019 and 2020, the number of spacecraft launched per year more than doubled.
+- Expectations indicate there will likely be 100,000 satellites in orbit by the end of the decade.
+- African countries placed 41 satellites into orbit in 2019 alone.
+- It took almost 70 years for the air force to be fully integrated into most joint forces; integration of the space domain is expected to be much faster.
+- The report was produced in August 2021.
+
+## Trend signals
+
+- Space is predicted to become the dominant domain for national security by 2030.
+- Space sustainability — including orbital debris management — is forecast to become a top national security issue.
+- An Open Source Intelligence landscape may emerge as commercial Earth Observation data rivals classified intelligence sources.
+- Geointelligence singularity from Earth Observation is expected to be enabled through AI and mobile technologies, allowing near-universal access to high-resolution planetary imagery.
+- Cislunar space is expected to become increasingly populated, with the foundations of real space logistics emerging, including tugs, propellant structures, and related technologies.
+- The pace of adoption, scaling, and commercialization of new space technologies is expected to accelerate significantly.
+- A growing number of countries are realigning their defense organizations to recognize the importance of space, broadening beyond the traditional handful of space powers.
+- The model of higher-quantity, lower-cost satellites deployed on faster timelines is expected to create resilient satellite architectures with frequent opportunities for technology insertion.
+- Proximity operations (e.g., life-extension technologies and refueling vehicles) and space manufacturing are expected areas of breakthrough innovation.
+- International law and global norms around space behavior are increasingly seen as critical to unlocking advancement and ensuring long-term sustainability.
+
+## Competitive mentions
+
+- SpaceX is cited as a leading commercial venture crowding into the space domain.
+- Lockheed Martin Space is referenced via its Executive Vice President Rick Ambrose on space sustainability.
+- HawkEye 360 is cited as a commercial operator focused on resilient, lower-cost satellite architectures.
+- The Aerospace Corporation is cited in relation to AI-enabled geointelligence and open-source intelligence capabilities.
+- GXO Inc and VOX Space LLC are cited in relation to predictions about cislunar space logistics.
+- The US-Soviet 'space race' is referenced as the origin of space competition dynamics.
+- The US Space Force is highlighted as the most public example of countries establishing dedicated space defense organizations.
+
+## Regulatory mentions
+
+- Achieving broad consensus around global norms of behavior and policy is described as critical to humanity's ability to benefit from the space domain.
+- International law is cited as needing to evolve to address space sustainability issues such as orbital debris.
+- The need for rules of the road in space is identified as urgent given the growing number of space-faring nations and companies.
+- Space sustainability and the proper management of the space environment may increasingly be treated as a national security and regulatory issue by governments.
+
+---
+
+# 8. 4 Trends Shaping The Global Space Sector In 2024 - Oliver Wyman
+
+**URL:** https://www.oliverwyman.com/our-expertise/insights/2024/jan/four-trends-shaping-the-space-sector.html
+**Firm:** Oliver Wyman
+**Publication:** 2024-01
+## Key facts
+
+- SpaceX completed 98 rocket launches in 2023, representing 86% of all launches that year.
+- China launched 67 rockets in 2023, including new technology modeled after SpaceX's reusable rocket technology.
+- Total satellite launches grew from 473 in 2017 to 2,848 in 2023.
+- SpaceX's current estimated valuation is $180 billion, approximately six times NASA's annual budget.
+- The New Space Index was down 69% versus 2022 valuations and 86% versus 2021 valuations.
+- Maxar was acquired by private equity firm Advent for $5.5 billion.
+- Aerojet Rocketdyne was purchased by L3Harris for $4.7 billion.
+- Ball Aerospace merged with BAE North America for $5.5 billion.
+- Astra Space defaulted on a $12.5 million loan.
+- Virgin Orbit went bankrupt and liquidated all its assets.
+- Axiom Space raised $350 million in new capital.
+- The Space Development Agency launched 23 new satellites out of 370 on order and plans an aggressive cadence of 11 launches in 11 months.
+- China has announced a program to land Chinese astronauts on the moon by 2030.
+- NASA's crewed orbit of the moon is now set for September 2025 and astronauts' lunar landing delayed until September 2026.
+- Venture capital investment in space startups increased 161.5% from 2017 to 2023.
+- 2024 is expected to see development of AI-enabled earth imaging, asset tracking, and new satellite networks focused on direct-to-mobile-phone communications.
+
+## Market data points
+
+- Total satellite launches increased from 473 in 2017 to 2,848 in 2023.
+- SpaceX accounted for 86% of all rocket launches in 2023 with 98 launches.
+- China conducted 67 rocket launches in 2023.
+- SpaceX is estimated at $180 billion valuation as of the report date.
+- New Space Index down 69% versus 2022 and 86% versus 2021.
+- Maxar acquisition valued at $5.5 billion by Advent International.
+- Aerojet Rocketdyne acquisition valued at $4.7 billion by L3Harris.
+- Ball Aerospace merger with BAE North America valued at $5.5 billion.
+- Axiom Space raised $350 million in new capital.
+- Venture capital dollars into space startups grew 161.5% from 2017 to 2023.
+- Space Development Agency has 370 satellites on order and launched 23 in 2023.
+
+## Trend signals
+
+- Emergence of next-generation launch vehicles competing with SpaceX, including Ariane 6, Blue Origin's New Glenn, Rocket Lab's Neutron, and Mitsubishi Heavy Industries' H3.
+- Growing US-China space race extending to military, commercial, and lunar exploration domains.
+- NASA increasing reliance on private sector partners to fulfill space ambitions amid constrained budgets.
+- New satellite networks focused on direct-to-mobile-phone communications expected to emerge in 2024.
+- AI-enabled earth imaging and asset tracking identified as near-Earth space technology growth area.
+- Further consolidation expected in the space industry in 2024.
+- Government space leaders face pressure to balance SpaceX's dominance with fostering a diverse space industrial base.
+- Increased private astronaut missions to the International Space Station as commercial spaceflight matures.
+- Reusable rocket technology being replicated by Chinese launch providers, increasing non-US competition.
+
+## Competitive mentions
+
+- SpaceX — dominant global launch provider with 86% market share in 2023 and Starlink satellite network.
+- China's space program — 67 launches in 2023, active space station, lunar ambitions by 2030.
+- United Launch Alliance (ULA) — successfully flew Vulcan Centaur on January 8, 2024.
+- Blue Origin — developing New Glenn rocket; BE-4 engines powered first Vulcan Centaur flight.
+- Rocket Lab — further proved Electron launch vehicle, won prime contractor position with US Space Force.
+- Axiom Space — completed third all-private ISS mission, raised $350 million.
+- Mitsubishi Heavy Industries H3 — exploded on a test flight in 2023.
+- European Space Agency Ariane 6 — aborted test flight in 2023.
+- Virgin Orbit — went bankrupt and liquidated all assets.
+- Astra Space — defaulted on $12.5 million loan.
+- Lockheed Martin, Northrop Grumman, Raytheon, and Boeing — traditional NASA space partners.
+- Intuitive Machines — Nova-C lunar mission scheduled in 2024.
+- Astrobotic — private sector lunar lander partner with failed soft-landing attempt January 8, 2024.
+- Maxar — acquired by Advent International for $5.5 billion.
+- Aerojet Rocketdyne — acquired by L3Harris for $4.7 billion.
+- Japan JAXA — SLIM moon craft made successful landing but suffered power loss.
+
+## Regulatory mentions
+
+- NASA pushed back Artemis moon missions by a year due to challenges facing private sector partners, with crewed lunar orbit now set for September 2025 and landing for September 2026.
+- The Pentagon has promised faster, more agile procurement to ensure America's critical national satellite networks remain resilient.
+- The US Space Force oversees development of next-generation geostationary, polar orbiting, and GPS satellites.
+- The Space Development Agency plans an aggressive launch cadence of 11 launches in 11 months as part of a 370-satellite order.
+
+---
+
+# 9. [PDF] Emerging Giants in Asia Pacific - KPMG agentic corporate services
+
+**URL:** https://assets.kpmg.com/content/dam/kpmg/sg/pdf/2022/07/emerging-giants-in-asia-pacific-2022.pdf
+**Firm:** KPMG
+**Publication:** 2022-07
+## Key facts
+
+- KPMG and HSBC studied 6,472 technology-focused start-ups with valuations up to US$500 million across 12 key Asia Pacific markets.
+- Asia Pacific is taking in over one-quarter of the world's total private investment dollars.
+- Asia Pacific is catching up with North America as the world's number one producer of unicorns, defined as start-up businesses valued at over 1 billion USD.
+- In India, more than 50 unicorns emerged in 2021, more than in the previous five years combined.
+- The pandemic-accelerated shift online has opened doors for digital businesses across the value chain, from marketing to payments to logistics to customer experience.
+- Led by China, Asia Pacific is now the world's fastest fintech adopter.
+- Roughly 33 percent of identified emerging giant companies originated in Mainland China and 30 percent in India.
+- Fast-growing economies in Southeast Asia (Malaysia, Indonesia, Vietnam, and Thailand) collectively made up around 3 percent of identified emerging giant companies.
+- Five out of 12 Asia Pacific markets had average valuations of US$300 million or more among their ten Leading Emerging Giants.
+- Eight out of 12 Asia Pacific markets had average valuations of US$100 million or more among their respective ten Leading Emerging Giants lists.
+- The study identified roughly 120 technology-related industry subsets among the emerging giants.
+- Public investments have multiplier effects as they vastly increase private investor confidence and willingness to invest at all stages of the venture cycle.
+- Governments are investing billions to meet their respective climate goals and the private sector is developing new sustainable investment products.
+
+## Market data points
+
+- 6,472 technology-focused start-ups with valuations up to US$500 million were studied across 12 Asia Pacific markets as of April 30, 2022.
+- IMF forecasts predict Emerging Market and Developing Economies (EMDE) Asia will grow 20% faster than the global average in 2022 (7.3% vs 6.1%, IMF April 2022).
+- Combined valuation of the Leading 10 Emerging Giant companies in Mainland China: US$5.00 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in India: US$4.60 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Japan: US$3.50 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Singapore: US$3.20 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in South Korea: US$3.00 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Australia: US$2.70 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Indonesia: US$2.00 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Hong Kong (SAR): US$1.90 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Malaysia: US$0.80 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Taiwan: US$0.65 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Thailand: US$0.43 billion.
+- Combined valuation of the Leading 10 Emerging Giant companies in Vietnam: US$0.30 billion.
+- Japan comprised 13 percent, Australia 9 percent, Singapore 4 percent, South Korea 2 percent, and Hong Kong (SAR) and Taiwan roughly 1 percent each of identified emerging giant companies.
+- Malaysia accounted for 1.0 percent, Indonesia 0.8 percent, Vietnam 0.5 percent, Taiwan 0.4 percent, and Thailand 0.3 percent of identified emerging giant companies.
+
+## Trend signals
+
+- By 2030, Asia Pacific's emerging growth companies will likely have a profound impact on the shape of the global economy.
+- A rapidly growing middle class with higher disposable incomes coupled with rapid expansion in internet and smartphone penetration has resulted in a thriving digital commerce sector in Asia Pacific.
+- The global push towards carbon-neutrality is expected to be a major driver of innovation as traditional sectors go green.
+- Asian economies that once supplied consumers in the West are becoming major consumer markets in their own right as incomes rise.
+- The principal driver of regional growth is shifting from manufacturing to services due to the ability to deliver products digitally.
+- More and more people are exploring the potential of the metaverse and digital assets in Asia Pacific.
+- New digital ecosystems are attracting major investment dollars and some of the world's top talent in Asia Pacific.
+- Governments across Asia Pacific are making major improvements in digital infrastructure.
+- A fast-growing population of digital natives is driving digital adoption across Asia Pacific.
+- The COVID-19 pandemic accelerated the migration online, energizing growth opportunities for start-ups across Asia Pacific.
+
+## Competitive mentions
+
+- North America is identified as the primary competitor to Asia Pacific in unicorn production, with Asia Pacific catching up.
+- China is identified as leading Asia Pacific in fintech adoption, with the region as a whole being the world's fastest fintech adopter.
+
+## Regulatory mentions
+
+- Adoption of a more favorable regulatory environment and greater harmonization of policies across Asia Pacific markets is cited as a way to offset geopolitical and economic uncertainty and support growth.
+- Government funding and incentives for investment in emerging growth companies play a critical role in helping local entrepreneurs start and scale their businesses.
+- Governments across Asia Pacific are investing billions to meet their respective climate goals.
+
+---
+
+# 10. [PDF] INFRASTRUCTURE 100 – World Markets Report
+
+**URL:** https://assets.kpmg.com/content/dam/kpmg/pdf/2014/11/Infrastructure-100-World-Markets-Report-O-201411.pdf
+**Firm:** KPMG
+**Publication:** 2014-11
+## Key facts
+
+- KPMG's Infrastructure 100 report identifies 100 infrastructure projects across different global markets categorized into Economic Powerhouses, Emerging Markets, Mature International Markets, and Smaller Established Markets.
+- Telecoms is cited as one of the few infrastructure sectors where change via mobile telephony has been revolutionary, happening quickly and making services cheaper and more flexible while enhancing profits by creating new markets through consumer applications.
+- Cost is identified as a significant barrier to infrastructure development, with governments trying to prioritize limited infrastructure spend.
+- Poverty remains at desperate levels all over the world and many people lack essential services that others take for granted.
+- Infrastructure assets are described as expensive, built to a previous generation's technical standards and designed to operate for decades, making technology adoption difficult.
+- Without economic growth and social mobility of people moving out of poverty into middle class, a constrained tax base cannot afford necessary investments in water, energy, schools, etc.
+- This report represents the third edition of KPMG's Infrastructure 100 publication.
+
+## Market data points
+
+- A new children's hospital project example cited at US$200 million in cost.
+- A 10-year urban water and sewer system repair and upgrade plan example cited at US$17 billion.
+
+## Trend signals
+
+- Technology in telecoms (mobile telephony) is highlighted as a rare example of revolutionary change in infrastructure, making services cheaper and more flexible while creating new consumer markets.
+- Innovation in construction is emerging, with a Chinese construction firm beginning to create homes using a 3D printer as of 2014, though still using traditional materials.
+- Graphene, a thin lightweight material made from graphite that conducts heat and electricity, is identified as a future material with widespread applications for energy, healthcare and construction, though not yet deployed commercially.
+- Governments are facing difficult choices around affordability and prioritization of limited infrastructure spend globally.
+
+
+## Regulatory mentions
+
+- Governments are described as trying to prioritize limited infrastructure spend, implying regulatory and budgetary constraints on infrastructure investment.
+
+---
+
+# 11. Next-gen satellite internet is transforming pricing, capacity ... - Deloitte
+
+**URL:** https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/next-gen-satellite-internet.html
+**Firm:** Deloitte
+
+
+
+
+
+---
+
+# 12. [PDF] The Asia Data Centre Landscape - KPMG agentic corporate services
+
+**URL:** https://assets.kpmg.com/content/dam/kpmg/cn/pdf/en/2025/03/the-asia-data-centre-landscape.pdf
+**Firm:** KPMG
+
+
+
+
+
+---

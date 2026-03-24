@@ -70,6 +70,14 @@ class CompetitiveTableSchema(BaseModel):
     target_competitor_min: int = 8
     target_competitor_max: int = 25
     seeded_competitors: list[str] = Field(default_factory=list)
+    must_include_companies: list[str] = Field(
+        default_factory=list,
+        description="User-specified companies that MUST appear in the table.",
+    )
+    custom_parameters: list[str] = Field(
+        default_factory=list,
+        description="User-specified custom attributes that MUST appear in the table.",
+    )
     rationale: str = ""
 
 

@@ -35,7 +35,7 @@ class ResearchRequest(BaseModel):
         description="Subset of category IDs to run. Empty = run all."
     )
     max_concurrent: int = Field(
-        default=2,
+        default=4,
         ge=1, le=6,
         description="Max parallel categories per phase."
     )
@@ -46,6 +46,14 @@ class ResearchRequest(BaseModel):
     prebuilt_competitive_table: dict | None = Field(
         default=None,
         description="Pre-built competitive_table.json content. When provided, the CT Phase 0 build is skipped."
+    )
+    must_include_companies: list[str] = Field(
+        default_factory=list,
+        description="Companies that MUST appear in the competitive table (Y axis). Added as Tier 1 if not discovered.",
+    )
+    custom_parameters: list[str] = Field(
+        default_factory=list,
+        description="Custom attributes/parameters that MUST appear in the competitive table (X axis). Added as 'required' priority.",
     )
 
 
@@ -79,13 +87,21 @@ class ChainRequest(BaseModel):
         description="Override venture name. If empty, extracted from documents."
     )
     max_concurrent: int = Field(
-        default=2,
+        default=4,
         ge=1, le=6,
         description="Max parallel categories per phase."
     )
     prebuilt_competitive_table: dict | None = Field(
         default=None,
         description="Pre-built competitive_table.json content. When provided, the CT step is skipped."
+    )
+    must_include_companies: list[str] = Field(
+        default_factory=list,
+        description="Companies that MUST appear in the competitive table (Y axis).",
+    )
+    custom_parameters: list[str] = Field(
+        default_factory=list,
+        description="Custom attributes/parameters that MUST appear in the competitive table (X axis).",
     )
 
 

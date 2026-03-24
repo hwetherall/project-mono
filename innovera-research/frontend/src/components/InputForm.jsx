@@ -59,6 +59,8 @@ export default function InputForm({ onSubmit }) {
   const [savedBriefError, setSavedBriefError] = useState('');
   const [prebuiltTable, setPrebuiltTable] = useState(null);
   const [prebuiltTableError, setPrebuiltTableError] = useState('');
+  const [mustIncludeCompanies, setMustIncludeCompanies] = useState(['']);
+  const [customParameters, setCustomParameters] = useState(['']);
 
   const categoryPhases = researchMode === 'market_research' ? MARKET_RESEARCH_PHASES : DEMAND_VALIDATION_PHASES;
   const allCategoryIds = useMemo(
@@ -147,6 +149,9 @@ export default function InputForm({ onSubmit }) {
           ? []
           : Array.from(selectedCategories);
 
+      const validCompanies = mustIncludeCompanies.filter((c) => c.trim());
+      const validParams = customParameters.filter((p) => p.trim());
+
       await onSubmit({
         research_mode: researchMode,
         document_text: documentText,
@@ -157,6 +162,8 @@ export default function InputForm({ onSubmit }) {
         max_concurrent: maxConcurrent,
         categories_to_run: categoriesToRun,
         ...(prebuiltTable ? { prebuilt_competitive_table: prebuiltTable } : {}),
+        ...(validCompanies.length ? { must_include_companies: validCompanies } : {}),
+        ...(validParams.length ? { custom_parameters: validParams } : {}),
       });
     } catch {
       setSubmitting(false);
@@ -321,6 +328,107 @@ export default function InputForm({ onSubmit }) {
           </div>
         )}
       </section>
+
+      {/* Must-Include Companies & Custom Parameters (CT / Run All modes) */}
+      {(researchMode === 'competitive_table' || researchMode === 'run_all') && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Must-Include Companies (Y Axis) */}
+          <div className="border border-purple-200 dark:border-purple-800 rounded-lg p-4 bg-purple-50/30 dark:bg-purple-900/10 space-y-3">
+            <label className="block text-sm font-medium text-purple-700 dark:text-purple-300">
+              Must-Include Companies <span className="text-slate-400 dark:text-slate-500 font-normal">(Y axis)</span>
+            </label>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Companies guaranteed to appear in the table as Tier 1, even if not auto-discovered.
+            </p>
+            <div className="space-y-2">
+              {mustIncludeCompanies.map((company, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    className="flex-1 p-2 border border-slate-300 dark:border-slate-600 rounded text-sm
+                               bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                               focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                               placeholder-slate-400 dark:placeholder-slate-500"
+                    placeholder={`e.g., ${index === 0 ? 'Abbott' : index === 1 ? 'Medtronic' : 'Company name'}`}
+                    value={company}
+                    onChange={(e) =>
+                      setMustIncludeCompanies((prev) =>
+                        prev.map((c, i) => (i === index ? e.target.value : c))
+                      )
+                    }
+                  />
+                  {mustIncludeCompanies.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setMustIncludeCompanies((prev) => prev.filter((_, i) => i !== index))
+                      }
+                      className="px-2 text-slate-400 hover:text-red-500 transition-colors"
+                    >
+                      &times;
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setMustIncludeCompanies((prev) => [...prev, ''])}
+              className="text-sm text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium"
+            >
+              + Add company
+            </button>
+          </div>
+
+          {/* Custom Parameters (X Axis) */}
+          <div className="border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 bg-indigo-50/30 dark:bg-indigo-900/10 space-y-3">
+            <label className="block text-sm font-medium text-indigo-700 dark:text-indigo-300">
+              Custom Parameters <span className="text-slate-400 dark:text-slate-500 font-normal">(X axis)</span>
+            </label>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              Custom attributes added to the matrix columns alongside auto-generated ones.
+            </p>
+            <div className="space-y-2">
+              {customParameters.map((param, index) => (
+                <div key={index} className="flex gap-2">
+                  <input
+                    type="text"
+                    className="flex-1 p-2 border border-slate-300 dark:border-slate-600 rounded text-sm
+                               bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100
+                               focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500
+                               placeholder-slate-400 dark:placeholder-slate-500"
+                    placeholder={`e.g., ${index === 0 ? 'ESG Rating' : index === 1 ? 'API Availability' : 'Parameter name'}`}
+                    value={param}
+                    onChange={(e) =>
+                      setCustomParameters((prev) =>
+                        prev.map((p, i) => (i === index ? e.target.value : p))
+                      )
+                    }
+                  />
+                  {customParameters.length > 1 && (
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setCustomParameters((prev) => prev.filter((_, i) => i !== index))
+                      }
+                      className="px-2 text-slate-400 hover:text-red-500 transition-colors"
+                    >
+                      &times;
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={() => setCustomParameters((prev) => [...prev, ''])}
+              className="text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-medium"
+            >
+              + Add parameter
+            </button>
+          </div>
+        </div>
+      )}
 
       <section className="space-y-2">
         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">

@@ -72,6 +72,8 @@ class MRBaseCategory(BaseCategory):
             block += f"\n**Known Competitors:** {', '.join(self.known_competitors[:10])}"
         if self.known_segments:
             block += f"\n**Known Segments:** {', '.join(self.known_segments[:8])}"
+        if self.context.brief_questions:
+            block += "\n**Client's Key Questions:** " + " | ".join(self.context.brief_questions[:5])
 
         return block
 

@@ -1,0 +1,331 @@
+{
+  "attributes": [
+    {
+      "attribute_id": "name",
+      "name": "Company / Initiative Name",
+      "description": "Legal or brand name of the competitor or competitive initiative.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "description",
+      "name": "Description",
+      "description": "One- to two-sentence summary of what the company does and its role in satellite broadband.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "year_founded",
+      "name": "Year Founded",
+      "description": "Year the company or satellite program was formally established.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "hq_location",
+      "name": "HQ Location",
+      "description": "Country and city of primary headquarters.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "parent_or_backer",
+      "name": "Parent Company / Principal Backer",
+      "description": "Ultimate controlling entity or dominant financial backer (e.g., SpaceX, Amazon, French govt via Eutelsat, SoftBank).",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "revenue_estimate",
+      "name": "Revenue Estimate (USD)",
+      "description": "Most recent annual revenue estimate or reported figure. Use 'pre-revenue' where applicable.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "employee_count",
+      "name": "Employee Count",
+      "description": "Approximate global headcount.",
+      "group": "profile",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "total_capital_raised_or_invested",
+      "name": "Total Capital Raised / Invested (USD)",
+      "description": "Cumulative funding, capex commitment, or investment secured for the satellite broadband program.",
+      "group": "profile",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "orbit_type",
+      "name": "Orbit Type",
+      "description": "Orbital regime(s) used: LEO, MEO, GEO, or hybrid combination.",
+      "group": "constellation_technical",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "constellation_size_planned",
+      "name": "Planned Constellation Size (satellites)",
+      "description": "Total number of satellites planned at full build-out.",
+      "group": "constellation_technical",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "satellites_in_orbit",
+      "name": "Satellites Currently in Orbit",
+      "description": "Number of operational satellites as of latest available data.",
+      "group": "constellation_technical",
+      "data_type": "numeric",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "launch_provider",
+      "name": "Launch Provider(s)",
+      "description": "Primary rocket provider(s) used or contracted (e.g., SpaceX Falcon 9, Arianespace, ULA, ISRO).",
+      "group": "constellation_technical",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "latency_ms",
+      "name": "Advertised Latency (ms)",
+      "description": "Typical round-trip latency at customer terminal under normal conditions.",
+      "group": "constellation_technical",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "peak_downlink_speed",
+      "name": "Peak Downlink Speed (Mbps)",
+      "description": "Maximum advertised or demonstrated downlink throughput per user terminal.",
+      "group": "constellation_technical",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "ground_segment_control",
+      "name": "Ground Segment Control",
+      "description": "Whether the company owns and operates its own ground stations and network operations centers, or relies on third-party ground infrastructure.",
+      "group": "constellation_technical",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "direct_to_cell_capability",
+      "name": "Direct-to-Cell / Direct-to-Device Capability",
+      "description": "Whether the service supports direct connectivity to standard smartphones or IoT devices without a dedicated terminal.",
+      "group": "constellation_technical",
+      "data_type": "boolean",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "service_segments",
+      "name": "Service Segments Served",
+      "description": "Target customer categories: Consumer, SMB, Enterprise, Government/Defense, Maritime, Aviation, IoT.",
+      "group": "commercial",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "pricing_model",
+      "name": "Pricing Model",
+      "description": "How the service is priced: flat-rate subscription, usage-based, wholesale/wholesale-only, government contract, or hybrid.",
+      "group": "commercial",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "consumer_monthly_price_usd",
+      "name": "Consumer Monthly Price (USD)",
+      "description": "Approximate retail monthly subscription price for a standard consumer plan.",
+      "group": "commercial",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "terminal_hardware_cost_usd",
+      "name": "User Terminal Cost (USD)",
+      "description": "Approximate retail or subsidized price of the customer-premises antenna/terminal hardware.",
+      "group": "commercial",
+      "data_type": "numeric",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "distribution_gtm",
+      "name": "Distribution / GTM Motion",
+      "description": "Go-to-market approach: direct-to-consumer online, MNO/ISP wholesale, government contracts, reseller channel, or combination.",
+      "group": "commercial",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "active_subscribers",
+      "name": "Active Subscribers / Customers",
+      "description": "Reported or estimated number of paying subscribers or contracted enterprise/government accounts.",
+      "group": "commercial",
+      "data_type": "text",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "geopolitical_alignment",
+      "name": "Geopolitical / National Alignment",
+      "description": "Country of operational control and perceived geopolitical alignment (e.g., U.S.-controlled, EU/Franco-British, commercially neutral, Chinese-state).",
+      "group": "strategic_regulatory",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "itar_ear_exposure",
+      "name": "ITAR / EAR Regulatory Exposure",
+      "description": "Degree to which U.S. export control regulations (ITAR/EAR) constrain the operator's ability to serve sovereign-sensitive markets.",
+      "group": "strategic_regulatory",
+      "data_type": "rating",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "target_geographies",
+      "name": "Primary Target Geographies",
+      "description": "Regions or countries the operator actively markets to and holds spectrum/landing rights for.",
+      "group": "strategic_regulatory",
+      "data_type": "list",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "spectrum_licensing_status",
+      "name": "Spectrum & ITU Filing Status",
+      "description": "ITU coordination status and breadth of national spectrum/landing-rights approvals, particularly in Southeast Asia and Middle East.",
+      "group": "strategic_regulatory",
+      "data_type": "text",
+      "priority": "required"
+    },
+    {
+      "attribute_id": "government_contract_track_record",
+      "name": "Government Contract Track Record",
+      "description": "History of signed government or defense contracts, particularly with sovereign customers in target regions.",
+      "group": "strategic_regulatory",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "data_sovereignty_offering",
+      "name": "Data Sovereignty / In-Country Gateway Option",
+      "description": "Whether the operator offers in-country ground station breakout or data-residency guarantees to satisfy national sovereignty requirements.",
+      "group": "strategic_regulatory",
+      "data_type": "boolean",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "vertical_integration_depth",
+      "name": "Vertical Integration Depth",
+      "description": "Extent of vertical integration: satellite design/manufacturing, launch, ground segment, terminal hardware, software/OS, retail service.",
+      "group": "strategic_regulatory",
+      "data_type": "rating",
+      "priority": "important"
+    },
+    {
+      "attribute_id": "competitive_moat",
+      "name": "Primary Competitive Moat",
+      "description": "Core sustainable advantage: first-mover scale, proprietary launch, hardware ecosystem lock-in, government relationships, spectrum rights, or price.",
+      "group": "strategic_regulatory",
+      "data_type": "text",
+      "priority": "important"
+    }
+  ],
+  "attribute_groups": [
+    {
+      "group_id": "profile",
+      "name": "Company Profile",
+      "attribute_ids": [
+        "name",
+        "description",
+        "year_founded",
+        "hq_location",
+        "parent_or_backer",
+        "revenue_estimate",
+        "employee_count",
+        "total_capital_raised_or_invested"
+      ]
+    },
+    {
+      "group_id": "constellation_technical",
+      "name": "Constellation & Technical Capability",
+      "attribute_ids": [
+        "orbit_type",
+        "constellation_size_planned",
+        "satellites_in_orbit",
+        "launch_provider",
+        "latency_ms",
+        "peak_downlink_speed",
+        "ground_segment_control",
+        "direct_to_cell_capability"
+      ]
+    },
+    {
+      "group_id": "commercial",
+      "name": "Commercial Model & Go-to-Market",
+      "attribute_ids": [
+        "service_segments",
+        "pricing_model",
+        "consumer_monthly_price_usd",
+        "terminal_hardware_cost_usd",
+        "distribution_gtm",
+        "active_subscribers"
+      ]
+    },
+    {
+      "group_id": "strategic_regulatory",
+      "name": "Strategic Positioning & Regulatory",
+      "attribute_ids": [
+        "geopolitical_alignment",
+        "itar_ear_exposure",
+        "target_geographies",
+        "spectrum_licensing_status",
+        "government_contract_track_record",
+        "data_sovereignty_offering",
+        "vertical_integration_depth",
+        "competitive_moat"
+      ]
+    }
+  ],
+  "target_competitor_min": 9,
+  "target_competitor_max": 14,
+  "seeded_competitors": [
+    "Starlink (SpaceX)",
+    "OneWeb (Eutelsat)",
+    "Amazon Kuiper",
+    "Telesat Lightspeed",
+    "Viasat",
+    "Intelsat",
+    "SES",
+    "Hughes Network Systems (EchoStar)",
+    "Inmarsat (VSAT Global)",
+    "AST SpaceMobile",
+    "ST Engineering iDirect",
+    "Thuraya (al Yah Satellite)",
+    "Hughes Network Systems",
+    "Inmarsat"
+  ],
+  "must_include_companies": [
+    "Starlink (SpaceX)",
+    "OneWeb (Eutelsat)",
+    "Amazon Kuiper",
+    "Telesat Lightspeed",
+    "Viasat",
+    "Intelsat",
+    "SES",
+    "Hughes Network Systems",
+    "Inmarsat"
+  ],
+  "custom_parameters": [],
+  "rationale": "The LEO/satellite broadband market serving non-U.S. geographies is moderately concentrated at the tier-1 level (Starlink dominates; Kuiper and OneWeb are the only other funded LEO constellations with global ambitions) but has a meaningful second tier of GEO/MEO incumbents (Viasat, SES, Intelsat, Hughes, Inmarsat) that compete for the same enterprise and government budgets in Southeast Asia and the Middle East. Nine named competitors were specified in the brief; three to five additional players (AST SpaceMobile for direct-to-cell dynamics, regional GEO operators like Thuraya/al Yah, and emerging non-Western entrants) are analytically relevant to assess the sovereign-alignment gap Samsung is targeting. A range of 9\u201314 covers all material competitors without inflating the matrix with marginal players. Attributes are organized into four groups: (1) Company Profile captures standard firmographic anchors; (2) Constellation & Technical Capability captures the hard engineering and spectrum reality that determines service quality and coverage\u2014critical for a capital-intensive infrastructure play; (3) Commercial Model & Go-to-Market captures pricing, segments, and distribution structures that determine addressable revenue; and (4) Strategic Positioning & Regulatory captures the geopolitical alignment, ITAR exposure, spectrum rights, and data-sovereignty features that are the central differentiating dimension for Samsung's sovereign-market thesis. The ITAR/EAR exposure and geopolitical alignment attributes are rated 'required' because they are the primary strategic rationale for the venture's existence."
+}

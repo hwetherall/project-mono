@@ -87,13 +87,16 @@ class WebSocketProgressBridge:
         })
 
     def emit_context_ready(self, venture_name: str, industry: str,
-                           competitor_count: int, keyword_count: int):
+                           competitor_count: int, keyword_count: int,
+                           brief_questions: list[str] | None = None):
         self._emit_sync({
             "type": "context_ready",
             "venture_name": venture_name,
             "industry": industry,
             "competitor_count": competitor_count,
             "keyword_count": keyword_count,
+            "brief_questions": brief_questions or [],
+            "brief_question_count": len(brief_questions) if brief_questions else 0,
         })
 
     def emit_competitor_list(self, competitors: list[str]):

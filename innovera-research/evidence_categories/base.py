@@ -222,9 +222,24 @@ class BaseCategory(ABC):
         except Exception as exc:
             logger.debug("Checkpoint save failed for %s: %s", self.category_id, exc)
 
+    def _brief_questions_block(self) -> str:
+        """Build a query appendix with the venture brief's explicit questions."""
+        if not self.context.brief_questions:
+            return ""
+        numbered = "\n".join(f"  {i+1}. {q}" for i, q in enumerate(self.context.brief_questions))
+        return f"""
+
+---
+**IMPORTANT — Venture Brief Questions**
+The client's brief poses the following questions that this research must help answer.
+Where this category's scope overlaps with any of these questions, address them directly with evidence and data.
+
+{numbered}
+---"""
+
     async def _execute_once(self) -> CategoryResult:
         """Single attempt to run the GPT Researcher mission with stage checkpoints."""
-        query = self.build_query()
+        query = self.build_query() + self._brief_questions_block()
         report_type = self.get_report_type()
         config_path = str(self.get_config_path())
 

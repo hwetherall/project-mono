@@ -63,6 +63,12 @@ class ContextSignals(BaseModel):
     # --- Research Mode ---
     research_mode: str = Field(default="demand_validation", description="Which pipeline produced these signals")
 
+    # --- Brief Questions (explicit questions from the venture documents that research MUST answer) ---
+    brief_questions: list[str] = Field(
+        default_factory=list,
+        description="Explicit questions, decisions, or information requests stated in the venture brief that the research must answer"
+    )
+
     # --- Market Research Specific Fields ---
     market_definition_terms: list[str] = Field(default_factory=list, description="Canonical market labels and search terms")
     adjacent_market_terms: list[str] = Field(default_factory=list, description="Nearby category labels, alternate names, substitutes")

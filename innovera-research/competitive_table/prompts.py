@@ -258,6 +258,42 @@ STRUCTURED_EXTRACTION_SYSTEM = """You are a structured data extraction assistant
 
 Return ONLY valid JSON matching the requested fields. No markdown, no explanation outside the JSON."""
 
+# ---------------------------------------------------------------------------
+# Step 3a: Breadth Pass — Lightweight extraction of basic facts
+# ---------------------------------------------------------------------------
+
+BREADTH_EXTRACTION_SYSTEM = """You are a data extraction assistant. Given search results about a company, extract basic factual data points.
+
+Return ONLY valid JSON. No markdown, no explanation outside the JSON."""
+
+BREADTH_EXTRACTION_USER = """Extract basic company facts from the following search results about **{competitor_name}**.
+
+### Search Results:
+{search_content}
+
+### Attributes to extract (attribute_id: description):
+{attributes_schema}
+
+### Output Format
+Return a JSON object mapping each attribute_id to:
+{{
+  "value": <extracted value or null>,
+  "confidence": "high" | "medium" | "low" | "unknown",
+  "source_url": <URL if available, else null>,
+  "notes": "<any caveats>"
+}}
+
+Rules:
+- Only extract what is explicitly stated in the search results.
+- Do NOT hallucinate or guess values.
+- If a value cannot be found, set value to null and confidence to "unknown".
+- Prefer specific numbers and dates over vague descriptions."""
+
+
+# ---------------------------------------------------------------------------
+# Universal Parse Depth: Structured Extraction
+# ---------------------------------------------------------------------------
+
 STRUCTURED_EXTRACTION_USER = """Extract structured findings from the following research report.
 
 ### Category: {category_id} — {category_name}

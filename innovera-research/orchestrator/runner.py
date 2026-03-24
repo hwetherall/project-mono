@@ -3,6 +3,8 @@ Main orchestration runner.
 Executes evidence categories in phased order with parallel execution within phases.
 """
 import asyncio
+import json
+import logging
 import time
 from pathlib import Path
 from typing import Optional
@@ -94,6 +96,8 @@ class ResearchRunner:
         research_mode: str = "demand_validation",
         run_id: Optional[str] = None,
         competitive_table=None,
+        must_include_companies: Optional[list[str]] = None,
+        custom_parameters: Optional[list[str]] = None,
     ):
         self.context = context
         self.venture_docs_dir = venture_docs_dir
@@ -106,6 +110,8 @@ class ResearchRunner:
         self.competitive_table = competitive_table
         self.competitive_table_status = "complete" if competitive_table else None
         self.consultant_context = None  # Populated by _run_consultant_primer()
+        self.must_include_companies = must_include_companies or []
+        self.custom_parameters = custom_parameters or []
 
         # Select the correct category classes and registry based on mode
         if self.research_mode == "market_research":
@@ -133,8 +139,13 @@ class ResearchRunner:
         # Pre-Phase: Consultant Primer (before everything else)
         await self._run_consultant_primer()
 
-        # Phase 0: Build Competitive Table (before category phases)
-        await self._build_competitive_table()
+        # Phase 0: If a prebuilt competitive table was provided, load it.
+        # Otherwise, run a fast LLM competitor discovery (~10s) instead of
+        # the full competitive table pipeline (~15-20 min).
+        if self.competitive_table is not None:
+            await self._build_competitive_table()
+        else:
+            await self._discover_competitors_quick()
 
         for phase_info in plan:
             phase_name = phase_info["phase_name"]
@@ -332,6 +343,82 @@ class ResearchRunner:
         """Optionally filter out low-priority categories. V1: run everything."""
         return category_ids
 
+    async def _discover_competitors_quick(self):
+        """Fast LLM call to build a competitor list from context signals.
+
+        Replaces the full competitive-table pipeline for MR/DV runs.
+        Typically completes in <10 seconds.
+        """
+        _logger = logging.getLogger(__name__)
+
+        if self.context.named_competitors:
+            self.competitor_list = list(self.context.named_competitors)
+            self.progress.log(
+                f"Competitor list seeded from brief: {', '.join(self.competitor_list[:8])}"
+            )
+
+        try:
+            from openai import OpenAI
+            from config.settings import (
+                OPENROUTER_API_KEY, OPENROUTER_BASE_URL, CONTEXT_LLM_MODEL,
+            )
+
+            client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=OPENROUTER_API_KEY)
+
+            brief_text = ""
+            brief_path = self.venture_docs_dir / "venture_brief.md"
+            if brief_path.exists():
+                brief_text = brief_path.read_text(encoding="utf-8")[:8000]
+
+            prompt = f"""Given this venture context, return a JSON array of 8-15 competitor company names that are most relevant.
+
+**Venture:** {self.context.venture_name}
+**Industry:** {self.context.industry_vertical}
+**Solution Category:** {self.context.solution_category}
+**Geography:** {self.context.geography}
+**Problem:** {self.context.problem_summary}
+**Already Known:** {', '.join(self.context.named_competitors) if self.context.named_competitors else 'None'}
+
+{f'**Brief excerpt:** {brief_text[:4000]}' if brief_text else ''}
+
+Return ONLY a JSON array of company name strings. Include the already-known competitors plus additional ones you can identify. Example: ["Company A", "Company B"]"""
+
+            response = client.chat.completions.create(
+                model=CONTEXT_LLM_MODEL,
+                max_tokens=1024,
+                messages=[
+                    {"role": "system", "content": "You are a competitive intelligence analyst. Return only valid JSON."},
+                    {"role": "user", "content": prompt},
+                ],
+            )
+
+            text = response.choices[0].message.content.strip()
+            if text.startswith("```"):
+                text = text.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+
+            names = json.loads(text)
+            if isinstance(names, list):
+                self.context.named_competitors = list(set(
+                    self.context.named_competitors + [n for n in names if isinstance(n, str)]
+                ))
+                self.competitor_list = list(self.context.named_competitors)
+
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Quick competitor scan: {len(self.competitor_list)} competitors identified", "info"
+                )
+            self.progress.log(
+                f"Competitors: {', '.join(self.competitor_list[:10])}"
+                f"{'...' if len(self.competitor_list) > 10 else ''}"
+            )
+
+        except Exception as exc:
+            _logger.warning("Quick competitor discovery failed (non-blocking): %s", exc)
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    f"Quick competitor scan failed (non-blocking): {exc}", "warning"
+                )
+
     async def _run_consultant_primer(self):
         """Pre-Phase: Search consulting firm domains and extract insights."""
         import json as _json
@@ -450,7 +537,11 @@ class ResearchRunner:
                 )
 
             # Step 1: Schema generation
-            schema = generate_table_schema(self.context)
+            schema = generate_table_schema(
+                self.context,
+                must_include_companies=self.must_include_companies,
+                custom_parameters=self.custom_parameters,
+            )
             self._save_ct_checkpoint("CT-schema", schema.model_dump())
 
             if hasattr(self.progress, 'emit_competitive_table_status'):
@@ -482,7 +573,12 @@ class ResearchRunner:
                     f"Found {len(competitors)} competitors ({tier_str})", "info"
                 )
 
-            # Step 3: Table population
+            # Step 3: Table population (breadth pass + depth pass)
+            if hasattr(self.progress, 'emit_log_detail'):
+                self.progress.emit_log_detail(
+                    "Quick-scanning basic facts for all competitors...", "info"
+                )
+
             def progress_callback(step, completed, total):
                 if hasattr(self.progress, 'emit_competitive_table_status'):
                     self.progress.emit_competitive_table_status(

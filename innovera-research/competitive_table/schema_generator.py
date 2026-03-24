@@ -7,7 +7,7 @@ import logging
 
 from openai import OpenAI
 
-from competitive_table.models import CompetitiveTableSchema
+from competitive_table.models import CompetitiveTableSchema, CompetitiveAttribute, AttributeGroup
 from competitive_table.prompts import SCHEMA_GENERATION_SYSTEM, SCHEMA_GENERATION_USER
 from context_extraction.models import ContextSignals
 from config.settings import (
@@ -18,7 +18,11 @@ from config.settings import (
 logger = logging.getLogger(__name__)
 
 
-def generate_table_schema(context: ContextSignals) -> CompetitiveTableSchema:
+def generate_table_schema(
+    context: ContextSignals,
+    must_include_companies: list[str] | None = None,
+    custom_parameters: list[str] | None = None,
+) -> CompetitiveTableSchema:
     """Call the LLM to generate a competitive table schema tailored to the venture."""
     client = OpenAI(base_url=OPENROUTER_BASE_URL, api_key=OPENROUTER_API_KEY)
 
@@ -61,6 +65,46 @@ def generate_table_schema(context: ContextSignals) -> CompetitiveTableSchema:
         for name in context.named_competitors:
             if name.lower() not in existing:
                 schema.seeded_competitors.append(name)
+
+    # --- Inject must-include companies (user-specified Y axis) ---
+    if must_include_companies:
+        existing_seeded = {c.lower() for c in schema.seeded_competitors}
+        for name in must_include_companies:
+            if name.strip() and name.strip().lower() not in existing_seeded:
+                schema.seeded_competitors.append(name.strip())
+                existing_seeded.add(name.strip().lower())
+        schema.must_include_companies = [n.strip() for n in must_include_companies if n.strip()]
+        logger.info("Injected %d must-include companies: %s", len(schema.must_include_companies), schema.must_include_companies)
+
+    # --- Inject custom parameters (user-specified X axis) ---
+    if custom_parameters:
+        import re
+        existing_ids = {a.attribute_id for a in schema.attributes}
+        for param in custom_parameters:
+            param = param.strip()
+            if not param:
+                continue
+            param_id = re.sub(r'[^a-z0-9]+', '_', param.lower()).strip('_')
+            if param_id not in existing_ids:
+                schema.attributes.append(CompetitiveAttribute(
+                    attribute_id=param_id,
+                    name=param,
+                    description=f"User-specified parameter: {param}",
+                    group="custom",
+                    data_type="text",
+                    priority="required",
+                ))
+                existing_ids.add(param_id)
+        # Ensure a "custom" group exists
+        group_ids = {g.group_id for g in schema.attribute_groups}
+        if "custom" not in group_ids and any(a.group == "custom" for a in schema.attributes):
+            schema.attribute_groups.append(AttributeGroup(
+                group_id="custom",
+                name="Custom Parameters",
+                attribute_ids=[a.attribute_id for a in schema.attributes if a.group == "custom"],
+            ))
+        schema.custom_parameters = [p.strip() for p in custom_parameters if p.strip()]
+        logger.info("Injected %d custom parameters: %s", len(schema.custom_parameters), schema.custom_parameters)
 
     logger.info(
         "Schema generated: %d attributes, %d groups, target %d–%d competitors",

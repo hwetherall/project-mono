@@ -29,7 +29,7 @@ GPTR_STRATEGIC_LLM = os.getenv("GPTR_STRATEGIC_LLM", "openai:gpt-5.4")
 GPTR_FAST_LLM = os.getenv("GPTR_FAST_LLM", "openai:gpt-5-mini")
 
 # --- Execution Config ---
-MAX_CONCURRENT_CATEGORIES = 3              # Bumped from 2 to 3 after splitting MR-01/MR-06 into smaller tasks
+MAX_CONCURRENT_CATEGORIES = 4              # Bumped to 4 for Market Research concurrency
 CATEGORY_TIMEOUT_SECONDS = int(os.getenv("CATEGORY_TIMEOUT_SECONDS") or "2700")  # Default to 45 minutes for deep research categories
 TOTAL_TIMEOUT_SECONDS = 5400               # 90 min max for entire run
 RATE_LIMIT_MAX_RETRIES = 5                 # Retry attempts on 429 errors

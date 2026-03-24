@@ -3,6 +3,7 @@ REST API endpoints for the Innovera Research web UI.
 """
 import asyncio
 import json
+import logging
 import shutil
 import time
 import uuid
@@ -192,6 +193,7 @@ async def start_research(request: ResearchRequest):
             # For competitive_table mode, extract context as market_research
             extraction_mode = "market_research" if request.research_mode == "competitive_table" else request.research_mode
 
+            print(f"[{run_id[:8]}] Extracting context signals for {mode_label}...")
             progress.emit_log_detail(f"Extracting context signals for {mode_label}...", "info")
             extractor = ContextExtractor()
             context = extractor.extract(run_docs_dir, metadata, research_mode=extraction_mode)
@@ -204,10 +206,15 @@ async def start_research(request: ResearchRequest):
                 industry=context.industry_vertical,
                 competitor_count=len(context.named_competitors),
                 keyword_count=len(context.problem_keywords),
+                brief_questions=context.brief_questions,
             )
             progress.emit_log_detail(
                 f"Context ready — {context.venture_name} ({context.industry_vertical})", "success"
             )
+            if context.brief_questions:
+                progress.emit_log_detail(
+                    f"Extracted {len(context.brief_questions)} questions from venture brief", "info"
+                )
 
             run_output_dir = OUTPUT_DIR / run_id
             run_output_dir.mkdir(parents=True, exist_ok=True)
@@ -230,10 +237,12 @@ async def start_research(request: ResearchRequest):
 
             if request.research_mode == "competitive_table":
                 # --- Competitive Table Only Mode ---
+                print(f"[{run_id[:8]}] Starting competitive table build...")
                 await _run_competitive_table_only(
                     run_id, context, run_docs_dir, run_output_dir,
                     progress, request, started_at,
                 )
+                print(f"[{run_id[:8]}] Competitive table build complete.")
             else:
                 # --- Full Research Pipeline ---
                 # Step 2: Research execution
@@ -254,6 +263,8 @@ async def start_research(request: ResearchRequest):
                         research_mode=request.research_mode,
                         run_id=run_id,
                         competitive_table=prebuilt_ct,
+                        must_include_companies=request.must_include_companies,
+                        custom_parameters=request.custom_parameters,
                     )
                     active_runs[run_id]["_runner"] = runner
                     with TerminalTee(progress):
@@ -312,6 +323,9 @@ async def start_research(request: ResearchRequest):
                 )
 
         except Exception as e:
+            import traceback
+            traceback.print_exc()
+            print(f"\n[{run_id[:8]}] PIPELINE FAILED: {e}\n", flush=True)
             active_runs[run_id]["status"] = "failed"
             active_runs[run_id]["error"] = str(e)
             progress.emit_run_error(str(e))
@@ -392,10 +406,15 @@ async def start_chain(request: ChainRequest):
                 industry=context.industry_vertical,
                 competitor_count=len(context.named_competitors),
                 keyword_count=len(context.problem_keywords),
+                brief_questions=context.brief_questions,
             )
             progress.emit_log_detail(
                 f"Context ready — {context.venture_name} ({context.industry_vertical})", "success"
             )
+            if context.brief_questions:
+                progress.emit_log_detail(
+                    f"Extracted {len(context.brief_questions)} questions from venture brief", "info"
+                )
 
             chain_start = time.time()
             shared_competitive_table = None
@@ -1134,13 +1153,22 @@ async def _run_competitive_table_only(
     table_start = _time.time()
 
     # Step 1: Schema generation
+    print(f"  [CT] Step 1: Schema generation for {context.industry_vertical}...")
     progress.emit_competitive_table_status("building", "schema_generation")
     progress.emit_log_detail(
         f"Generating competitive framework for {context.industry_vertical}...", "info"
     )
-    schema = generate_table_schema(context)
+    must_include = getattr(request, 'must_include_companies', []) or []
+    custom_params = getattr(request, 'custom_parameters', []) or []
+    if must_include:
+        print(f"  [CT] Must-include companies: {must_include}")
+    if custom_params:
+        print(f"  [CT] Custom parameters: {custom_params}")
+    schema = generate_table_schema(context, must_include_companies=must_include, custom_parameters=custom_params)
+    print(f"  [CT] Schema: {len(schema.attributes)} attributes, target {schema.target_competitor_min}-{schema.target_competitor_max} competitors")
 
     # Step 2: Competitor discovery
+    print(f"  [CT] Step 2: Competitor discovery...")
     progress.emit_competitive_table_status("building", "competitor_discovery")
     progress.emit_log_detail(
         f"Discovering competitors in {context.industry_vertical}...", "info"
@@ -1158,9 +1186,11 @@ async def _run_competitive_table_only(
     for c in competitors:
         tier_counts[c.tier] = tier_counts.get(c.tier, 0) + 1
     tier_str = ", ".join(f"Tier {t}: {n}" for t, n in sorted(tier_counts.items()))
+    print(f"  [CT] Found {len(competitors)} competitors ({tier_str})")
     progress.emit_log_detail(f"Found {len(competitors)} competitors ({tier_str})", "info")
 
     # Step 3: Table population
+    print(f"  [CT] Step 3: Populating table...")
     def progress_callback(step, completed, total):
         progress.emit_competitive_table_status(
             "building", step, completed=completed, total=total

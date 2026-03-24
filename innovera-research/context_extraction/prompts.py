@@ -15,6 +15,13 @@ For each field:
 - problem_summary: Write this as a research briefing — clear enough that a researcher with no domain knowledge could understand what to look for.
 - solution_summary: What the venture builds/does, stated neutrally (not marketing language).
 
+For brief_questions: This is CRITICAL. Read the entire document carefully and extract EVERY explicit question, decision request, or information need stated by the brief author. These include:
+- Numbered questions in a "Key Questions" section
+- Core strategic decisions or assessments requested
+- Any sentence phrased as a question or as "assess whether...", "determine if...", "evaluate...", "recommend..."
+- Implicit questions embedded in success criteria (e.g., "revenue target of $350M" implies "Can this target be achieved?")
+- Each question should be a complete, self-contained sentence. Do NOT paraphrase excessively — preserve the original intent.
+
 For category_priorities, assign each of the 13 categories (EC-01 through EC-13) a priority based on these rules:
 - Regulated industry → EC-06 (Regulatory) = critical
 - Pre-revenue / concept stage → EC-05 (Prevalence) = critical, EC-03 (Investment) = high
@@ -58,6 +65,13 @@ Guidelines:
 - ecosystem_entities: named platforms, standards bodies, regulators, intermediaries, suppliers, or gatekeepers.
 - named_competitors: include only if explicit or strongly implied by the documents.
 - named_regulations: include laws, standards, or regulatory bodies explicitly referenced.
+
+For brief_questions: This is CRITICAL. Read the entire document carefully and extract EVERY explicit question, decision request, or information need stated by the author. These include:
+- Numbered questions in a "Key Questions" section
+- Core strategic decisions or assessments requested
+- Any sentence phrased as a question or as "assess whether...", "determine if...", "evaluate...", "recommend..."
+- Implicit questions embedded in success criteria (e.g., "revenue target of $350M" implies "Can this target be achieved?")
+- Each question should be a complete, self-contained sentence. Do NOT paraphrase excessively — preserve the original intent.
 
 For category_priorities, assign all MR categories (MR-01 through MR-10) a priority using these rules:
 - Always set MR-01, MR-04, MR-06, and MR-09 to critical.

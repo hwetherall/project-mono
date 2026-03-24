@@ -190,7 +190,23 @@ export default function ChainProgressPanel({ chain, onComplete }) {
               <span className="text-slate-400 dark:text-slate-500">Keywords:</span>{' '}
               <span className="font-medium text-slate-700 dark:text-slate-300">{chain.contextInfo.keyword_count}</span>
             </div>
+            {chain.contextInfo.brief_question_count > 0 && (
+              <div>
+                <span className="text-slate-400 dark:text-slate-500">Brief Questions:</span>{' '}
+                <span className="font-medium text-blue-600 dark:text-blue-400">{chain.contextInfo.brief_question_count}</span>
+              </div>
+            )}
           </div>
+          {chain.contextInfo.brief_questions?.length > 0 && (
+            <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700">
+              <h4 className="text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-wide mb-2">Client Questions to Answer</h4>
+              <ol className="text-xs text-slate-600 dark:text-slate-400 space-y-1 list-decimal list-inside">
+                {chain.contextInfo.brief_questions.map((q, i) => (
+                  <li key={i}>{q}</li>
+                ))}
+              </ol>
+            </div>
+          )}
         </div>
       )}
 

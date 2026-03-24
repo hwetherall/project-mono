@@ -65,17 +65,26 @@ async def discover_competitors(
 
     # Ensure seeded competitors are included
     found_names = {c.name.lower() for c in competitors}
+    must_include_lower = {n.lower() for n in (schema.must_include_companies or [])}
     for seeded in schema.seeded_competitors:
         if seeded.lower() not in found_names:
+            # Must-include companies get Tier 1, others get Tier 2
+            tier = 1 if seeded.lower() in must_include_lower else 2
             competitors.append(CompetitorEntry(
                 competitor_id=_slugify(seeded),
                 name=seeded,
-                tier=2,
-                description=f"Named in venture brief. Details to be researched.",
+                tier=tier,
+                description=f"{'User-specified must-include company' if tier == 1 else 'Named in venture brief'}. Details to be researched.",
                 competitor_type="direct",
                 sources=sources[:3],
                 last_researched=datetime.now(timezone.utc).isoformat(),
             ))
+            found_names.add(seeded.lower())
+
+    # Also upgrade any discovered must-include companies to Tier 1
+    for comp in competitors:
+        if comp.name.lower() in must_include_lower and comp.tier > 1:
+            comp.tier = 1
 
     logger.info("Discovered %d competitors", len(competitors))
     return competitors
